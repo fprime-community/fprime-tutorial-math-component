@@ -24,14 +24,14 @@ deployment_name [MyDeployment]: Deployment
 [INFO] Found CMake file at 'fprime-tutorial-math-component/project.cmake'
 Add component Deployment to fprime-tutorial-math-component/project.cmake at end of file (yes/no)? yes
 ```
-> The most recent version of F' adds `Deployment` to `project.cmake`. Older versions do not do this and instead add `project.cmake` to `Deployment`'s `CMakeLists.txt`.
 
->Older versions of F' need to add project.>cmake to the CMakeLists.txt that is in />Deployment: 
+>Older versions of F' do not add `Deployment` to `project.cmake` and need to add project.cmake to the CMakeLists.txt that is in /Deployment: 
 
 >```cmake 
 ># In: Deployment/CMakeLists.txt
 ># Under: Components and Topology 
 >include("${FPRIME_PROJECT_ROOT}/project.cmake")
+># ONLY DO THIS IF F' VERSION > 3.2.2!!!
 >```
 
 Test the build to make sure everything is okay:
@@ -68,7 +68,8 @@ The `MathReceiver was implemented with base identifier 0x2700 and the default qu
 
 ## Update the Topology 
 
-Add the instances you created in `instances.fpp` to the project topology. 
+Add the instances you created to `topology.fpp`. 
+
 
 ```fpp 
 # In: Deployment/Top/topology.fpp 
@@ -101,15 +102,23 @@ Add packets for MathSender and MathReceiver in DeploymentPackets.xml
     <channel name = "mathSender.OP"/>
     <channel name = "mathSender.VAL2"/>
     <channel name = "mathSender.RESULT"/>
-  </packet>
-  <packet name="MathReceiver" id="22" level="3">
+</packet>
+<packet name="MathReceiver" id="22" level="3">
     <channel name = "mathReceiver.OPERATION"/>
     <channel name = "mathReceiver.FACTOR"/>
-  </packet>
+</packet>
 ```
 
 ## Explanation 
 These lines describe the packet definitions for the `mathSender` and `mathReceiver` telemetry channels.
+
+## Check the Build
+Just to be safe, check the build after this step.
+
+```shell
+# In: /Deployment
+fprime-util build
+```
 
 ## Check for Unconnected Ports
 Check to make sure all of the ports have been connected: 
@@ -122,7 +131,7 @@ cat unconnected.txt
 
 At this point in time, several `mathSender` and `mathReceiver` functions (such as `mathOpIn` or `schedIn`) should still be not connected. Hence, they should appear on this list. 
 
-Go into `topology.fpp`, connect `mathReceiver.schedIn` to rate group one using the code below. You can either add this code in the rate groupo section or the user code section, do what makes the most sense to you:  
+Go into `topology.fpp`, connect `mathReceiver.schedIn` to rate group one using the code below:  
 
 ```fpp 
 # In: Top/topology.fpp 
@@ -149,11 +158,11 @@ mathReceiver.mathResultOut -> mathSender.mathResultIn
 
 Verify that none of the math ports are unconnected 
 
-Go into DeploymentTopology.cpp and uncomment `loadParameters();` near line 130. Doing so will prevent an error in operation of F' GDS.  
+Go into DeploymentTopology.cpp and uncomment `loadParameters();`. Doing so will prevent an error in operation of F' GDS.  
 
 ```cpp
 // In: DeploymentTopology.cpp
-// Near: line 130
+// Under: namespace Deployment{
 loadParameters();
 ```
 
