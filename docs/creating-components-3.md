@@ -55,7 +55,7 @@ fprime-util build
 ```
 
 ## Editing the F Prime Prime Model 
-Now that you have created the component, you can implement the component behavior in the fpp model. Use a text editor to replace the existing MathReceiver.fpp with the following: 
+Now that you have created the component, you can implement the component behavior in the fpp model. Use a text editor to entirely replace the existing `MathReceiver.fpp` with the following: 
 
 ```fpp
 # In: MathReceiver.fpp
@@ -69,7 +69,7 @@ module MathModule {
     # ----------------------------------------------------------------------
 
     @ Port for receiving the math operation
-    async input port mathOpIn: MathOp
+    async input port mathOpIn: OpRequest
 
     @ Port for returning the math result
     output port mathResultOut: MathResult
