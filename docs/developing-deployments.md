@@ -21,16 +21,18 @@ When creating the deplyoment you will be asked two questions, answer them as fol
 ```shell
 [INFO] Cookiecutter: using builtin template for new deployment
 deployment_name [MyDeployment]: Deployment
-path_to_fprime [./fprime]: ./fprime
+[INFO] Found CMake file at 'fprime-tutorial-math-component/project.cmake'
+Add component Deployment to fprime-tutorial-math-component/project.cmake at end of file (yes/no)? yes
 ```
+> The most recent version of F' adds `Deployment` to `project.cmake`. Older versions do not do this and instead add `project.cmake` to `Deployment`'s `CMakeLists.txt`.
 
-Add project.cmake to the CMakeLists.txt that is in /Deployment: 
+>Older versions of F' need to add project.>cmake to the CMakeLists.txt that is in />Deployment: 
 
-```cmake 
-# In: Deployment/CMakeLists.txt
-# Under: Components and Topology 
-include("${FPRIME_PROJECT_ROOT}/project.cmake")
-```
+>```cmake 
+># In: Deployment/CMakeLists.txt
+># Under: Components and Topology 
+>include("${FPRIME_PROJECT_ROOT}/project.cmake")
+>```
 
 Test the build to make sure everything is okay:
 
