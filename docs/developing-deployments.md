@@ -167,20 +167,11 @@ loadParameters();
 ```
 
 
-Now it is time to build the entire project. Navigate to /MathProject and build. 
+Now it is time to build the entire project. Navigate to `MathProject` and build:
 
 ```shell 
 # In: /MathProject 
-fprime-util build -j4 
-```
-
-@TODO: Michael, what's the difference between building in MathProject verus Deployment? Why doesn't building in MathProject build Deployment at the same time? 
-
-Additionally, you need to build in the Deployment directory. 
-
-```shell 
-# In: /MathProject/Deployment
-fprime-util build -j4 
+fprime-util build 
 ```
 
 Run the MathComponent Tutorial
@@ -189,6 +180,7 @@ Run the MathComponent Tutorial
 # In: Deployment
 fprime-gds 
 ```
+> If you encounter an error on this step, try running `fprime-gds` in the `MathProject`. 
 
 ##Send Some Commands
 Under Commanding there is a dropdown menu called "mnemonic". Click Mnemonic and find mathSender.DO_MATH. When you select DO_MATH, three new option should appear. In put 7 into val1, put 6 into val2, and put MUL into op. Press send command. Nothing exciting will happen, navivate to events (top left) and find the results of your command. You should see The Ultimate Answer to Life, the Universe, and Everything. 
@@ -196,6 +188,10 @@ Under Commanding there is a dropdown menu called "mnemonic". Click Mnemonic and 
 
 ## Summary
 
-In this section of the tutorial, you created a deployment. While at it, you filled out the projects instance and topology. These steps are what turn a bunch hard worked code into flightsoftware. Further more, you ran the software! 
+In this section of the tutorial, you created a deployment. While at it, you filled out the projects instance and topology. These steps are what turn a bunch hard worked code into flight-software. Further more, you ran the software! 
+
+## Congratulations 
+
+You have completed your F' deployment!!! If you wish to stop here, you may! You can also rest assured knowing that the work you have done is referencable. In otherwords, you've written code in the same way that you will write code for actual space crafts. Except... actual spacecrafts will make extensive use of unit tests and error handling. Keep going in this tutorial to learn more about unit testing, error handling and just to practice using F' in general.
 
 **Next:** [Crafting Unit Tests 1](./writing-unit-tests-1.md)
