@@ -56,7 +56,7 @@ void MathReceiver ::
     // Emit result
     this->mathResultOut_out(0, res);
 
-}//end MathOpIn_handler 
+}//end mathOpIn_handler 
 ```
 
 ## About the Function 
@@ -149,12 +149,12 @@ void MathReceiver ::
 void parameterUpdated(FwPrmIdType id);
 ```
 
-## Explanation
+## About the Function
 This code implements an optional function that, if present, is called when a parameter is updated by command. The parameter identifier is passed in as the id argument of the function. Here the function does the following:
 
-    If the parameter identifier is PARAMID_FACTOR (the parameter identifier corresponding to the FACTOR parameter), then get the parameter value and emit an event report.
+1. If the parameter identifier is PARAMID_FACTOR (the parameter identifier corresponding to the FACTOR parameter), then get the parameter value and emit an event report.
 
-    Otherwise fail an assertion. This code should never run, because there are no other parameters.
+2. Otherwise fail an assertion. This code should never run, because there are no other parameters.
 
 Test the build:
 
