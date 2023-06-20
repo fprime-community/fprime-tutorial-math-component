@@ -4,9 +4,9 @@
 
 In this section of the tutorial, you will fill in the stub implementation you created in the last section and run the unit test. 
 
-Write a generic helper function so you can reuse code while writing unit tests. In Tester.cpp add the following:
-
-Start by writing a function signature in `Tester.hpp`:
+## Create a Helper Function
+Write a generic helper function so you can reuse code while writing unit tests.
+Start by writing a function signature in `Tester.hpp` in `MathSender/test/ut`:
 
 ```cpp 
 // In: Tester.hpp
@@ -100,7 +100,7 @@ You will now create a function to test the `ADD` command. Add a function signatu
 
 ```cpp
 // In: Tester.hpp
-void TestAddCommand(); 
+void testAddCommand(); 
 ``` 
 
 Write the corrosponding tester function using the helper funtion you just wrote:
@@ -117,6 +117,7 @@ void Tester ::
 Write a Google test macro in TestMain.cpp and make sure the test macro goes before main:
 
 ```cpp 
+// In: TestMain.cpp
 TEST(Nominal, AddCommand) {
     MathModule::Tester tester;
     tester.testAddCommand();
@@ -124,6 +125,8 @@ TEST(Nominal, AddCommand) {
 ```
 **Explanation:**
 The `TEST` macro is an instruction to Google Test to run a test.
+Without this step, your tests will
+never run.
 `Nominal` is the name of a test suite.
 We put this test in the `Nominal` suite because it addresses
 nominal (expected) behavior.

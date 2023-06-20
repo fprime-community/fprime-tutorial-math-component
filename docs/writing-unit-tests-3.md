@@ -51,6 +51,7 @@ The main difference is that it invokes a port directly
 Add the following test macro to `main.cpp`:
 
 ```c++
+// In: TestMain.cpp
 TEST(Nominal, Result) {
     MathModule::Tester tester; ///@TODO
     tester.testResult();

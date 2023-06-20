@@ -12,7 +12,7 @@ In this section of the tutorial, you will create test that uses random numbers i
 
 To incorporate random numbers into the existing tests you have written for `MathSender`, you only need to make a couple small modifications. 
 
-First, edit `MathSender/test/ut/Tester.cpp` by adding a `Pick.hpp` to the includes: 
+1. edit `MathSender/test/ut/Tester.cpp` by adding a `Pick.hpp` to the includes: 
 
 ```cpp
 // In: Tester.cpp
@@ -21,7 +21,7 @@ First, edit `MathSender/test/ut/Tester.cpp` by adding a `Pick.hpp` to the includ
 ```
 
 
-Second, modify `TestMain.cpp` to include `Random.hpp`:
+2. Modify `TestMain.cpp` to include `Random.hpp`:
 
 ```cpp
 // In: TestMain.cpp
@@ -30,7 +30,7 @@ Second, modify `TestMain.cpp` to include `Random.hpp`:
 ```
 
 
-Third, add the following line to the main function of `TestMain.cpp`, just before the return statement:
+3. Add the following line to the main function of `TestMain.cpp`, just before the return statement:
 
 ```cpp
 // In: TestMain.cpp
@@ -40,7 +40,7 @@ STest::Random::seed();
 **Run the Test:**
 Recompile and rerun the tests:
 
-Fourth, modify `MathSender/CMakeLists.txt` to include STest as a build dependancy:
+4. Modify `MathSender/CMakeLists.txt` to include STest as a build dependancy:
 
 ```cmake 
 # In: /MathSender/CMakeLists.txt
@@ -50,7 +50,6 @@ set(UT_MOD_DEPS STest)
 
 ```shell
 # In: MathSender  
-fprime-util build --ut 
 fprime-util check 
 ```
 
