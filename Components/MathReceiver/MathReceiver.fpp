@@ -84,6 +84,12 @@ module MathModule {
       id 2 \
       format "Event throttle cleared"
 
+    @ Commanded to divide by zero 
+    event DIVIDE_BY_ZERO   \
+      severity activity high \
+      id 3 \
+      format "ERROR: Received zero as denominator. Opperands dropped."
+
     # ----------------------------------------------------------------------
     # Commands
     # ----------------------------------------------------------------------
@@ -101,6 +107,9 @@ module MathModule {
 
     @ Multiplication factor
     telemetry FACTOR: F32 id 1
+    
+    @ Number of math operations 
+    telemetry NUMBER_OF_OPS: U32 
 
   }
 

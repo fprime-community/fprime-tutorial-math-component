@@ -14,12 +14,17 @@ TEST(Nominal, ToDo) {
 
 TEST(Nominal, AddCommand) {
     MathModule::Tester tester;
-    tester.testAddCommand();
+    tester.testAdd();
 }
 
-TEST(Nominal, Result) {
-    MathModule::Tester tester; ///@TODO
-    tester.testResult();
+TEST(Nominal, SubCommand) {
+    MathModule::Tester tester;
+    tester.testSub();
+}
+
+TEST(Nominal, Throttle) {
+    MathModule::Tester tester;
+    tester.testThrottle();
 }
 
 int main(int argc, char **argv) {

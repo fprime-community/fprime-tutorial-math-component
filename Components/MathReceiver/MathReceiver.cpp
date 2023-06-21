@@ -17,7 +17,8 @@ namespace MathModule {
   MathReceiver ::
     MathReceiver(
         const char *const compName
-    ) : MathReceiverComponentBase(compName)
+    ) : MathReceiverComponentBase(compName),
+        numMathOps(0) 
   {
 
   }
@@ -53,6 +54,10 @@ namespace MathModule {
             res = val1 * val2;
             break;
         case MathOp::DIV:
+            if ( val2 == 0 ){
+              this->log_ACTIVITY_HI_DIVIDE_BY_ZERO(); 
+              break; 
+            }
             res = val1 / val2;
             break;
         default:
@@ -71,9 +76,13 @@ namespace MathModule {
     // Multiply result by factor
     res *= factor;
 
+    // Increment number of math ops 
+    numMathOps++;  
+
     // Emit telemetry and events
     this->log_ACTIVITY_HI_OPERATION_PERFORMED(op);
     this->tlmWrite_OPERATION(op);
+    this->tlmWrite_NUMBER_OF_OPS(numMathOps); 
 
     // Emit result
     this->mathResultOut_out(0, res);
