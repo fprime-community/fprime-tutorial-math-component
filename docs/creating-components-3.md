@@ -167,7 +167,7 @@ module MathModule {
 }
 ```
 
-## About this Component 
+## Explanation 
 This code defines a component `Ref.MathReceiver`.
 The component is **queued**, which means it has a queue
 but no thread.
@@ -186,13 +186,13 @@ That means invocations of `mathOpIn` put messages on a queue.
 That means invocations of `schedIn` immediately call the
 handler function to do work.
 
-1. **Special ports:**
+2. **Special ports:**
 As before, there are special ports for commands, events, telemetry,
 and time.
 There are also special ports for getting and setting parameters.
 We will explain the function of these ports below.
 
-1. **Parameters:** There is one **parameter**.
+3. **Parameters:** There is one **parameter**.
 A parameter is a constant that is configurable by command.
 In this case there is one parameter `FACTOR`.
 It has the default value 1.0 until its value is changed by command.
@@ -203,7 +203,7 @@ are _v1_, `ADD`, and _v2_, and the factor is _f_,
 then the result sent on `mathResultOut` is
 _(v1 + v2) f_.
 
-1. **Events:** There are three event reports:
+4. **Events:** There are three event reports:
 
    1. `FACTOR_UPDATED`: Emitted when the `FACTOR` parameter
       is updated by command.
@@ -212,16 +212,16 @@ _(v1 + v2) f_.
       it will not be emitted any more, until the throttling
       is cleared by command (see below).
 
-   1. `OPERATION_PERFORMED`: Emitted when this component
+   2. `OPERATION_PERFORMED`: Emitted when this component
       performs a math operation.
 
-   1. `THROTTLE_CLEARED`: Emitted when the event throttling
+   3. `THROTTLE_CLEARED`: Emitted when the event throttling
       is cleared.
 
-1. **Commands:** There is one command for clearing
+5. **Commands:** There is one command for clearing
 the event throttle.
 
-1. **Telemetry:**
+6. **Telemetry:**
 There two telemetry channels: one for reporting
 the last operation received and one for reporting
 the factor parameter.
@@ -259,7 +259,7 @@ Test the build:
 fprime-util build 
 ```
 
-## Conclusion
+## Summary
 You are two thirds of the way through finishing `MathReceiver`.
 So far, you have created a queued component stub, filled in the fpp 
 file, and wrote component charactaristics in `MathReceiver.fpp`. Next,

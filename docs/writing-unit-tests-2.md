@@ -64,7 +64,7 @@ void Tester ::
   }
   ```
 
-**Explanation:** 
+## Explanation
 This function is parameterized over different
 operations.
 It is divided into five sections: sending the command,
@@ -91,10 +91,11 @@ There are a couple of pitfalls to watch out for with this pattern:
 the work won't get dispatched.
 Likely this will cause a unit test failure.
 
-1. If you call `doDispatch` without putting work on the queue,
+2. If you call `doDispatch` without putting work on the queue,
 the unit test will block until you kill the process (e.g.,
 with control-C).
 
+## Write a Function to Test ADD
 
 You will now create a function to test the `ADD` command. Add a function signature to Tester.hpp:
 
@@ -123,7 +124,7 @@ TEST(Nominal, AddCommand) {
     tester.testAddCommand();
 }
 ```
-**Explanation:**
+## Explanation 
 The `TEST` macro is an instruction to Google Test to run a test.
 Without this step, your tests will
 never run.
@@ -139,7 +140,7 @@ The second line invokes the function `testAddCommand`
 that we wrote in the previous section.
 
 
-
+## Run Your Tests
 Run the test you have written. Make sure to execute the following in ```MathSender```. 
 
 ```shell 
@@ -154,11 +155,11 @@ so that it does something incorrect.
 For example, try adding one to a telemetry
 value before emitting it.
 
-1. Rerun the test and observe what happens.
+2. Rerun the test and observe what happens.
 
 
 
-**Add more command tests:**
+## Add more command tests 
 Try to follow the pattern given in the previous
 section to add three more tests, one each
 for operations `SUB`, `MUL`, and `DIV`.

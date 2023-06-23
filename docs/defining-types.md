@@ -35,6 +35,7 @@ Here you have created an empty fpp file named MathTypes in the Types directory.
 Use your favorite text editor, visual studios, nano, vim, etc..., and add the following to `MathTypes.fpp`.
 
 ```
+# In: MathTypes.fpp
 module MathModule{ 
 
     @ Math operations
@@ -93,7 +94,7 @@ fprime-util generate
 fprime-util build 
 ```
 
-## Conclusion 
+## Summary  
 At this point you have successfully created the `MathOp` type 
 and added it to the project build. You can add more types here 
 later if you feel so inclined. 

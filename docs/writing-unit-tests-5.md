@@ -5,6 +5,7 @@
 In this section of the tutorial, you will be repeating the steps 
 you used to create an implementation stub for `MathSender`. 
 
+## Create a Directory for the Unit Tests 
 In `Components/MathReceiver`, create a directory called test/ut 
 
 ```shell 
@@ -25,13 +26,11 @@ set(UT_AUTO_HELPERS ON)
 register_fprime_ut()
 ```
 
-**Generate the unit test stub:**
+## Generate the unit test stub 
 Generate a stub implementation of the unit tests.
-
 
 ```shell 
 # In: MathReceiver
-fprime-util generate --ut 
 fprime-util impl --ut
 ```
 > These commands may take a while to run.
@@ -67,18 +66,16 @@ fprime-util build --ut
 > Don't forget to add ```--ut``` or else you are just going to build the component again. 
 
 
-## Summary
+## Preparing for Random Testing
 
-Here you setup a directory and build to start writing unit tests for 
-`MathReceiver`. The next section will work on building new types of tests. Before moving onto the next section, do the following setup 
-to prepare for random testing. 
+Complete the following steps to prepare for random testing. 
+
 
 ```cpp
 // In: Tester.cpp
 #include "Tester.hpp"
 #include "STest/Pick/Pick.hpp"
 ```
-
 
 ```cpp
 // In: TestMain.cpp
@@ -97,5 +94,10 @@ STest::Random::seed();
 # Above: register_fprime_ut()
 set(UT_MOD_DEPS STest)
 ```
+
+## Summary 
+
+In this section you have setup implementation stubs to begin 
+writing unit tests for `MathReceiver`. 
 
 **Next:** [Writing Unit Tests 6](./writing-unit-tests-6.md)
