@@ -68,17 +68,19 @@ that is auto generated during the build. @TODO (Is this fact?)
 7. Add the packets to `DeploymentPackets.xml` in `Deployment/Top`: 
 
 ```xml
- <packet name="MathReceiver" id="22" level="3">
+    <!-- In: DeploymentPackets.xml -->
+    <packet name="MathReceiver" id="22" level="3">
         <channel name = "mathReceiver.OPERATION"/>
         <channel name = "mathReceiver.FACTOR"/>
-    
         <channel name = "mathReceiver.NUMBER_OF_OPS"/>   
     </packet>
 ```
 
+
 8. Build and test:
 
 ```shell 
+# In: MathProject
 fprime-util build -j4 
 fprime-gds 
 ```
@@ -89,3 +91,5 @@ Write some unit tests to prove that this channel is working.
 
 In this section you defined a telemtry channel and impletemented 
 a new variable, that will be sent through the channel.
+
+**Next:** [Error handling 1](./error-handling-1.md)

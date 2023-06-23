@@ -12,7 +12,7 @@ In this section of the tutorial, you will create test that uses random numbers i
 
 To incorporate random numbers into the existing tests you have written for `MathSender`, you only need to make a couple small modifications. 
 
-1. edit `MathSender/test/ut/Tester.cpp` by adding a `Pick.hpp` to the includes: 
+**First,** edit `MathSender/test/ut/Tester.cpp` by adding a `Pick.hpp` to the includes: 
 
 ```cpp
 // In: Tester.cpp
@@ -21,7 +21,7 @@ To incorporate random numbers into the existing tests you have written for `Math
 ```
 
 
-2. Modify `TestMain.cpp` to include `Random.hpp`:
+**Second,** modify `TestMain.cpp` to include `Random.hpp`:
 
 ```cpp
 // In: TestMain.cpp
@@ -30,7 +30,7 @@ To incorporate random numbers into the existing tests you have written for `Math
 ```
 
 
-3. Add the following line to the main function of `TestMain.cpp`, just before the return statement:
+**Third,** add the following line to the main function of `TestMain.cpp`, just *before* the return statement:
 
 ```cpp
 // In: TestMain.cpp
@@ -40,7 +40,7 @@ STest::Random::seed();
 **Run the Test:**
 Recompile and rerun the tests:
 
-4. Modify `MathSender/CMakeLists.txt` to include STest as a build dependancy:
+**Fourth,** modify `MathSender/CMakeLists.txt` to include STest as a build dependancy:
 
 ```cmake 
 # In: /MathSender/CMakeLists.txt
@@ -53,7 +53,7 @@ set(UT_MOD_DEPS STest)
 fprime-util check 
 ```
 
- Now go to MathProject/build-fprime-automatic-native-ut/Components/MathSender and inspect the file `seed-history`. This file is a log of random seed values. Each line represents the seed used in the corresponding run.
+Go to MathProject/build-fprime-automatic-native-ut/Components/MathSender and inspect the file `seed-history`. This file is a log of random seed values. Each line represents the seed used in the corresponding run.
 
 **Fixing the Random Seed:**
 Sometimes you may want to run a test with a particular seed value, e.g., for replay debugging. To do this, put the seed value into a file `seed` in the same directory as `seed-history`. If the file seed exists, then STest will use the seed it contains instead of generating a new seed.

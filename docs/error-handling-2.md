@@ -26,7 +26,6 @@ switch (op.e) {
             res = val1 * val2;
             break;
         case MathOp::DIV:
-            //step 2 
             if ( val2 == 0 ){
 
               break; 
@@ -72,4 +71,6 @@ You just created a way to not only handle the case where
 an event to report that an error has occured. As a challenge, 
 try to handle more of the cases and problems discussed in
 [Error handling 1](./error-handling-1.md)
+
+**Next:** [Writing Unit Tests 5](./writing-unit-tests-5.md)
 
