@@ -156,6 +156,8 @@ mathSender.mathOpOut -> mathReceiver.mathOpIn
 mathReceiver.mathResultOut -> mathSender.mathResultIn
 ```
 
+## Test and Run
+
 Verify that none of the math ports are unconnected 
 
 Go into DeploymentTopology.cpp and uncomment `loadParameters();`. Doing so will prevent an error in operation of F' GDS.  
@@ -170,19 +172,19 @@ loadParameters();
 Now it is time to build the entire project. Navigate to `MathProject` and build:
 
 ```shell 
-# In: /MathProject 
+# In: MathProject 
 fprime-util build 
 ```
 
 Run the MathComponent Tutorial
 
 ```shell 
-# In: Deployment
+# In: MathProject 
 fprime-gds 
 ```
 > If you encounter an error on this step, try running `fprime-gds` in the `MathProject`. 
 
-##Send Some Commands
+## Send Some Commands
 Under Commanding there is a dropdown menu called "mnemonic". Click Mnemonic and find mathSender.DO_MATH. When you select DO_MATH, three new option should appear. In put 7 into val1, put 6 into val2, and put MUL into op. Press send command. Nothing exciting will happen, navivate to events (top left) and find the results of your command. You should see The Ultimate Answer to Life, the Universe, and Everything. 
 
 
@@ -192,6 +194,6 @@ In this section of the tutorial, you created a deployment. While at it, you fill
 
 ## Congratulations 
 
-You have completed your F' deployment!!! If you wish to stop here, you may! You can also rest assured knowing that the work you have done is referencable. In otherwords, you've written code in the same way that you will write code for actual space crafts. Except... actual spacecrafts will make extensive use of unit tests and error handling. Keep going in this tutorial to learn more about unit testing, error handling and just to practice using F' in general.
+You have completed your F' deployment!!! If you wish to stop here, you may! You can also rest assured knowing that the work you have done is referencable. In otherwords, you've written code in the same way that you will write code for actual spacecrafts. Except... actual spacecrafts will make extensive use of unit tests and error handling. Keep going in this tutorial to learn more about unit testing, error handling, and just to practice using F'.
 
 **Next:** [Crafting Unit Tests 1](./writing-unit-tests-1.md)

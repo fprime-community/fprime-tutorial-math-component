@@ -1,10 +1,10 @@
 # Writing Unit Tests Part 6: Writing Helper Functions
-## In this Section 
 
+## In this Section 
 In this section of the tutorial, you will write helper
 functions to tests various function of `MathReceiver`.
 
-**Add a ThrottleState enum class:**
+## Add a ThrottleState enum class
 Add the following code to the beginning of the
 `Tester` class in `Tester.hpp`:
 
@@ -25,7 +25,7 @@ private:
 This code defines a C++ enum class for recording whether an
 event is throttled.
 
-**Add helper functions:**
+## Add helper functions 
 Add each of the functions described below to the
 "Helper methods" section of `Tester.cpp`.
 For each function, you must add
@@ -59,7 +59,9 @@ the following to check the build:
 fprime-util build --ut -j4
 ```
 
-Add a `setFactor` function.
+## Add a Set Factor function
+
+Copy and paste in the code below to create the `setFactor` function
 
 ```c++
 // In Tester.cpp  
@@ -89,18 +91,22 @@ void Tester ::
 ```
 > Make sure that set factor is below where you defined `ThrottleSate` and remember to add a function signature in `Tester.hpp`.
 
+## Explanation
+
 This function does the following:
 
 1. Clear the test history.
 
-1. Send a command to the component to set the `FACTOR` parameter
+2. Send a command to the component to set the `FACTOR` parameter
 to the value `factor`.
 
-1. If `throttleState` is `NOT_THROTTLED`, then check
+3. If `throttleState` is `NOT_THROTTLED`, then check
 that the event was emitted.
 Otherwise check that the event was throttled (not emitted).
 
-Build to make sure everything is working. 
+**Build** to make sure everything is working. 
+
+## Create a Compute Result Function
 
 Add a function `computeResult` to `Tester.cpp`.
 
@@ -144,6 +150,8 @@ By running this function and comparing, we can
 check the output of the component.
 
 Build to make sure everything is working. 
+
+## Create a Do Math Op Functions
 
 Add a `doMathOp` function to `Tester.cpp`.
 
@@ -209,7 +217,7 @@ Since the component is queued, we don't call `doDispatch`
 directly.
 Instead we invoke `schedIn`.
 
-Build before moving onto the next section.
+**Build** before moving onto the next section.
 
 
 **Next:** [Writing Unit Tests 7](./writing-unit-tests-7.md)

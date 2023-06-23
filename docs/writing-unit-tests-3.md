@@ -2,6 +2,7 @@
 
 ## In this Section 
 In this section of the tutorial, you will add another test into `MathSender/test/ut` and run the new test.
+
 **Add a result test:**
 Add a test for exercising the scenario in which the `MathReceiver`
 component sends a result back to `MathSender`.
@@ -48,12 +49,13 @@ This code is similar to the helper function in the previous section.
 The main difference is that it invokes a port directly
 (the `mathResultIn` port) instead of sending a command.
 
-Add the following test macro to `main.cpp`:
+## Add the Tests to TestMain and Run
+Add the following test macro to `TestMain.cpp`:
 
 ```c++
 // In: TestMain.cpp
 TEST(Nominal, Result) {
-    MathModule::Tester tester; ///@TODO
+    MathModule::Tester tester; 
     tester.testResult();
 }
 ```

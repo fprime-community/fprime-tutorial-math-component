@@ -29,7 +29,7 @@ set(UT_AUTO_HELPERS ON)
 register_fprime_ut()
 ```
 
-**Generate the unit test stub:**
+## Generate the Unit Test Stub 
 Generate a stub implementation of the unit tests.
 This stub contains all the boilerplate necessary to write and
 run unit tests against the `MathSender` component:
@@ -47,6 +47,8 @@ You haved just generate three new files ```Tester.cpp Tester.hpp TestMain.cpp```
 # In: MathSender
 mv Tester.* TestMain.cpp test/ut
 ```
+
+## Add the Tests to the Build
 
 Add ```Tester.cpp and TestMain.cpp``` to the build. Do so by editing the CMakeLists.txt in MathSender: 
 
@@ -71,7 +73,7 @@ fprime-util build --ut
 ```
 > Don't forget to add ```--ut``` or else you are just going to build the component again. 
 
-**(Optional) Inspect the generated code:**
+## (Optional) Inspect the generated code
 The unit test build generates some code to support unit testing.
 The code is located at `MathSender/build-fprime-automatic-native-ut/Ref/MathSender`. @TODO (CHECK DIRECTTORY)
 This directory contains two auto-generated classes:
@@ -81,7 +83,7 @@ class of `Tester`.
 It provides a test interface implemented with Google Test
 macros.
 
-1. `MathSenderTesterBase`: This is the direct base
+2. `MathSenderTesterBase`: This is the direct base
 class of `MathSenderGTestBase`.
 It provides basic features such as histories of port
 invocations.

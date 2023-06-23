@@ -96,8 +96,6 @@ fprime-util generate
 fprime-util build
 ```
 
-> Check out the auto-generated code in
-@TODO (MAKE SURE DIRECTORY IS RIGHT)
 `MathProject/build-fprime-automatic-native/Ref/MathPorts`.
 For port definitions, the names of the auto-generated C++
 files end in `PortAc.hpp` and `PortAc.cpp`.
