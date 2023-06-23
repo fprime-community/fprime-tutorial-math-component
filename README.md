@@ -14,7 +14,7 @@ consisting of two components:
 See the diagram below.
 
 <a name="math-top"></a>
-![A simple topology for arithmetic computation](png/top.png)
+![A simple topology for arithmetic computation](docs/img/top.png)
 
 ## What is covered
 This tutorial will cover the following concepts:
