@@ -1,10 +1,11 @@
 # Writing Unit Tests Part 7: Writing the Tests
 
-## Summary 
+## In this Section
  In this section of the tutorial, you will write 
  tests that make use of the helper functions you
  wrote in the last section of the tutorial.
 
+## Preface
 
 For each of the tests described below, you must add the
 corresponding function prototype to `Tester.hpp`
@@ -14,8 +15,8 @@ If you can't remember how to do it, look back at the
 After writing each test, run all the tests and make sure
 that they pass.
 
-**Write an ADD test:**
-Add the following function to the "Tests" section of `Tester.cpp`:
+## Write an ADD test
+Add the following function to the `Tests` section of `Tester.cpp`:
 
 ```c++
 // In: Tester.cpp
@@ -31,13 +32,13 @@ void Tester ::
 ```
 > Don't forget to add a function signature in `Tester.hpp`.
 
-This function calls the `setFactor` helper function
+`testAdd()` calls the `setFactor` helper function
 to set the factor parameter.
 Then it calls the `doMathOp` function to
 do a math operation.
 
-**Write a SUB test:**
-Add the following function to the "Tests" section of `Tester.cpp`:
+## Write a SUB test 
+Add the following function to the `Tests` section of `Tester.cpp`:
 
 ```c++
 // In: Tester.cpp
@@ -53,9 +54,9 @@ void Tester ::
 }
 ```
 
-This test is similar to `testAdd`, but it shows
+`testSub()` is similar to `testAdd`, but it shows
 another way to set a parameter.
-`testAdd` showed how to set a parameter by command.
+`testAdd` shows how to set a parameter by command.
 You can also set a parameter by initialization, as follows:
 
 1. Call the `paramSet` function as shown.
@@ -63,7 +64,7 @@ This function sets the parameter value in
 the part of the test harness that mimics the behavior of the
 parameter database component.
 
-1. Call the `loadParameters` function as shown.
+2. Call the `loadParameters` function as shown.
 In flight, the function `loadParameters` is typically called at the
 start of FSW to load the parameters from the database;
 here it loads the parameters from the test harness.
@@ -88,8 +89,9 @@ Add the following constant definition to the top of the `Tester.cpp` file:
 // In: Tester.cpp
 #define CMD_SEQ 42
 ```
+## Write a Throttle Test
 
-Then add the following function to the "Tests" section of `Tester.cpp`:
+Add the following function to the "Tests" section of `Tester.cpp`:
 
 ```c++
 // In: Tester.cpp
@@ -127,7 +129,7 @@ void Tester ::
 }
 ```
 
-**Explanation:**
+## Explanation 
 This test first loops over the throttle count, which is stored
 for us in the constant `EVENTID_FACTOR_UPDATED_THROTTLE`
 of the `MathReceiver` component base class.
@@ -164,4 +166,8 @@ See if your tests are working and trouble shoot any errors:
 fprime-util check 
 ```
 
+## Congratulations!!!
 
+You have **finished** the Math Component Tutorial.
+You have now experienced a significant part 
+of F' and are ready to start building your own deployments. 

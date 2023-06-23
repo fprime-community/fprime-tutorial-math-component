@@ -4,7 +4,7 @@
 
 Testing using only numbers that you hard code into your tests can easily leave edge cases untouched can allow you, the programmer, to miss bugs.
 
-F Prime provides a module called STest that provides helper classes and functions for writing unit tests. As an exercise, use the interface provided by STest/STest/Pick.hpp to pick random values to use in the tests instead of using hard-coded values such as 2.0, 3.0, and 10.
+F' provides a module called STest that provides helper classes and functions for writing unit tests. As an exercise, use the interface provided by STest/STest/Pick.hpp to pick random values to use in the tests instead of using hard-coded values such as 2.0, 3.0, and 10.
 
 ## In this Section
 
@@ -37,8 +37,6 @@ To incorporate random numbers into the existing tests you have written for `Math
 // Within: int main(){
 STest::Random::seed();
 ```
-**Run the Test:**
-Recompile and rerun the tests:
 
 **Fourth,** modify `MathSender/CMakeLists.txt` to include STest as a build dependancy:
 
@@ -47,6 +45,7 @@ Recompile and rerun the tests:
 # Above: register_fprime_ut()
 set(UT_MOD_DEPS STest)
 ```
+**Fifth,** recompile and rerun the tests.
 
 ```shell
 # In: MathSender  
@@ -68,6 +67,6 @@ Try the following:
 
 ## Summary 
 
-In this section you incorprated random testing into your existing tests. You used random
+In this section you incorprated random testing into your existing tests.
 
-**Next:** [Writing Unit Tests 5](./writing-unit-tests-5.md)
+**Next:** [Adding Telemetry](./adding-telemetry.md)

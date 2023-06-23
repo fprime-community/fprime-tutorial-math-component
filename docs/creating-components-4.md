@@ -4,7 +4,7 @@
 
 In this section you will complete the implementation of the `MathReciever` by filling in `MathReceiver.cpp` and `MathReceiver.hpp`. 
 
-## Editing the Operation Handler
+## Editing the Math Op In Handler
 Fill in the mathOpIn handler: In MathReceiver.cpp, complete the implementation of mathOpIn_handler so that it looks like this:
 
 ```cpp
@@ -17,7 +17,6 @@ void MathReceiver ::
       F32 val2
   )
 {
-
     // Get the initial result
     F32 res = 0.0;
     switch (op.e) {
@@ -59,7 +58,7 @@ void MathReceiver ::
 }//end mathOpIn_handler 
 ```
 
-## About the Function 
+## Explanation
 `MathOpIn_Handler` does the following:
 
 1. Compute an initial result based on the input values and the requested operation.
@@ -92,7 +91,7 @@ void MathReceiver ::
     }
 }
 ```
-## About the Function  
+## Explanation 
 This code dispatches all the messages on the queue. Note that for a queued component, we have to do this dispatch explicitly in the schedIn handler. For an active component, the framework auto-generates the dispatch code.
 
 ## Editing the Throttle Command Hanlder
@@ -114,7 +113,7 @@ void MathReceiver ::
     this->cmdResponse_out(opCode, cmdSeq, Fw::CmdResponse::OK);
 }
 ```
-## About the Function 
+## Explanation
 The call to `log_ACTIVITY_HI_FACTOR_UPDATED_ThrottleClear` clears the throttling of the `FACTOR_UPDATED` event. The next two lines send a notification event and send a command response.
 
 ## Writing a Parameter Checker
@@ -149,21 +148,21 @@ void MathReceiver ::
 void parameterUpdated(FwPrmIdType id);
 ```
 
-## About the Function
+## Explanation
 This code implements an optional function that, if present, is called when a parameter is updated by command. The parameter identifier is passed in as the id argument of the function. Here the function does the following:
 
 1. If the parameter identifier is PARAMID_FACTOR (the parameter identifier corresponding to the FACTOR parameter), then get the parameter value and emit an event report.
 
 2. Otherwise fail an assertion. This code should never run, because there are no other parameters.
 
-Test the build:
+## Test the build
 
 ```shell 
 # In: MathReceiver
 fprime-util build 
 ```
 
-## Conclusion
+## Summary
 
 Congratulations, you have finished `MathReceiver`!
 

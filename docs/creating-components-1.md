@@ -256,7 +256,7 @@ fprime-util build
 
 If you've been paying attention to the tutorial thus far, you might be getting some warning bells that you have not added your new component to the build. Fear not, when using `fprime-util new --component` all of the `CMakeLists.txt` and `project.cmake` work was done for you! Take a look at both files to verify for yourself. 
 
-## Conclusion  
+## Summary 
 
 You are about two thirds of the way through finishing `MathSender`.
 In the next section you will implement `MathSender`'s component 

@@ -8,7 +8,7 @@ consisting of two components:
 1. `MathSender`: A component that receives commands and forwards work to
    `MathReceiver`.
 
-1. `MathReceiver`: A component that carries out arithmetic operations and
+2. `MathReceiver`: A component that carries out arithmetic operations and
    returns the results to `MathSender`.
 
 See the diagram below.
@@ -16,29 +16,25 @@ See the diagram below.
 <a name="math-top"></a>
 ![A simple topology for arithmetic computation](png/top.png)
 
-**What is covered:** The tutorial covers the following concepts:
+## What is covered
+This tutorial will cover the following concepts:
 
-1. Using the [FPP modeling language](https://fprime-community.github.io/fpp) to
-   specify the types and ports used by the components.
+1. Defining types, ports, and components in F'. 
 
-1. Using the F Prime build system to build the types and ports.
+2. Creating a deployment and running F' GDS. 
 
-1. Developing the `MathSender` component: Specifying the component, building
-   the component, completing the C++ component implementation, and writing
-   component unit tests.
+3. Writing unit tests.
 
-1. Developing the `MathReceiver` component.
+4. Handling errors, creating events, and adding telemetry channels. 
 
-1. Adding the new components and connections to the F Prime `Ref` application.
-
-1. Using the F Prime Ground Data System (GDS) to run the updated `Ref`
-   application.
-
-**Prerequisites:** This tutorial assumes the following:
+## Prequisites 
+This tutorial assumes the following:
 
 1. Basic knowledge of Unix: How to navigate in a shell and execute programs.
 
-1. Basic knowledge of git: How to create a branch.
+2. Basic knowledge of C++.
 
-1. Basic knowledge of C++, including class declarations, inheritance,
-and virtual functions.
+3. We advise new F' users to try the [Hello World Tutorial](https://fprime-community.github.io/fprime-tutorial-hello-world/)
+
+
+**Next:** [Start the Math Component Tutorial: Defining Types](./docs/defining-types.md)
