@@ -4,7 +4,7 @@
 //
 // ======================================================================
 // Used to access topology functions
-#include <Deployment/Top/DeploymentTopology.hpp>
+#include <MathDeployment/Top/MathDeploymentTopology.hpp>
 // Used for signal handling shutdown
 #include <signal.h>
 // Used for command line argument processing
@@ -32,7 +32,7 @@ void print_usage(const char* app) {
  * @param signum
  */
 static void signalHandler(int signum) {
-    Deployment::stopSimulatedCycle();
+    MathDeployment::stopSimulatedCycle();
 }
 
 /**
@@ -72,7 +72,7 @@ int main(int argc, char* argv[]) {
         }
     }
     // Object for communicating state to the reference topology
-    Deployment::TopologyState inputs;
+    MathDeployment::TopologyState inputs;
     inputs.hostname = hostname;
     inputs.port = port_number;
 
@@ -82,9 +82,9 @@ int main(int argc, char* argv[]) {
     (void)printf("Hit Ctrl-C to quit\n");
 
     // Setup, cycle, and teardown topology
-    Deployment::setupTopology(inputs);
-    Deployment::startSimulatedCycle(1000);  // Program loop cycling rate groups at 1Hz
-    Deployment::teardownTopology(inputs);
+    MathDeployment::setupTopology(inputs);
+    MathDeployment::startSimulatedCycle(1000);  // Program loop cycling rate groups at 1Hz
+    MathDeployment::teardownTopology(inputs);
     (void)printf("Exiting...\n");
     return 0;
 }

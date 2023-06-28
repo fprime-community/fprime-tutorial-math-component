@@ -7,9 +7,9 @@
 
 set(SOURCE_FILES
   "${CMAKE_CURRENT_LIST_DIR}/instances.fpp"
-  "${CMAKE_CURRENT_LIST_DIR}/DeploymentPackets.xml"
+  "${CMAKE_CURRENT_LIST_DIR}/MathDeploymentPackets.xml"
   "${CMAKE_CURRENT_LIST_DIR}/topology.fpp"
-  "${CMAKE_CURRENT_LIST_DIR}/DeploymentTopology.cpp"
+  "${CMAKE_CURRENT_LIST_DIR}/MathDeploymentTopology.cpp"
 )
 set(MOD_DEPS
   Fw/Logger

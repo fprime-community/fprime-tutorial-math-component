@@ -65,10 +65,10 @@ this->tlmWrite_NUMBER_OF_OPS(numMathOps);
 because this->tlmWrite_NUMBER_OF_OPS is a function 
 that is auto generated during the build. @TODO (Is this fact?)
 
-7. Add the packets to `DeploymentPackets.xml` in `Deployment/Top`: 
+7. Add the packets to `MathDeploymentPackets.xml` in `MathDeployment/Top`: 
 
 ```xml
-    <!-- In: DeploymentPackets.xml -->
+    <!-- In: MathDeploymentPackets.xml -->
     <packet name="MathReceiver" id="22" level="3">
         <channel name = "mathReceiver.OPERATION"/>
         <channel name = "mathReceiver.FACTOR"/>

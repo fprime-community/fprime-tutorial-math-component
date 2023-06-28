@@ -20,24 +20,15 @@ When creating the deplyoment you will be asked two questions, answer them as fol
 
 ```shell
 [INFO] Cookiecutter: using builtin template for new deployment
-deployment_name [MyDeployment]: Deployment
+deployment_name [MyDeployment]: MathDeployment
 [INFO] Found CMake file at 'fprime-tutorial-math-component/project.cmake'
 Add component Deployment to fprime-tutorial-math-component/project.cmake at end of file (yes/no)? yes
 ```
 
->Older versions of F' do not add `Deployment` to `project.cmake` and need to add project.cmake to the CMakeLists.txt that is in /Deployment: 
-
->```cmake 
-># In: Deployment/CMakeLists.txt
-># Under: Components and Topology 
->include("${FPRIME_PROJECT_ROOT}/project.cmake")
-># ONLY DO THIS IF F' VERSION > 3.2.2!!!
->```
-
 Test the build to make sure everything is okay:
 
 ```shell
-# In: /Deployment
+# In: /MathDeployment
 fprime-util generate 
 fprime-util build
 ```
@@ -47,7 +38,7 @@ fprime-util build
 Create an instance for `MathSender` in `instances.fpp`. 
 
 ```fpp 
-# In: Deployment/Top/instances.fpp 
+# In: MathDeployment/Top/instances.fpp 
 # Under: Active component instances 
 instance mathSender: MathModule.MathSender base id 0xE00 \
   queue size Default.QUEUE_SIZE \
@@ -72,7 +63,7 @@ Add the instances you created to `topology.fpp`.
 
 
 ```fpp 
-# In: Deployment/Top/topology.fpp 
+# In: MathDeployment/Top/topology.fpp 
 # Under: Instances used in the topology
 instance mathSender
 instance mathReceiver 
@@ -92,10 +83,10 @@ has a command `MathOp` with identifier 0xE01.
 
 ## Add Packets 
 
-Add packets for MathSender and MathReceiver in DeploymentPackets.xml
+Add packets for MathSender and MathReceiver in MathDeploymentPackets.xml
 
 ```xml 
-<!-- In: Top/DeploymentPackets.xml -->
+<!-- In: Top/MathDeploymentPackets.xml -->
 <!-- Above: Ignored packets -->
 <packet name="MathSender" id="21" level="3">
     <channel name = "mathSender.VAL1"/>
@@ -116,7 +107,7 @@ These lines describe the packet definitions for the `mathSender` and `mathReceiv
 Just to be safe, check the build after this step.
 
 ```shell
-# In: /Deployment
+# In: /MathDeployment
 fprime-util build
 ```
 
@@ -124,7 +115,7 @@ fprime-util build
 Check to make sure all of the ports have been connected: 
 
 ```shell 
-# In: Deployment/Top
+# In: MathDeployment/Top
 fprime-util fpp-check -u unconnected.txt
 cat unconnected.txt 
 ```
@@ -160,11 +151,11 @@ mathReceiver.mathResultOut -> mathSender.mathResultIn
 
 Verify that none of the math ports are unconnected 
 
-Go into DeploymentTopology.cpp and uncomment `loadParameters();`. Doing so will prevent an error in operation of F' GDS.  
+Go into MathDeploymentTopology.cpp and uncomment `loadParameters();`. Doing so will prevent an error in operation of F' GDS.  
 
 ```cpp
-// In: DeploymentTopology.cpp
-// Under: namespace Deployment{
+// In: MathDeploymentTopology.cpp
+// Under: namespace MathDeployment{
 loadParameters();
 ```
 
