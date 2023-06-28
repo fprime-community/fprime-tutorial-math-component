@@ -168,6 +168,6 @@ fprime-util check
 
 ## Congratulations!!!
 
-You have **finished** the Math Component Tutorial.
+You have **finished** the MathComponent Tutorial.
 You have now experienced a significant part 
 of F' and are ready to start building your own deployments. 

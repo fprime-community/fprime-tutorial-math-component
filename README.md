@@ -1,6 +1,6 @@
-# Math Component Tutorial 
+# MathComponent Tutorial 
 
-Welcome to the newest Math Component tutorial!
+Welcome to the MathComponent tutorial!
 
 This tutorial shows how to develop, test, and deploy a simple topology
 consisting of two components:
@@ -37,4 +37,4 @@ This tutorial assumes the following:
 3. We advise new F' users to try the [Hello World Tutorial](https://fprime-community.github.io/fprime-tutorial-hello-world/)
 
 
-**Next:** [Start the Math Component Tutorial: Defining Types](./docs/defining-types.md)
+**Next:** [Start the MathComponent Tutorial: Defining Types](./docs/defining-types.md)
