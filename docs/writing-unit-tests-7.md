@@ -1,19 +1,11 @@
 # Writing Unit Tests Part 7: Writing the Tests
 
 ## In this Section
- In this section of the tutorial, you will write 
- tests that make use of the helper functions you
- wrote in the last section of the tutorial.
+In this section of the tutorial, you will write tests that make use of the helper functions youwrote in the last section of the tutorial.
 
 ## Preface
 
-For each of the tests described below, you must add the
-corresponding function prototype to `Tester.hpp`
-and the corresponding test macro to `main.cpp`.
-If you can't remember how to do it, look back at the
-`MathSender` examples.
-After writing each test, run all the tests and make sure
-that they pass.
+For each of the tests described below, you must add the corresponding function prototype to `Tester.hpp` and the corresponding test macro to `main.cpp`. If you can't remember how to do it, look back at the `MathSender` examples. After writing each test, run all the tests and make sure that they pass.
 
 ## Write an ADD test
 Add the following function to the `Tests` section of `Tester.cpp`:
@@ -32,10 +24,7 @@ void Tester ::
 ```
 > Don't forget to add a function signature in `Tester.hpp`.
 
-`testAdd()` calls the `setFactor` helper function
-to set the factor parameter.
-Then it calls the `doMathOp` function to
-do a math operation.
+`testAdd()` calls the `setFactor` helper function to set the factor parameter. Then it calls the `doMathOp` function to do a math operation.
 
 ## Write a SUB test 
 Add the following function to the `Tests` section of `Tester.cpp`:
@@ -54,33 +43,21 @@ void Tester ::
 }
 ```
 
-`testSub()` is similar to `testAdd`, but it shows
-another way to set a parameter.
-`testAdd` shows how to set a parameter by command.
-You can also set a parameter by initialization, as follows:
+`testSub()` is similar to `testAdd`, but it shows another way to set a parameter. `testAdd` shows how to set a parameter by command. You can also set a parameter by initialization, as follows:
 
 1. Call the `paramSet` function as shown.
-This function sets the parameter value in
-the part of the test harness that mimics the behavior of the
-parameter database component.
+This function sets the parameter value in the part of the test harness that mimics the behavior of the parameter database component.
 
 2. Call the `loadParameters` function as shown.
-In flight, the function `loadParameters` is typically called at the
-start of FSW to load the parameters from the database;
-here it loads the parameters from the test harness.
-There is no command to update a parameter, so `parameterUpdated`
-is not called, and no event is emitted.
+In flight, the function `loadParameters` is typically called at the start of FSW to load the parameters from the database; here it loads the parameters from the test harness. There is no command to update a parameter, so `parameterUpdated` is not called, and no event is emitted.
 
-As before, after setting the parameter you call `doMathOp`
-to do the operation.
+As before, after setting the parameter you call `doMathOp` to do the operation.
 
 **Write a MUL test:**
-This test is the same as the ADD test, except that it
-uses MUL instead of add.
+This test is the same as the ADD test, except that it uses MUL instead of add.
 
 **Write a DIV test:**
-This test is the same as the SUB test, except that it
-uses DIV instead of SUB.
+This test is the same as the SUB test, except that it uses DIV instead of SUB.
 
 **Write a throttle test:**
 Add the following constant definition to the top of the `Tester.cpp` file:
@@ -130,26 +107,15 @@ void Tester ::
 ```
 
 ## Explanation 
-This test first loops over the throttle count, which is stored
-for us in the constant `EVENTID_FACTOR_UPDATED_THROTTLE`
-of the `MathReceiver` component base class.
-On each iteration, it calls `setFactor`.
-At the end of this loop, the `FACTOR_UPDATED` event should be
-throttled.
+This test first loops over the throttle count, which is stored for us in the constant `EVENTID_FACTOR_UPDATED_THROTTLE` of the `MathReceiver` component base class. On each iteration, it calls `setFactor`. At the end of this loop, the `FACTOR_UPDATED` event should be throttled.
 
-Next the test calls `setFactor` with a second argument of
-`ThrottleState::THROTTLED`.
-This code checks that the event is throttled.
+Next the test calls `setFactor` with a second argument of `ThrottleState::THROTTLED`. This code checks that the event is throttled.
 
-Next the test sends the command `CLEAR_EVENT_THROTTLE`,
-checks for the corresponding notification event,
-and checks that the throttling is cleared.
+Next the test sends the command `CLEAR_EVENT_THROTTLE`, checks for the corresponding notification event, and checks that the throttling is cleared.
 
-Add your tests to `TestMain.cpp` so that the tests run when
-`fprime-util check' is called. 
+Add your tests to `TestMain.cpp` so that the tests run when `fprime-util check' is called. 
 
-Here is how to include `testAdd` to `TestMain.cpp`. Follow this patttern to 
-inlcude any other unit tests you wrote: 
+Here is how to include `testAdd` to `TestMain.cpp`. Follow this patttern to inlcude any other unit tests you wrote: 
 
 ```cpp
 // In: TestMain.cpp
@@ -169,5 +135,4 @@ fprime-util check
 ## Congratulations!!!
 
 You have **finished** the MathComponent Tutorial.
-You have now experienced a significant part 
-of F' and are ready to start building your own deployments. 
+You have now experienced a significant part of F' and are ready to start building your own deployments. 

@@ -21,7 +21,7 @@ This tutorial will cover the following concepts:
 
 1. Defining types, ports, and components in F'. 
 
-2. Creating a deployment and running F' GDS. 
+2. Creating a deployment and running the F' GDS (Ground Data System). 
 
 3. Writing unit tests.
 
@@ -34,7 +34,6 @@ This tutorial assumes the following:
 
 2. Basic knowledge of C++.
 
-3. We advise new F' users to try the [Hello World Tutorial](https://fprime-community.github.io/fprime-tutorial-hello-world/)
+3. We advise new F' users to try the [HelloWorld Tutorial](https://fprime-community.github.io/fprime-tutorial-hello-world/)
 
-
-**Next:** [Start the MathComponent Tutorial: Defining Types](./docs/defining-types.md)
+**Next:** [Start the MathComponent Tutorial: Project Setup](./docs/project-setup.md)

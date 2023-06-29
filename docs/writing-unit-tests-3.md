@@ -4,8 +4,7 @@
 In this section of the tutorial, you will add another test into `MathSender/test/ut` and run the new test.
 
 **Add a result test:**
-Add a test for exercising the scenario in which the `MathReceiver`
-component sends a result back to `MathSender`.
+Add a test for exercising the scenario in which the `MathReceiver` component sends a result back to `MathSender`.
 
 Add the following function signature in the "Tests" section of `Tester.hpp`:
 
@@ -46,8 +45,7 @@ void Tester ::
 ```
 **Explanation:**
 This code is similar to the helper function in the previous section.
-The main difference is that it invokes a port directly
-(the `mathResultIn` port) instead of sending a command.
+The main difference is that it invokes a port directly (the `mathResultIn` port) instead of sending a command.
 
 ## Add the Tests to TestMain and Run
 Add the following test macro to `TestMain.cpp`:
@@ -67,11 +65,10 @@ Run the tests:
 fprime-util check 
 ``` 
 
-Again you can try altering something in the component code
-to see what effect it has on the test output.
+Again you can try altering something in the component code to see what effect it has on the test output.
 
 ## Summary 
 
 In this section, you created another helper function used to look test the received results as seen by the `MathSender`. You ran the test that you should wrote to ensure that it worked. 
 
-**Next:** [Writing Unit Tests 4](./writing-unit-tests-4.md)
+**Next:** [Writing Unit Tests Part 4: Random testing](./writing-unit-tests-4.md)

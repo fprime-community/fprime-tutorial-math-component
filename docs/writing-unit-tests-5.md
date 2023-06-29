@@ -2,8 +2,7 @@
 
 ## In this Section 
 
-In this section of the tutorial, you will be repeating the steps 
-you used to create an implementation stub for `MathSender`. 
+In this section of the tutorial, you will be repeating the steps you used to create an implementation stub for `MathSender`. 
 
 ## Create a Directory for the Unit Tests 
 In `Components/MathReceiver`, create a directory called test/ut 
@@ -97,7 +96,6 @@ set(UT_MOD_DEPS STest)
 
 ## Summary 
 
-In this section you have setup implementation stubs to begin 
-writing unit tests for `MathReceiver`. 
+In this section you have setup implementation stubs to begin writing unit tests for `MathReceiver`. 
 
 **Next:** [Writing Unit Tests 6](./writing-unit-tests-6.md)

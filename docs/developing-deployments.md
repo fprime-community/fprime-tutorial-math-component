@@ -28,8 +28,7 @@ Add component Deployment to fprime-tutorial-math-component/project.cmake at end 
 Test the build to make sure everything is okay:
 
 ```shell
-# In: /MathDeployment
-fprime-util generate 
+cd MathDeployment
 fprime-util build
 ```
 
@@ -52,15 +51,13 @@ instance mathReceiver: MathModule.MathReceiver base id 0x2700 \
 
 ## Explanation
 
-For the `MathSender` you defined the queue size, stack size,
-and thread priority. The default queue and stack sizes were used above.
+This code defines an instance `mathSender` of component `MathSender`. It has base identifier 0xE00. FPP adds the base identifier to each the relative identifier defined in the component to compute the corresponding identifier for the instance. For example, component MathSender has a telemetry channel MathOp with identifier 1, so instance mathSender has a command MathOp with identifier 0xE01
 
-The `MathReceiver was implemented with base identifier 0x2700 and the default queue size.
+The `mathReceiver` was defined with base identifier 0x2700 and the default queue size.
 
 ## Update the Topology 
 
 Add the instances you created to `topology.fpp`. 
-
 
 ```fpp 
 # In: MathDeployment/Top/topology.fpp 
@@ -72,14 +69,8 @@ instance mathReceiver
 > This step highlights the importants of capitalization. The easiest way to differentiate between the component definition and instance is the capitalization.
 
 ## Explanation 
-This code defines an instance `mathSender` of component
-`MathSender`. It has **base identifier** 0xE00.
-FPP adds the base identifier to each the relative identifier
-defined in the component to compute the corresponding
-identifier for the instance.
-For example, component `MathSender` has a telemetry channel
-`MathOp` with identifier 1, so instance `mathSender`
-has a command `MathOp` with identifier 0xE01.
+
+These lines add the mathSender and mathReceiver instances to the topology.
 
 ## Add Packets 
 
@@ -120,21 +111,20 @@ fprime-util fpp-check -u unconnected.txt
 cat unconnected.txt 
 ```
 
-At this point in time, several `mathSender` and `mathReceiver` functions (such as `mathOpIn` or `schedIn`) should still be not connected. Hence, they should appear on this list. 
+At this point in time, several `mathSender` and `mathReceiver` ports (such as `mathOpIn` or `schedIn`) should still be not connected. Hence, they should appear on this list. 
 
 Go into `topology.fpp`, connect `mathReceiver.schedIn` to rate group one using the code below:  
 
 ```fpp 
 # In: Top/topology.fpp 
-# Under: connections Deplyoment
+# Under: connections RateGroups for rateGroup1
 rateGroup1.RateGroupMemberOut[3] -> mathReceiver.schedIn
 ```
 
 > Note: `[3]` is the next available index in rate group one.
 
 ## Explanation
-This line adds the connection that drives the `schedIn`
-port of the `mathReceiver` component instance.
+This line adds the connection that drives the `schedIn` port of the `mathReceiver` component instance.
 
 Verify that you succesfully took a port off the list of unconnected ports. 
 
@@ -142,16 +132,16 @@ Add the connections between the mathSender and mathReceiver
 
 ```fpp 
 # In: Top/topology.fpp 
-# Under: connections Deplyoment 
+# Under: connections MathDeplyoment 
 mathSender.mathOpOut -> mathReceiver.mathOpIn
 mathReceiver.mathResultOut -> mathSender.mathResultIn
 ```
 
 ## Test and Run
 
-Verify that none of the math ports are unconnected 
+**Re-run the check for unconnected ports**: Notice that no mathSender or mathReceiver ports are unconnected. 
 
-Go into MathDeploymentTopology.cpp and uncomment `loadParameters();`. Doing so will prevent an error in operation of F' GDS.  
+Go into MathDeploymentTopology.cpp and uncomment `loadParameters();`. This function is commented by default because it does not exist when the model has no parameters. Since we defined a parameter in `MathReceiver`, we shall call the function.
 
 ```cpp
 // In: MathDeploymentTopology.cpp
@@ -160,23 +150,25 @@ loadParameters();
 ```
 
 
-Now it is time to build the entire project. Navigate to `MathProject` and build:
+Now it is time to build the entire project and run it! Navigate back to `MathDeployment` and build:
 
 ```shell 
-# In: MathProject 
+# In: MathProject/MathDeployment
 fprime-util build 
 ```
 
-Run the MathComponent Tutorial
+Run the MathComponent deployment through the GDS:
 
 ```shell 
-# In: MathProject 
+# In: MathProject/MathDeployment
 fprime-gds 
 ```
 > If you encounter an error on this step, try running `fprime-gds` in the `MathProject`. 
 
 ## Send Some Commands
-Under Commanding there is a dropdown menu called "mnemonic". Click Mnemonic and find mathSender.DO_MATH. When you select DO_MATH, three new option should appear. In put 7 into val1, put 6 into val2, and put MUL into op. Press send command. Nothing exciting will happen, navivate to events (top left) and find the results of your command. You should see The Ultimate Answer to Life, the Universe, and Everything. 
+Under _Commanding_ there is a dropdown menu called "mnemonic". Click Mnemonic and find mathSender.DO_MATH. When you select DO_MATH, three new option should appear. In put 7 into val1, put 6 into val2, and put MUL into op. Press send command. Navivate to _Events_ (top left) and find the results of your command. You should see The Ultimate Answer to Life, the Universe, and Everything: 42.
+
+For a more detailed guide to the F´ GDS, see the [GDS Introduction Guide](https://nasa.github.io/fprime/UsersGuide/gds/gds-introduction.html).
 
 
 ## Summary
@@ -187,4 +179,4 @@ In this section of the tutorial, you created a deployment. While at it, you fill
 
 You have completed your F' deployment!!! If you wish to stop here, you may! You can also rest assured knowing that the work you have done is referencable. In otherwords, you've written code in the same way that you will write code for actual spacecrafts. Except... actual spacecrafts will make extensive use of unit tests and error handling. Keep going in this tutorial to learn more about unit testing, error handling, and just to practice using F'.
 
-**Next:** [Crafting Unit Tests 1](./writing-unit-tests-1.md)
+**Next:** [Writing Unit Tests Part 1: Creating the Implementation Stub](./writing-unit-tests-1.md)
