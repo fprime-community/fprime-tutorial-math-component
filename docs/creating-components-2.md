@@ -44,10 +44,8 @@ perform the operation.
 The command response goes out on the special port
 `cmdResponseOut`.
 
-In F Prime, every execution of a command handler must end by
-sending a command response.
-The proper behavior of other framework components (e.g., command
-dispatcher, command sequencer) depends upon adherence to this rule. 
+In F Prime, every execution of a command handler must end by sending a command response.
+The proper behavior of other framework components (e.g., command dispatcher, command sequencer) depends upon adherence to this rule. 
 
 
 Check the build using:
@@ -91,4 +89,4 @@ Congratulations, you have completed `MathSender`! Well... there's always more to
 creating more events, and generally messing around with what `MathSender` can do. But for the purposes of getting a deployment
 working, this component is done! 
 
-**Next:** [Creating Components 3](./creating-components-3.md)
+**Next:** [Creating Components Part 3: Starting the MathReceiver](./creating-components-3.md)

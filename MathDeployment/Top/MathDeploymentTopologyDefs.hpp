@@ -1,24 +1,24 @@
 // ======================================================================
-// \title  DeploymentTopologyDefs.hpp
+// \title  MathDeploymentTopologyDefs.hpp
 // \brief required header file containing the required definitions for the topology autocoder
 //
 // ======================================================================
-#ifndef DEPLOYMENT_DEPLOYMENTTOPOLOGYDEFS_HPP
-#define DEPLOYMENT_DEPLOYMENTTOPOLOGYDEFS_HPP
+#ifndef MATHDEPLOYMENT_MATHDEPLOYMENTTOPOLOGYDEFS_HPP
+#define MATHDEPLOYMENT_MATHDEPLOYMENTTOPOLOGYDEFS_HPP
 
 #include "Drv/BlockDriver/BlockDriver.hpp"
 #include "Fw/Types/MallocAllocator.hpp"
-#include "Deployment/Top/FppConstantsAc.hpp"
+#include "MathDeployment/Top/FppConstantsAc.hpp"
 #include "Svc/FramingProtocol/FprimeProtocol.hpp"
 #include "Svc/Health/Health.hpp"
 
 // Definitions are placed within a namespace named after the deployment
-namespace Deployment {
+namespace MathDeployment {
 
 /**
  * \brief required type definition to carry state
  *
- * The topology autocoder requires an object that carries state with the name `Deployment::TopologyState`. Only the type
+ * The topology autocoder requires an object that carries state with the name `MathDeployment::TopologyState`. Only the type
  * definition is required by the autocoder and the contents of this object are otherwise opaque to the autocoder. The
  * contents are entirely up to the definition of the project. This reference application specifies hostname and port
  * fields, which are derived by command line inputs.
@@ -85,5 +85,5 @@ namespace rateGroup3 {
 enum { WARN = 3, FATAL = 5 };
 }
 }  // namespace PingEntries
-}  // namespace Deployment
+}  // namespace MathDeployment
 #endif

@@ -1,11 +1,11 @@
 // ======================================================================
-// \title  DeploymentTopology.cpp
+// \title  MathDeploymentTopology.cpp
 // \brief cpp file containing the topology instantiation code
 //
 // ======================================================================
 // Provides access to autocoded functions
-#include <Deployment/Top/DeploymentTopologyAc.hpp>
-#include <Deployment/Top/DeploymentPacketsAc.hpp>
+#include <MathDeployment/Top/MathDeploymentTopologyAc.hpp>
+#include <MathDeployment/Top/MathDeploymentPacketsAc.hpp>
 
 // Necessary project-specified types
 #include <Fw/Types/MallocAllocator.hpp>
@@ -16,7 +16,7 @@
 #include <Os/Mutex.hpp>
 
 // Allows easy reference to objects in FPP/autocoder required namespaces
-using namespace Deployment;
+using namespace MathDeployment;
 
 // Instantiate a system logger that will handle Fw::Logger::logMsg calls
 Os::Log logger;
@@ -122,7 +122,7 @@ void configureTopology() {
     deframer.setup(deframing);
 
     // Note: Uncomment when using Svc:TlmPacketizer
-    //tlmSend.setPacketList(DeploymentPacketsPkts, DeploymentPacketsIgnore, 1);
+    //tlmSend.setPacketList(MathDeploymentPacketsPkts, MathDeploymentPacketsIgnore, 1);
 
     // Events (highest-priority)
     configurationTable.entries[0] = {.depth = 100, .priority = 0};
@@ -134,8 +134,8 @@ void configureTopology() {
     comQueue.configure(configurationTable, 0, mallocator);
 }
 
-// Public functions for use in main program are namespaced with deployment name Deployment
-namespace Deployment {
+// Public functions for use in main program are namespaced with deployment name MathDeployment
+namespace MathDeployment {
 void setupTopology(const TopologyState& state) {
     // Autocoded initialization. Function provided by autocoder.
     initComponents(state);
@@ -171,7 +171,7 @@ void startSimulatedCycle(U32 milliseconds) {
 
     // Main loop
     while (cycling) {
-        Deployment::blockDrv.callIsr();
+        MathDeployment::blockDrv.callIsr();
         Os::Task::delay(milliseconds);
 
         cycleLock.lock();
@@ -199,4 +199,4 @@ void teardownTopology(const TopologyState& state) {
     cmdSeq.deallocateBuffer(mallocator);
     bufferManager.cleanup();
 }
-};  // namespace Deployment
+};  // namespace MathDeployment

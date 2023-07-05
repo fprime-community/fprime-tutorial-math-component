@@ -1,7 +1,7 @@
 #####
-# 'Deployment' Deployment:
+# 'MathDeployment' Deployment:
 #
-# This registers the 'Deployment' deployment to the build system. 
+# This registers the 'MathDeployment' deployment to the build system. 
 # Custom components that have not been added at the project-level should be added to 
 # the list below.
 #

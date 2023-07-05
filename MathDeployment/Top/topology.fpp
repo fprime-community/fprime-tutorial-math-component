@@ -1,4 +1,4 @@
-module Deployment {
+module MathDeployment {
 
   # ----------------------------------------------------------------------
   # Symbolic constants for port numbers
@@ -10,7 +10,7 @@ module Deployment {
       rateGroup3
     }
 
-  topology Deployment {
+  topology MathDeployment {
 
     # ----------------------------------------------------------------------
     # Instances used in the topology
@@ -136,7 +136,7 @@ module Deployment {
       fileUplink.bufferSendOut -> bufferManager.bufferSendIn
     }
 
-    connections Deployment {
+    connections MathDeployment {
       # Add here connections to user-defined components
       rateGroup1.RateGroupMemberOut[3] -> mathReceiver.schedIn
 

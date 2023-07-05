@@ -1,4 +1,4 @@
-module Deployment {
+module MathDeployment {
 
   # ----------------------------------------------------------------------
   # Defaults

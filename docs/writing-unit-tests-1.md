@@ -9,6 +9,13 @@
 
 In this section of the tutorial, you will create a stub implementation of a unit test that will test `MathSender`. 
 
+First, let's create our Unit Test build cache:
+
+```shell
+# In MathProject
+fprime-util generate --ut 
+```
+
 In Components/MathSender, create a directory called test/ut
 
 ```shell 
@@ -31,15 +38,12 @@ register_fprime_ut()
 
 ## Generate the Unit Test Stub 
 Generate a stub implementation of the unit tests.
-This stub contains all the boilerplate necessary to write and
-run unit tests against the `MathSender` component:
+This stub contains all the boilerplate necessary to write and run unit tests against the `MathSender` component:
 
 ```shell 
 # In: MathSender
-fprime-util generate --ut 
 fprime-util impl --ut
 ```
-> These commands may take a while to run.
 
 You haved just generate three new files ```Tester.cpp Tester.hpp TestMain.cpp```. Move these files to the `test/ut` in MathSender using:
 
@@ -50,7 +54,7 @@ mv Tester.* TestMain.cpp test/ut
 
 ## Add the Tests to the Build
 
-Add ```Tester.cpp and TestMain.cpp``` to the build. Do so by editing the CMakeLists.txt in MathSender: 
+Add `Tester.cpp` and `TestMain.cpp` to the build. Do so by editing the CMakeLists.txt to add the 2 new source files. The UT section should now look like the following:
 
 ```cmake
 # In: MathSender/CMakeLists.txt 
@@ -74,32 +78,22 @@ fprime-util build --ut
 > Don't forget to add ```--ut``` or else you are just going to build the component again. 
 
 ## (Optional) Inspect the generated code
-The unit test build generates some code to support unit testing.
-The code is located at `MathSender/build-fprime-automatic-native-ut/Ref/MathSender`. @TODO (CHECK DIRECTTORY)
+The unit test build generates some code to support unit testing. The code is located at `MathSender/build-fprime-automatic-native-ut/Components/MathSender`.
 This directory contains two auto-generated classes:
 
-1. `MathSenderGTestBase`: This is the direct base
-class of `Tester`.
-It provides a test interface implemented with Google Test
-macros.
+1. `MathSenderGTestBase`: This is the direct base class of `Tester`. It provides a test interface implemented with Google Test macros.
 
-2. `MathSenderTesterBase`: This is the direct base
-class of `MathSenderGTestBase`.
-It provides basic features such as histories of port
-invocations.
-It is not specific to Google Test, so you can
-use this class without Google Test if desired.
+2. `MathSenderTesterBase`: This is the direct base class of `MathSenderGTestBase`.
+It provides basic features such as histories of port invocations. It is not specific to Google Test, so you can use this class without Google Test if desired.
 
-You can look at the header files for these generated classes
-to see what operations they provide.
-In the next sections we will provide some example uses
-of these operations.
+You can look at the header files for these generated classes to see what operations they provide.
+In the next sections we will provide some example uses of these operations.
 
 
 ## Summary
 
 In this section you created the stub implementation of a unit test. In the next section you will finish the unit test and run it. 
 
-**Next:** [Writing Unit Tests 2](./writing-unit-tests-2.md)
+**Next:** [Writing Unit Tests Part 2: Completing the Stub & Running the Test](./writing-unit-tests-2.md)
 
 

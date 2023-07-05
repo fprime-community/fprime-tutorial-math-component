@@ -5,7 +5,7 @@
 In this section you will complete the implementation of the `MathReciever` by filling in `MathReceiver.cpp` and `MathReceiver.hpp`. 
 
 ## Editing the Math Op In Handler
-Fill in the mathOpIn handler: In MathReceiver.cpp, complete the implementation of mathOpIn_handler so that it looks like this:
+Fill in the mathOpIn handler: In MathReceiver.cpp, complete the implementation of `MathReceiver::mathOpIn_handler()` so that it looks like this:
 
 ```cpp
 // In: MathReceiver.cpp

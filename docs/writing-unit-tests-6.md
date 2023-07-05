@@ -1,8 +1,7 @@
 # Writing Unit Tests Part 6: Writing Helper Functions
 
 ## In this Section 
-In this section of the tutorial, you will write helper
-functions to tests various function of `MathReceiver`.
+In this section of the tutorial, you will write helper functions to tests various function of `MathReceiver`.
 
 ## Add a ThrottleState enum class
 Add the following code to the beginning of the
@@ -26,13 +25,9 @@ This code defines a C++ enum class for recording whether an
 event is throttled.
 
 ## Add helper functions 
-Add each of the functions described below to the
-"Helper methods" section of `Tester.cpp`.
-For each function, you must add
-the corresponding function prototype to `Tester.hpp`.
-After adding each function, compile the unit tests
-to make sure that everything still compiles.
-Fix any errors that occur.
+Add each of the functions described below to the "Helper methods" section of `Tester.cpp`.
+For each function, you must add the corresponding function prototype to `Tester.hpp`.
+After adding each function, compile the unit tests to make sure that everything still compiles. Fix any errors that occur.
 
 Add a `pickF32Value` function.
 
@@ -51,8 +46,7 @@ This function picks a random `F32` value in the range
 _[ -10^6, 10^6 ]_.
 
 
-At this point, it is a good to check the build. Use 
-the following to check the build:
+At this point, it is a good to check the build. Use the following to check the build:
 
 ```shell
 # In: MathReceiver
@@ -97,11 +91,9 @@ This function does the following:
 
 1. Clear the test history.
 
-2. Send a command to the component to set the `FACTOR` parameter
-to the value `factor`.
+2. Send a command to the component to set the `FACTOR` parameter to the value `factor`.
 
-3. If `throttleState` is `NOT_THROTTLED`, then check
-that the event was emitted.
+3. If `throttleState` is `NOT_THROTTLED`, then check that the event was emitted.
 Otherwise check that the event was throttled (not emitted).
 
 **Build** to make sure everything is working. 
@@ -144,10 +136,8 @@ F32 Tester ::
 ```
 > Don't forget to add a function signature in `Tester.hpp`.
 
-This function carries out the math computation of the
-math component.
-By running this function and comparing, we can
-check the output of the component.
+This function carries out the math computation of the math component.
+By running this function and comparing, we can check the output of the component.
 
 Build to make sure everything is working. 
 
@@ -210,12 +200,9 @@ void Tester ::
 ```
 > Don't forget to add a function signature in `Tester.hpp`.
 
-This function is similar to the `doMath` helper function that
-we wrote for the `MathSender` component.
+This function is similar to the `doMath` helper function that we wrote for the `MathSender` component.
 Notice that the method for invoking a port is different.
-Since the component is queued, we don't call `doDispatch`
-directly.
-Instead we invoke `schedIn`.
+Since the component is queued, we don't call `doDispatch` directly. Instead we invoke `schedIn`.
 
 **Build** before moving onto the next section.
 

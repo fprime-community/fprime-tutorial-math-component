@@ -1,8 +1,8 @@
 ## Bootstrapping F´
 
-An F´ project ties to a specific version of tools to work with F´.  In order to create
-a project and install the correct version of tools, an initial bootstrap version of F´ tools must be installed. This
-is accomplished with the following command:
+> Note: if you have followed the [HelloWorld tutorial](https://fprime-community.github.io/fprime-tutorial-hello-world/) previously, this should feel very familiar...
+
+An F´ project ties to a specific version of tools to work with F´.  In order to create a project and install the correct version of tools, an initial bootstrap version of F´ tools must be installed. This is accomplished with the following command:
 
 ```bash
 pip install fprime-tools
