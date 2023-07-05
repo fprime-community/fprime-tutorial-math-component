@@ -28,7 +28,7 @@ Add component Deployment to fprime-tutorial-math-component/project.cmake at end 
 Test the build to make sure everything is okay:
 
 ```shell
-cd MathDeployment
+# In MathProject/MathDeployment
 fprime-util build
 ```
 
@@ -98,7 +98,7 @@ These lines describe the packet definitions for the `mathSender` and `mathReceiv
 Just to be safe, check the build after this step.
 
 ```shell
-# In: /MathDeployment
+# In: MathProject/MathDeployment
 fprime-util build
 ```
 
@@ -111,7 +111,7 @@ fprime-util fpp-check -u unconnected.txt
 cat unconnected.txt 
 ```
 
-At this point in time, several `mathSender` and `mathReceiver` ports (such as `mathOpIn` or `schedIn`) should still be not connected. Hence, they should appear on this list. 
+At this point in time, several `mathSender` and `mathReceiver` ports (such as `mathOpIn` or `schedIn`) are still unconnected. Hence, they should appear on this list. 
 
 Go into `topology.fpp`, connect `mathReceiver.schedIn` to rate group one using the code below:  
 
