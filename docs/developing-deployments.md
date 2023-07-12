@@ -18,9 +18,9 @@ fprime-util new --deployment
 
 When creating the deplyoment you will be asked two questions, answer them as follows: 
 
-```shell
+```
 [INFO] Cookiecutter: using builtin template for new deployment
-deployment_name [MyDeployment]: MathDeployment
+Deployment [MyDeployment]: MathDeployment
 [INFO] Found CMake file at 'fprime-tutorial-math-component/project.cmake'
 Add component Deployment to fprime-tutorial-math-component/project.cmake at end of file (yes/no)? yes
 ```
