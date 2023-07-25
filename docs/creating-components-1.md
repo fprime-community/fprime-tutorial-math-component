@@ -30,27 +30,27 @@ This command will prompt you for some inputs. Answer the prompts as shown below:
 
 ```
 [INFO] Cookiecutter source: using builtin
-component_name [MyComponent]: MathSender 
-component_short_description [Example Component for F Prime FSW framework.]: Active component used for sending operations and operrands to the MathReceiver.
-Component_namespace[Component]: MathModule
-Select component_kind:
+Component name [MyComponent]: MathSender 
+Component short description [Example Component for F Prime FSW framework.]: Active component used for sending operations and operrands to the MathReceiver.
+Component namespace [Component]: MathModule
+Select component kind:
 1 - active
 2 - passive
 3 - queued
 Choose from 1, 2, 3 [1]: 1
-Select enable_commands:
+Enable Commands?:
 1 - yes
 2 - no
 Choose from 1, 2 [1]: 1
-Select enable_telemetry:
+Enable Telemetry?:
 1 - yes
 2 - no
 Choose from 1, 2 [1]: 1
-Select enable_events:
+Enable Events?:
 1 - yes
 2 - no
 Choose from 1, 2 [1]: 1
-Select enable_parameters:
+Enable Parameters?:
 1 - yes
 2 - no
 Choose from 1, 2 [1]: 1
