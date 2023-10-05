@@ -5,14 +5,14 @@ In this section of the tutorial, you will write tests that make use of the helpe
 
 ## Preface
 
-For each of the tests described below, you must add the corresponding function prototype to `Tester.hpp` and the corresponding test macro to `main.cpp`. If you can't remember how to do it, look back at the `MathSender` examples. After writing each test, run all the tests and make sure that they pass.
+For each of the tests described below, you must add the corresponding function prototype to `MathReceiverTester.hpp` and the corresponding test macro to `main.cpp`. If you can't remember how to do it, look back at the `MathSender` examples. After writing each test, run all the tests and make sure that they pass.
 
 ## Write an ADD test
-Add the following function to the `Tests` section of `Tester.cpp`:
+Add the following function to the `Tests` section of `MathReceiverTester.cpp`:
 
 ```c++
-// In: Tester.cpp
-void Tester ::
+// In: MathReceiverTester.cpp
+void MathReceiverTester ::
   testAdd()
 {
     // Set the factor parameter by command
@@ -22,16 +22,16 @@ void Tester ::
     this->doMathOp(MathOp::ADD, factor);
 }
 ```
-> Don't forget to add a function signature in `Tester.hpp`.
+> Don't forget to add a function signature in `MathReceiverTester.hpp`.
 
 `testAdd()` calls the `setFactor` helper function to set the factor parameter. Then it calls the `doMathOp` function to do a math operation.
 
 ## Write a SUB test 
-Add the following function to the `Tests` section of `Tester.cpp`:
+Add the following function to the `Tests` section of `MathReceiverTester.cpp`:
 
 ```c++
-// In: Tester.cpp
-void Tester ::
+// In: MathReceiverTester.cpp
+void MathReceiverTester ::
   testSub()
 {
     // Set the factor parameter by loading parameters
@@ -60,19 +60,19 @@ This test is the same as the ADD test, except that it uses MUL instead of add.
 This test is the same as the SUB test, except that it uses DIV instead of SUB.
 
 **Write a throttle test:**
-Add the following constant definition to the top of the `Tester.cpp` file:
+Add the following constant definition to the top of the `MathReceiverTester.cpp` file:
 
 ```C++
-// In: Tester.cpp
+// In: MathReceiverTester.cpp
 #define CMD_SEQ 42
 ```
 ## Write a Throttle Test
 
-Add the following function to the "Tests" section of `Tester.cpp`:
+Add the following function to the "Tests" section of `MathReceiverTester.cpp`:
 
 ```c++
-// In: Tester.cpp
-void Tester ::
+// In: MathReceiverTester.cpp
+void MathReceiverTester ::
   testThrottle()
 {
 
@@ -113,14 +113,14 @@ Next the test calls `setFactor` with a second argument of `ThrottleState::THROTT
 
 Next the test sends the command `CLEAR_EVENT_THROTTLE`, checks for the corresponding notification event, and checks that the throttling is cleared.
 
-Add your tests to `TestMain.cpp` so that the tests run when `fprime-util check' is called. 
+Add your tests to `MathReceiverTestMain.cpp` so that the tests run when `fprime-util check' is called. 
 
-Here is how to include `testAdd` to `TestMain.cpp`. Follow this patttern to inlcude any other unit tests you wrote: 
+Here is how to include `testAdd` to `MathReceiverTestMain.cpp`. Follow this patttern to inlcude any other unit tests you wrote: 
 
 ```cpp
-// In: TestMain.cpp
+// In: MathReceiverTestMain.cpp
 TEST(Nominal, AddCommand) {
-    MathModule::Tester tester;
+    MathModule::MathReceiverTester tester;
     tester.testAdd();
 }
 ```

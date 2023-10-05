@@ -34,21 +34,21 @@ fprime-util impl --ut
 ```
 > These commands may take a while to run.
 
-You haved just generate three new files `Tester.cpp Tester.hpp TestMain.cpp`. Move these files to the test/ut directory in MathReceiver using:
+You haved just generate three new files `MathReceiverTester.cpp MathReceiverTester.hpp MathReceiverTestMain.cpp`. Move these files to the test/ut directory in MathReceiver using:
 
 ```shell 
 # In: MathReceiver
-mv Tester.* TestMain.cpp test/ut
+mv MathReceiverTester.* MathReceiverTestMain.cpp test/ut
 ```
 
-Add `Tester.cpp and TestMain.cpp` to the build. Do so by editing the CMakeLists.txt in MathReceiver: 
+Add `MathReceiverTester.cpp and MathReceiverTestMain.cpp` to the build. Do so by editing the CMakeLists.txt in MathReceiver: 
 
 ```cmake
 # In: MathReceiver/CMakeLists.txt 
 set(UT_SOURCE_FILES
   "${CMAKE_CURRENT_LIST_DIR}/MathReceiver.fpp"
-  "${CMAKE_CURRENT_LIST_DIR}/test/ut/Tester.cpp"
-  "${CMAKE_CURRENT_LIST_DIR}/test/ut/TestMain.cpp"
+  "${CMAKE_CURRENT_LIST_DIR}/test/ut/MathReceiverTester.cpp"
+  "${CMAKE_CURRENT_LIST_DIR}/test/ut/MathReceiverTestMain.cpp"
 )
 set(UT_AUTO_HELPERS ON)
 register_fprime_ut()
@@ -71,19 +71,19 @@ Complete the following steps to prepare for random testing.
 
 
 ```cpp
-// In: Tester.cpp
-#include "Tester.hpp"
+// In: MathReceiverTester.cpp
+#include "MathReceiverTester.hpp"
 #include "STest/Pick/Pick.hpp"
 ```
 
 ```cpp
-// In: TestMain.cpp
-#include "Tester.hpp"
+// In: MathReceiverTestMain.cpp
+#include "MathReceiverTester.hpp"
 #include "STest/Random/Random.hpp"
 ```
 
 ```cpp
-// In: TestMain.cpp
+// In: MathReceiverTestMain.cpp
 // Within: int main(){
 STest::Random::seed();
 ```

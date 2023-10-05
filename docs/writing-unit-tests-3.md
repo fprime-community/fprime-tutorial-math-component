@@ -6,19 +6,19 @@ In this section of the tutorial, you will add another test into `MathSender/test
 **Add a result test:**
 Add a test for exercising the scenario in which the `MathReceiver` component sends a result back to `MathSender`.
 
-Add the following function signature in the "Tests" section of `Tester.hpp`:
+Add the following function signature in the "Tests" section of `MathSenderTester.hpp`:
 
 ```c++
-// In: MathSender/test/ut/Tester.hpp
+// In: MathSender/test/ut/MathSenderTester.hpp
 //! Test receipt of a result
 void testResult();
 ```
 
-Add the corresponding function body in `Tester.cpp`:
+Add the corresponding function body in `MathSenderTester.cpp`:
 
 ```c++
-// In: Tester.cpp
-void Tester ::
+// In: MathSenderTester.cpp
+void MathSenderTester ::
     testResult()
 {
     // Generate an expected result
@@ -47,13 +47,13 @@ void Tester ::
 This code is similar to the helper function in the previous section.
 The main difference is that it invokes a port directly (the `mathResultIn` port) instead of sending a command.
 
-## Add the Tests to TestMain and Run
-Add the following test macro to `TestMain.cpp`:
+## Add the Tests to MathSenderTestMain and Run
+Add the following test macro to `MathSenderTestMain.cpp`:
 
 ```c++
-// In: TestMain.cpp
+// In: MathSenderTestMain.cpp
 TEST(Nominal, Result) {
-    MathModule::Tester tester; 
+    MathModule::MathSenderTester tester; 
     tester.testResult();
 }
 ```

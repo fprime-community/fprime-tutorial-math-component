@@ -4,7 +4,7 @@
 // \brief  cpp file for MathReceiver test harness implementation class
 // ======================================================================
 
-#include "Tester.hpp"
+#include "MathReceiverTester.hpp"
 #include "STest/Pick/Pick.hpp"
 
 namespace MathModule {
@@ -13,17 +13,17 @@ namespace MathModule {
   // Construction and destruction
   // ----------------------------------------------------------------------
 
-  Tester ::
-    Tester() :
-      MathReceiverGTestBase("Tester", Tester::MAX_HISTORY_SIZE),
+  MathReceiverTester ::
+    MathReceiverTester() :
+      MathReceiverGTestBase("Tester", MathReceiverTester::MAX_HISTORY_SIZE),
       component("MathReceiver")
   {
     this->initComponents();
     this->connectPorts();
   }
 
-  Tester ::
-    ~Tester()
+  MathReceiverTester ::
+    ~MathReceiverTester()
   {
 
   }
@@ -32,20 +32,20 @@ namespace MathModule {
   // Tests
   // ----------------------------------------------------------------------
 
-  void Tester ::
+  void MathReceiverTester ::
     toDo()
   {
     // TODO
   }
 
-  F32 Tester ::
+  F32 MathReceiverTester ::
     pickF32Value()
     {
       const F32 m = 10e6;
       return m * (1.0 - 2 * STest::Pick::inUnitInterval());
     }
 
-  void Tester ::
+  void MathReceiverTester ::
     setFactor(
         F32 factor,
         ThrottleState throttleState
@@ -69,7 +69,7 @@ namespace MathModule {
       }
   }
 
-  F32 Tester ::
+  F32 MathReceiverTester ::
   computeResult(
       F32 val1,
       MathOp op,
@@ -99,7 +99,7 @@ namespace MathModule {
       return result;
   }
 
-  void Tester ::
+  void MathReceiverTester ::
   doMathOp(
       MathOp op,
       F32 factor
@@ -150,7 +150,7 @@ namespace MathModule {
 
   }
 
-  void Tester ::
+  void MathReceiverTester ::
   testAdd()
   {
       // Set the factor parameter by command
@@ -160,7 +160,7 @@ namespace MathModule {
       this->doMathOp(MathOp::ADD, factor);
   }
 
-  void Tester ::
+  void MathReceiverTester ::
   testSub()
   {
       // Set the factor parameter by loading parameters
@@ -171,7 +171,7 @@ namespace MathModule {
       this->doMathOp(MathOp::SUB, factor);
   }
 
-  void Tester ::
+  void MathReceiverTester ::
   testThrottle()
   {
 
@@ -208,7 +208,7 @@ namespace MathModule {
   // Handlers for typed from ports
   // ----------------------------------------------------------------------
 
-  void Tester ::
+  void MathReceiverTester ::
     from_mathResultOut_handler(
         const NATIVE_INT_TYPE portNum,
         F32 result

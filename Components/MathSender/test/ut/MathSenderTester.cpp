@@ -4,7 +4,7 @@
 // \brief  cpp file for MathSender test harness implementation class
 // ======================================================================
 
-#include "Tester.hpp"
+#include "MathSenderTester.hpp"
 #include "STest/Pick/Pick.hpp"
 
 namespace MathModule {
@@ -13,17 +13,17 @@ namespace MathModule {
   // Construction and destruction
   // ----------------------------------------------------------------------
 
-  Tester ::
-    Tester() :
-      MathSenderGTestBase("Tester", Tester::MAX_HISTORY_SIZE),
+  MathSenderTester ::
+    MathSenderTester() :
+      MathSenderGTestBase("Tester", MathSenderTester::MAX_HISTORY_SIZE),
       component("MathSender")
   {
     this->initComponents();
     this->connectPorts();
   }
 
-  Tester ::
-    ~Tester()
+  MathSenderTester ::
+    ~MathSenderTester()
   {
 
   }
@@ -32,13 +32,13 @@ namespace MathModule {
   // Tests
   // ----------------------------------------------------------------------
 
-  void Tester ::
+  void MathSenderTester ::
     toDo()
   {
     // TODO
   }
 
-  void Tester ::
+  void MathSenderTester ::
   testDoMath(MathOp op)
   {
     // Pick values
@@ -83,13 +83,13 @@ namespace MathModule {
     ASSERT_EVENTS_COMMAND_RECV(0, val1, op, val2);
   }
 
-  void Tester ::
+  void MathSenderTester ::
     testAddCommand()
   {
       this->testDoMath(MathOp::ADD);
   }
 
-  void Tester ::
+  void MathSenderTester ::
     testResult()
   {
     // Generate an expected result
@@ -118,7 +118,7 @@ namespace MathModule {
   // Handlers for typed from ports
   // ----------------------------------------------------------------------
 
-  void Tester ::
+  void MathSenderTester ::
     from_mathOpOut_handler(
         const NATIVE_INT_TYPE portNum,
         F32 val1,

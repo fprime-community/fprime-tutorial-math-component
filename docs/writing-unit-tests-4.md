@@ -12,28 +12,28 @@ In this section of the tutorial, you will create test that uses random numbers i
 
 To incorporate random numbers into the existing tests you have written for `MathSender`, you only need to make a couple small modifications. 
 
-**First,** edit `MathSender/test/ut/Tester.cpp` by adding a `Pick.hpp` to the includes: 
+**First,** edit `MathSender/test/ut/MathSenderTester.cpp` by adding a `Pick.hpp` to the includes: 
 
 ```cpp
-// In: Tester.cpp
-#include "Tester.hpp"
+// In: MathSenderTester.cpp
+#include "MathSenderTester.hpp"
 #include "STest/Pick/Pick.hpp"
 ```
 
 
-**Second,** modify `TestMain.cpp` to include `Random.hpp`:
+**Second,** modify `MathSenderTestMain.cpp` to include `Random.hpp`:
 
 ```cpp
-// In: TestMain.cpp
-#include "Tester.hpp"
+// In: MathSenderTestMain.cpp
+#include "MathSenderTester.hpp"
 #include "STest/Random/Random.hpp"
 ```
 
 
-**Third,** add the following line to the main function of `TestMain.cpp`, just *before* the return statement:
+**Third,** add the following line to the main function of `MathSenderTestMain.cpp`, just *before* the return statement:
 
 ```cpp
-// In: TestMain.cpp
+// In: MathSenderTestMain.cpp
 // Within: int main(){
 STest::Random::seed();
 ```
