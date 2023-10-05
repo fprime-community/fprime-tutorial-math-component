@@ -6,19 +6,19 @@ In this section of the tutorial, you will fill in the stub implementation you cr
 
 ## Create a Helper Function
 Write a generic helper function so you can reuse code while writing unit tests.
-Start by writing a function signature in `Tester.hpp` in `MathSender/test/ut`:
+Start by writing a function signature in `MathSenderTester.hpp` in `MathSender/test/ut`:
 
 ```cpp 
-// In: Tester.hpp
+// In: MathSenderTester.hpp
 void testDoMath(MathOp op); 
 ```
 
-Fill out the corrosponding function body in `Tester.cpp`:
+Fill out the corrosponding function body in `MathSenderTester.cpp`:
 
 ```cpp
-// In: Tester.cpp
+// In: MathSenderTester.cpp
 
-void Tester ::
+void MathSenderTester ::
   testDoMath(MathOp op)
   {
     // Pick values
@@ -82,36 +82,36 @@ Likely this will cause a unit test failure.
 
 ## Write a Function to Test ADD
 
-You will now create a function to test the `ADD` command. Add a function signature to Tester.hpp:
+You will now create a function to test the `ADD` command. Add a function signature to MathSenderTester.hpp:
 
 ```cpp
-// In: Tester.hpp
+// In: MathSenderTester.hpp
 void testAddCommand(); 
 ``` 
 
 Write the corrosponding tester function using the helper funtion you just wrote:
 
 ```cpp 
-// In: Tester.cpp 
-void Tester ::
+// In: MathSenderTester.cpp 
+void MathSenderTester ::
     testAddCommand()
   {
       this->testDoMath(MathOp::ADD);
   }
 ```
 
-Write a Google test macro in TestMain.cpp and make sure the test macro goes before main:
+Write a Google test macro in MathSenderTestMain.cpp and make sure the test macro goes before main:
 
 ```cpp 
-// In: TestMain.cpp
+// In: MathSenderTestMain.cpp
 TEST(Nominal, AddCommand) {
-    MathModule::Tester tester;
+    MathModule::MathSenderTester tester;
     tester.testAddCommand();
 }
 ```
 ## Explanation 
 The `TEST` macro is an instruction to Google Test to run a test. Without this step, your tests will never run. `Nominal` is the name of a test suite. We put this test in the `Nominal` suite because it addresses nominal (expected) behavior. `AddCommand` is the name of the test. 
-Inside the body of the macro, the first line declares a new object `tester` of type `Tester`. We typically declare a new object for each unit test, so that each test starts in a fresh state. The second line invokes the function `testAddCommand` that we wrote in the previous section.
+Inside the body of the macro, the first line declares a new object `tester` of type `MathSenderTester`. We typically declare a new object for each unit test, so that each test starts in a fresh state. The second line invokes the function `testAddCommand` that we wrote in the previous section.
 
 
 ## Run Your Tests

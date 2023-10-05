@@ -5,10 +5,10 @@ In this section of the tutorial, you will write helper functions to tests variou
 
 ## Add a ThrottleState enum class
 Add the following code to the beginning of the
-`Tester` class in `Tester.hpp`:
+`MathReceiverTester` class in MathReceiverTester.hpp`:
 
 ```c++
-// In: Tester.hpp
+// In: MathReceiverTester.hpp
 private:
 
   // ----------------------------------------------------------------------
@@ -25,22 +25,22 @@ This code defines a C++ enum class for recording whether an
 event is throttled.
 
 ## Add helper functions 
-Add each of the functions described below to the "Helper methods" section of `Tester.cpp`.
-For each function, you must add the corresponding function prototype to `Tester.hpp`.
+Add each of the functions described below to the "Helper methods" section of `MathReceiverTester.cpp`.
+For each function, you must add the corresponding function prototype to `MathReceiverTester.hpp`.
 After adding each function, compile the unit tests to make sure that everything still compiles. Fix any errors that occur.
 
 Add a `pickF32Value` function.
 
 ```c++
-// In: Tester.cpp
-F32 Tester ::
+// In: MathReceiverTester.cpp
+F32MathReceiverTester ::
   pickF32Value()
 {
   const F32 m = 10e6;
   return m * (1.0 - 2 * STest::Pick::inUnitInterval());
 }
 ```
-> Remember to add a function signature in `Tester.hpp`. 
+> Remember to add a function signature in `MathReceiverTester.hpp`. 
 
 This function picks a random `F32` value in the range
 _[ -10^6, 10^6 ]_.
@@ -58,8 +58,8 @@ fprime-util build --ut -j4
 Copy and paste in the code below to create the `setFactor` function
 
 ```c++
-// In Tester.cpp  
-void Tester ::
+// In MathReceiverTester.cpp  
+void MathReceiverTester ::
   setFactor(
       F32 factor,
       ThrottleState throttleState
@@ -83,7 +83,7 @@ void Tester ::
     }
 }
 ```
-> Make sure that set factor is below where you defined `ThrottleSate` and remember to add a function signature in `Tester.hpp`.
+> Make sure that set factor is below where you defined `ThrottleSate` and remember to add a function signature in `MathReceiverTester.hpp`.
 
 ## Explanation
 
@@ -100,11 +100,11 @@ Otherwise check that the event was throttled (not emitted).
 
 ## Create a Compute Result Function
 
-Add a function `computeResult` to `Tester.cpp`.
+Add a function `computeResult` to `MathReceiverTester.cpp`.
 
 ```c++
-// In: Tester.cpp
-F32 Tester ::
+// In: MathReceiverTester.cpp
+F32 MathReceiverTester ::
   computeResult(
       F32 val1,
       MathOp op,
@@ -134,7 +134,7 @@ F32 Tester ::
     return result;
 }
 ```
-> Don't forget to add a function signature in `Tester.hpp`.
+> Don't forget to add a function signature in `MathReceiverTester.hpp`.
 
 This function carries out the math computation of the math component.
 By running this function and comparing, we can check the output of the component.
@@ -143,11 +143,11 @@ Build to make sure everything is working.
 
 ## Create a Do Math Op Functions
 
-Add a `doMathOp` function to `Tester.cpp`.
+Add a `doMathOp` function to `MathReceiverTester.cpp`.
 
 ```c++
-// In: Tester.cpp
-void Tester ::
+// In: MathReceiverTester.cpp
+void MathReceiverTester ::
   doMathOp(
       MathOp op,
       F32 factor
@@ -198,7 +198,7 @@ void Tester ::
 
 }
 ```
-> Don't forget to add a function signature in `Tester.hpp`.
+> Don't forget to add a function signature in `MathReceiverTester.hpp`.
 
 This function is similar to the `doMath` helper function that we wrote for the `MathSender` component.
 Notice that the method for invoking a port is different.
