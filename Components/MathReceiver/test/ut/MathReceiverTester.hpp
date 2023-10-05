@@ -7,12 +7,12 @@
 #ifndef TESTER_HPP
 #define TESTER_HPP
 
-#include "GTestBase.hpp"
+#include "MathReceiverGTestBase.hpp"
 #include "Components/MathReceiver/MathReceiver.hpp"
 
 namespace MathModule {
 
-  class Tester :
+  class MathReceiverTester :
     public MathReceiverGTestBase
   {
 
@@ -28,13 +28,13 @@ namespace MathModule {
       // Queue depth supplied to component instance under test
       static const NATIVE_INT_TYPE TEST_INSTANCE_QUEUE_DEPTH = 10;
 
-      //! Construct object Tester
+      //! Construct object MathReceiverTester
       //!
-      Tester();
+      MathReceiverTester();
 
-      //! Destroy object Tester
+      //! Destroy object MathReceiverTester
       //!
-      ~Tester();
+      ~MathReceiverTester();
 
     private:
 

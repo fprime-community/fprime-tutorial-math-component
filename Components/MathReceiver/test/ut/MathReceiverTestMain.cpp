@@ -2,28 +2,28 @@
 // TestMain.cpp
 // ----------------------------------------------------------------------
 
-#include "Tester.hpp"
+#include "MathReceiverTester.hpp"
 #include "STest/Random/Random.hpp"
 
 /*
 TEST(Nominal, ToDo) {
-    MathModule::Tester tester;
+    MathModule::MathReceiverTester tester;
     tester.toDo();
 }
 */
 
 TEST(Nominal, AddCommand) {
-    MathModule::Tester tester;
+    MathModule::MathReceiverTester tester;
     tester.testAdd();
 }
 
 TEST(Nominal, SubCommand) {
-    MathModule::Tester tester;
+    MathModule::MathReceiverTester tester;
     tester.testSub();
 }
 
 TEST(Nominal, Throttle) {
-    MathModule::Tester tester;
+    MathModule::MathReceiverTester tester;
     tester.testThrottle();
 }
 
