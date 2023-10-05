@@ -2,23 +2,23 @@
 // TestMain.cpp
 // ----------------------------------------------------------------------
 
-#include "Tester.hpp"
+#include "MathSenderTester.hpp"
 #include "STest/Random/Random.hpp"
 
 /*
 TEST(Nominal, ToDo) {
-    MathModule::Tester tester;
+    MathModule::MathSenderTester tester;
     tester.toDo();
 }
 */
 
 TEST(Nominal, AddCommand) {
-    MathModule::Tester tester;
+    MathModule::MathSenderTester tester;
     tester.testAddCommand();
 }
 
 TEST(Nominal, Result) {
-    MathModule::Tester tester; ///@TODO
+    MathModule::MathSenderTester tester; ///@TODO
     tester.testResult();
 }
 
