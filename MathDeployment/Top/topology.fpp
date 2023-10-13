@@ -33,7 +33,7 @@ module MathDeployment {
     instance fileUplink
     instance bufferManager
     instance framer
-    instance linuxTime
+    instance posixTime
     instance prmDb
     instance rateGroup1
     instance rateGroup2
@@ -59,7 +59,7 @@ module MathDeployment {
 
     text event connections instance textLogger
 
-    time connections instance linuxTime
+    time connections instance posixTime
 
     health connections instance $health
 
