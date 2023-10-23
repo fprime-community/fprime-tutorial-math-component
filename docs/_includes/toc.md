@@ -3,7 +3,7 @@
   <ul>
     <!-- empty list for consistent spacing between items -->
   </ul>
-<h4><a href="/fprime-workshop-math-component">MathComponent Tutorial</a></h4>
+<h4><a href="/fprime-tutorial-math-component">MathComponent Tutorial</a></h4>
   <ol>
     <li><a href="/fprime-tutorial-math-component/docs/project-setup.html"></a>Project Setup</li>
     <li><a href="/fprime-tutorial-math-component/docs/defining-types.html"></a>Defining Types</li>
