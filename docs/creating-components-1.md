@@ -31,7 +31,7 @@ This command will prompt you for some inputs. Answer the prompts as shown below:
 ```
 [INFO] Cookiecutter source: using builtin
 Component name [MyComponent]: MathSender 
-Component short description [Example Component for F Prime FSW framework.]: Active component used for sending operations and operrands to the MathReceiver.
+Component short description [Example Component for F Prime FSW framework.]: Active component used for sending operations and operands to the MathReceiver.
 Component namespace [Component]: MathModule
 Select component kind:
 1 - active
