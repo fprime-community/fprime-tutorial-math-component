@@ -2,39 +2,16 @@
 
 > Note: if you have followed the [HelloWorld tutorial](https://fprime-community.github.io/fprime-tutorial-hello-world/) previously, this should feel very familiar...
 
-An F´ project ties to a specific version of tools to work with F´.  In order to create a project and install the correct version of tools, an initial bootstrap version of F´ tools must be installed. This is accomplished with the following command:
+An F´ project ties to a specific version of tools to work with F´. In order to create
+this project and install the correct version of tools, you should perform a bootstrap of F´.
 
-```bash
-pip install fprime-tools
-```
+To do this you should follow the following steps from the [F´ installation guide](https://nasa.github.io/fprime/INSTALL.html):
 
-## Creating a New F´ Project
+1. Ensure you meet the [F´ System Requirements](https://nasa.github.io/fprime/INSTALL.html#requirements)
+2. [Bootstrap your F´ project](https://nasa.github.io/fprime/INSTALL.html#creating-a-new-f-project) with the name `MathProject`
 
-Now that to tools are installed a new F´ project can be created. An F´ project internalizes the version of F´ that
-the project will build upon and provides the user the basic setup for creating, building, and testing components.
+Bootstrapping your F´ project created a folder called `MathProject` (or any name you chose) containing the standard F´ project structure as well as the virtual environment up containing the tools to work with F´.
 
-In order to make a new project, run the following command and answer the questions as indicated below:
-
-```bash
-fprime-util new --project
-```
-
-This command will ask for some input. Respond with the following answers:
-```
-Project name [MyProject]: MathProject
-F´ version (select branch or tag) [devel]: devel
-Install virtual environment?:
-1 - yes
-2 - no
-Choose from 1, 2 [1]: 1
-```
-
-Use the default for anything not specified. This command will take a moment to run.
-
-The above command creates a new F´ project structure in a folder called `MathProject`, use the `devel` branch of F´ as
-the basis for the project, and set up the matching tools in a new Virtual Environment.
-
-> Note: that we have not yet created a deployment, but rather just the base project structure.
 
 ## Building the New F´ Project
 
