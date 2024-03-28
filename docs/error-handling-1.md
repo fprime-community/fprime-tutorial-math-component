@@ -1,7 +1,7 @@
 # Error Handling 1: Critical Thinking 
 
 ## Background 
-On a flight mission, even a short timeout, let alone a system crash, can be mission critical. It is imparitive that programmer account for as many possible error or faults as possible so avoidable errors are prevented. 
+On a flight mission, even a short timeout, let alone a system crash, can be mission critical. It is imperative that programmer account for as many possible error or faults as possible so avoidable errors are prevented. 
 
 
 Think about what will happen if the floating-point math operation performed by `MathReceiver` causes an error.

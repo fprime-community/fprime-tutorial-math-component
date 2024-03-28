@@ -1,0 +1,9 @@
+#!/bin/sh -e
+
+cd `dirname $0`
+
+files=`find . -name '*.md' | grep -v '/fprime'`
+for file in $files
+do
+  ispell $file
+done
