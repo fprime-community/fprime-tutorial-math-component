@@ -132,7 +132,4 @@ See if your tests are working and trouble shoot any errors:
 fprime-util check 
 ```
 
-## Congratulations!!!
-
-You have **finished** the MathComponent Tutorial.
-You have now experienced a significant part of F' and are ready to start building your own deployments. 
+**Next:** [Adding Telemetry](./adding-telemetry.md)
