@@ -38,7 +38,7 @@ To incorporate random numbers into the existing tests you have written for `Math
 STest::Random::seed();
 ```
 
-**Fourth,** modify `MathSender/CMakeLists.txt` to include STest as a build dependancy:
+**Fourth,** modify `MathSender/CMakeLists.txt` to include STest as a build dependency:
 
 ```cmake 
 # In: /MathSender/CMakeLists.txt
@@ -67,6 +67,6 @@ Try the following:
 
 ## Summary 
 
-In this section you incorprated random testing into your existing tests.
+In this section you incorporated random testing into your existing tests.
 
 **Next:** [Adding Telemetry](./adding-telemetry.md)

@@ -1,7 +1,7 @@
 # Writing Unit Tests Part 7: Writing the Tests
 
 ## In this Section
-In this section of the tutorial, you will write tests that make use of the helper functions youwrote in the last section of the tutorial.
+In this section of the tutorial, you will write tests that make use of the helper functions you wrote in the last section of the tutorial.
 
 ## Preface
 
@@ -115,7 +115,7 @@ Next the test sends the command `CLEAR_EVENT_THROTTLE`, checks for the correspon
 
 Add your tests to `MathReceiverTestMain.cpp` so that the tests run when `fprime-util check' is called. 
 
-Here is how to include `testAdd` to `MathReceiverTestMain.cpp`. Follow this patttern to inlcude any other unit tests you wrote: 
+Here is how to include `testAdd` to `MathReceiverTestMain.cpp`. Follow this pattern to include any other unit tests you wrote: 
 
 ```cpp
 // In: MathReceiverTestMain.cpp

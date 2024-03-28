@@ -13,7 +13,7 @@ Start by writing a function signature in `MathSenderTester.hpp` in `MathSender/t
 void testDoMath(MathOp op); 
 ```
 
-Fill out the corrosponding function body in `MathSenderTester.cpp`:
+Fill out the corresponding function body in `MathSenderTester.cpp`:
 
 ```cpp
 // In: MathSenderTester.cpp
@@ -89,7 +89,7 @@ You will now create a function to test the `ADD` command. Add a function signatu
 void testAddCommand(); 
 ``` 
 
-Write the corrosponding tester function using the helper funtion you just wrote:
+Write the corresponding tester function using the helper function you just wrote:
 
 ```cpp 
 // In: MathSenderTester.cpp 
@@ -138,6 +138,6 @@ Run the tests to make sure everything compiles and the tests pass.
 
 ## Summary 
 
-In this section you filled out your unit test implemenation stub and ran your unit test. 
+In this section you filled out your unit test implementation stub and ran your unit test. 
 
 **Next:** [Writing Unit Tests Part 3: Testing the Results](./writing-unit-tests-3.md)

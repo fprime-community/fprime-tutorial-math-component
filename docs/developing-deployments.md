@@ -16,7 +16,7 @@ Use the following command to create the deployment:
 fprime-util new --deployment
 ```
 
-When creating the deplyoment you will be asked two questions, answer them as follows: 
+When creating the deployment you will be asked two questions, answer them as follows: 
 
 ```
 [INFO] Cookiecutter: using builtin template for new deployment
@@ -66,7 +66,7 @@ instance mathSender
 instance mathReceiver 
 ```
 
-> This step highlights the importants of capitalization. The easiest way to differentiate between the component definition and instance is the capitalization.
+> This step highlights the importance of capitalization. The easiest way to differentiate between the component definition and instance is the capitalization.
 
 ## Explanation 
 
@@ -126,7 +126,7 @@ rateGroup1.RateGroupMemberOut[3] -> mathReceiver.schedIn
 ## Explanation
 This line adds the connection that drives the `schedIn` port of the `mathReceiver` component instance.
 
-Verify that you succesfully took a port off the list of unconnected ports. 
+Verify that you successfully took a port off the list of unconnected ports. 
 
 Add the connections between the mathSender and mathReceiver
 
@@ -166,7 +166,7 @@ fprime-gds
 > If you encounter an error on this step, try running `fprime-gds` in the `MathProject`. 
 
 ## Send Some Commands
-Under _Commanding_ there is a dropdown menu called "mnemonic". Click Mnemonic and find mathSender.DO_MATH. When you select DO_MATH, three new option should appear. In put 7 into val1, put 6 into val2, and put MUL into op. Press send command. Navivate to _Events_ (top left) and find the results of your command. You should see The Ultimate Answer to Life, the Universe, and Everything: 42.
+Under _Commanding_ there is a drop-down menu called "mnemonic". Click Mnemonic and find mathSender.DO_MATH. When you select DO_MATH, three new option should appear. In put 7 into val1, put 6 into val2, and put MUL into op. Press send command. Navigate to _Events_ (top left) and find the results of your command. You should see The Ultimate Answer to Life, the Universe, and Everything: 42.
 
 For a more detailed guide to the F´ GDS, see the [GDS Introduction Guide](https://nasa.github.io/fprime/UsersGuide/gds/gds-introduction.html).
 
@@ -177,6 +177,6 @@ In this section of the tutorial, you created a deployment. While at it, you fill
 
 ## Congratulations 
 
-You have completed your F' deployment!!! If you wish to stop here, you may! You can also rest assured knowing that the work you have done is referencable. In otherwords, you've written code in the same way that you will write code for actual spacecrafts. Except... actual spacecrafts will make extensive use of unit tests and error handling. Keep going in this tutorial to learn more about unit testing, error handling, and just to practice using F'.
+You have completed your F' deployment! If you wish to stop here, you may. You can also rest assured knowing that the work you have done is reusable. In other words, you've written code in the same way that you will write code for actual spacecrafts. Except... actual spacecrafts will make extensive use of unit tests and error handling. Keep going in this tutorial to learn more about unit testing, error handling, and just to practice using F'.
 
 **Next:** [Writing Unit Tests Part 1: Creating the Implementation Stub](./writing-unit-tests-1.md)

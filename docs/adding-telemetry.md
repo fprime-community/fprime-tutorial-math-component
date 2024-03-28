@@ -4,7 +4,7 @@
 
 In this section of the tutorial, you will add a telemetry channel to report the number of math operations the `MathReceiver` has performed. 
 
-Before reading these steps, do your best to look at the existing files in this tutorial and impletement a telemetry channel on your own. 
+Before reading these steps, do your best to look at the existing files in this tutorial and implement a telemetry channel on your own. 
 
 1. Add a telemetry channel to `MathReceiver.fpp`: 
 
@@ -46,7 +46,7 @@ MathReceiver ::
 numMathOps++;  
 ```
 
-5. Emit telemtry: 
+5. Emit telemetry: 
 ```cpp
 // In: MathReceiver.cpp 
 // Within: mathOpIn_handler
@@ -81,6 +81,6 @@ Write some unit tests to prove that this channel is working.
 
 ## Summary 
 
-In this section you defined a telemtry channel and impletemented a new variable, that will be sent through the channel.
+In this section you defined a telemetry channel and implemented a new variable, that will be sent through the channel.
 
 **Next:** [Error handling 1](./error-handling-1.md)

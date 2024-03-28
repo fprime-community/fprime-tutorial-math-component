@@ -27,7 +27,7 @@ This tutorial will cover the following concepts:
 
 4. Handling errors, creating events, and adding telemetry channels. 
 
-## Prequisites 
+## Prerequisites 
 This tutorial assumes the following:
 
 1. Basic knowledge of Unix: How to navigate in a shell and execute programs.

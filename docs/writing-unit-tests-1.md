@@ -45,7 +45,7 @@ This stub contains all the boilerplate necessary to write and run unit tests aga
 fprime-util impl --ut
 ```
 
-You haved just generate three new files ```MathSenderTester.cpp MathSenderTester.hpp MathSenderTestMain.cpp```. Move these files to the `test/ut` in MathSender using:
+You have just generate three new files ```MathSenderTester.cpp MathSenderTester.hpp MathSenderTestMain.cpp```. Move these files to the `test/ut` in MathSender using:
 
 ```shell 
 # In: MathSender
