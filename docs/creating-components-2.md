@@ -85,7 +85,7 @@ fprime-util build
 ```
 
 ## Summary
-Congratulations, you have completed `MathSender`! Well... there's always more to be done, such as error handling, adding more telem,
+Congratulations, you have completed `MathSender`! Well... there's always more to be done, such as error handling, adding more telemetry,
 creating more events, and generally messing around with what `MathSender` can do. But for the purposes of getting a deployment
 working, this component is done! 
 

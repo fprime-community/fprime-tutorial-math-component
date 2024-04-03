@@ -34,7 +34,7 @@ fprime-util impl --ut
 ```
 > These commands may take a while to run.
 
-You haved just generate three new files `MathReceiverTester.cpp MathReceiverTester.hpp MathReceiverTestMain.cpp`. Move these files to the test/ut directory in MathReceiver using:
+You have just generate three new files `MathReceiverTester.cpp MathReceiverTester.hpp MathReceiverTestMain.cpp`. Move these files to the test/ut directory in MathReceiver using:
 
 ```shell 
 # In: MathReceiver

@@ -94,7 +94,7 @@ void MathReceiver ::
 ## Explanation 
 This code dispatches all the messages on the queue. Note that for a queued component, we have to do this dispatch explicitly in the schedIn handler. For an active component, the framework auto-generates the dispatch code.
 
-## Editing the Throttle Command Hanlder
+## Editing the Throttle Command Handler
 Fill in the `CLEAR_EVENT_THROTTLE` command handler: In `MathReceiver.cpp`, complete the implementation of `CLEAR_EVENT_THROTTLE_cmdHandler` so that it looks like this:
 
 ```cpp
@@ -117,7 +117,7 @@ void MathReceiver ::
 The call to `log_ACTIVITY_HI_FACTOR_UPDATED_ThrottleClear` clears the throttling of the `FACTOR_UPDATED` event. The next two lines send a notification event and send a command response.
 
 ## Writing a Parameter Checker
-Add the following function to `MathReceiver.cpp`. You will need to add the corresponding function header to `MathReceiver.hpp`. Note: this function is completely new, there is no prexisting stub for this function.
+Add the following function to `MathReceiver.cpp`. You will need to add the corresponding function header to `MathReceiver.hpp`. Note: this function is completely new, there is no preexisting stub for this function.
 
 ```cpp
 // In: MathReceiver.cpp

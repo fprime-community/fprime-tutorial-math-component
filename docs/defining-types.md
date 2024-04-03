@@ -8,7 +8,7 @@ For this tutorial, you need one type definition. The type will define an enumera
 
 ## In this section 
 
-In this section, you will create a `Types` directory and add it to the project build. You will create an enumeration to represent several Mathmatic operations.
+In this section, you will create a `Types` directory and add it to the project build. You will create an enumeration to represent several mathematical operations.
 
 ## Setup 
 
@@ -47,7 +47,7 @@ module MathModule {
 ```
 > Important note: think of modules similar to a cpp namespace. Whenever you want to make use of the enumeration, `MathOp`, you will need to use the MathModule module. 
 
-Above you have created an enumation of the four math types that are used in this tutorial.
+Above you have created an enumeration of the four math types that are used in this tutorial.
 
  
 ## Adding to the Build 
@@ -84,7 +84,7 @@ Edit `project.cmake`, located in the `MathProject` directory, and  **add** the f
 add_fprime_subdirectory("${CMAKE_CURRENT_LIST_DIR}/Types/")
 ```
 
-The `Types` directory should now build without any issues. Test the build with the following commmand before moving forward.
+The `Types` directory should now build without any issues. Test the build with the following command before moving forward.
 
 ```shell 
 # In: Types 
