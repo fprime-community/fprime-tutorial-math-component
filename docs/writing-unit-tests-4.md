@@ -69,4 +69,4 @@ Try the following:
 
 In this section you incorporated random testing into your existing tests.
 
-**Next:** [Adding Telemetry](./adding-telemetry.md)
+**Next:** [Writing Unit Tests 5](./writing-unit-tests-5.md)
