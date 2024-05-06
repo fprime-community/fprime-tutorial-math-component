@@ -156,7 +156,7 @@ void setupTopology(const TopologyState& state) {
         Os::TaskString name("ReceiveTask");
         // Uplink is configured for receive so a socket task is started
         comDriver.configure(state.hostname, state.port);
-        comDriver.startSocketTask(name, true, COMM_PRIORITY, Default::STACK_SIZE);
+        comDriver.start(name, true, COMM_PRIORITY, Default::STACK_SIZE);
     }
 }
 
@@ -172,7 +172,7 @@ void startSimulatedCycle(U32 milliseconds) {
     // Main loop
     while (cycling) {
         MathDeployment::blockDrv.callIsr();
-        Os::Task::delay(milliseconds);
+        Os::Task::delay(Fw::Time(milliseconds/1000, milliseconds % 1000));
 
         cycleLock.lock();
         cycling = cycleFlag;
@@ -192,8 +192,8 @@ void teardownTopology(const TopologyState& state) {
     freeThreads(state);
 
     // Other task clean-up.
-    comDriver.stopSocketTask();
-    (void)comDriver.joinSocketTask(nullptr);
+    comDriver.stop();
+    (void)comDriver.join();
 
     // Resource deallocation
     cmdSeq.deallocateBuffer(mallocator);
