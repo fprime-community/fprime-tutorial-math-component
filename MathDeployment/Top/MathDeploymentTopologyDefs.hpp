@@ -48,40 +48,40 @@ struct TopologyState {
  * ```
  */
 namespace PingEntries {
-namespace blockDrv {
+namespace MathDeployment_blockDrv {
 enum { WARN = 3, FATAL = 5 };
 }
-namespace tlmSend {
+namespace MathDeployment_tlmSend {
 enum { WARN = 3, FATAL = 5 };
 }
-namespace cmdDisp {
+namespace MathDeployment_cmdDisp {
 enum { WARN = 3, FATAL = 5 };
 }
-namespace cmdSeq {
+namespace MathDeployment_cmdSeq {
 enum { WARN = 3, FATAL = 5 };
 }
-namespace eventLogger {
+namespace MathDeployment_eventLogger {
 enum { WARN = 3, FATAL = 5 };
 }
-namespace fileDownlink {
+namespace MathDeployment_fileDownlink {
 enum { WARN = 3, FATAL = 5 };
 }
-namespace fileManager {
+namespace MathDeployment_fileManager {
 enum { WARN = 3, FATAL = 5 };
 }
-namespace fileUplink {
+namespace MathDeployment_fileUplink {
 enum { WARN = 3, FATAL = 5 };
 }
-namespace prmDb {
+namespace MathDeployment_prmDb {
 enum { WARN = 3, FATAL = 5 };
 }
-namespace rateGroup1 {
+namespace MathDeployment_rateGroup1 {
 enum { WARN = 3, FATAL = 5 };
 }
-namespace rateGroup2 {
+namespace MathDeployment_rateGroup2 {
 enum { WARN = 3, FATAL = 5 };
 }
-namespace rateGroup3 {
+namespace MathDeployment_rateGroup3 {
 enum { WARN = 3, FATAL = 5 };
 }
 }  // namespace PingEntries
