@@ -203,13 +203,13 @@ Now you have written the FPP code for the component, but the cpp and hpp files d
 fprime-util impl 
 ```
 
-Now, In `MathSender`, you will see two new files, `MathSender.cpp-template` and `MathSender.hpp-template`. The template files are the files you just generated using the FPP model. Whenever F' generates code, it creates new file with the `-template` so as to not burn down any old code. In this case, you did not write anything in the original `MathSender.cpp` or `MathSender.hpp`, so you can use a move command to replace the old code with the new code:
+Now, In `MathSender`, you will see two new files, `MathSender.template.cpp` and `MathSender.template.hpp`. The template files are the files you just generated using the FPP model. Whenever F' generates code, it creates new file with the `.template.` so as to not burn down any old code. In this case, you did not write anything in the original `MathSender.cpp` or `MathSender.hpp`, so you can use a move command to replace the old code with the new code:
 
 
 ```shell 
 # In: MathSender
-mv MathSender.cpp-template MathSender.cpp
-mv MathSender.hpp-template MathSender.hpp
+mv MathSender.template.cpp MathSender.cpp
+mv MathSender.template.hpp MathSender.hpp
 ```
 
 Build MathSender to make sure everything worked as expected.
