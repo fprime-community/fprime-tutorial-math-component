@@ -228,8 +228,8 @@ Replace the original cpp and hpp files with the ones you just created:
 
 ```shell 
 # In: MathReceiver
-mv MathReceiver.cpp-template MathReceiver.cpp
-mv MathReceiver.hpp-template MathReceiver.hpp
+mv MathReceiver.template.cpp MathReceiver.cpp
+mv MathReceiver.template.hpp MathReceiver.hpp
 ```
 
 Test the build:

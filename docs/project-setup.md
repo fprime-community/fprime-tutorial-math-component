@@ -38,7 +38,7 @@ within this new project's folder. Change into the project directory and load the
 
 ```bash
 cd MathProject
-. venv/bin/activate
+. fprime-venv/bin/activate
 ```
 
 **Next:** [Defining Types](./defining-types.md)

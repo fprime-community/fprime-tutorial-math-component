@@ -16,14 +16,13 @@ Use the following command to create the deployment:
 fprime-util new --deployment
 ```
 
-When creating the deployment you will be asked two questions, answer them as follows: 
+This command will ask for some input. Respond with the following answers:
 
 ```
-[INFO] Cookiecutter: using builtin template for new deployment
-Deployment [MyDeployment]: MathDeployment
-[INFO] Found CMake file at 'fprime-tutorial-math-component/project.cmake'
-Add component Deployment to fprime-tutorial-math-component/project.cmake at end of file (yes/no)? yes
+  Deployment name (MyDeployment): MathDeployment
 ```
+
+> For any other questions, select the default response.
 
 Test the build to make sure everything is okay:
 
