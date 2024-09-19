@@ -1,7 +1,7 @@
 # MathComponent Tutorial 
 Reference: [Math Component Tutorial Github Repository](https://github.com/fprime-community/fprime-tutorial-math-component)
 
-Welcome to the MathComponent tutorial!
+Welcome to the MathComponent tutorial!!
 
 This tutorial shows how to develop, test, and deploy a simple topology
 consisting of two components:
