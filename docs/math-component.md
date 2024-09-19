@@ -14,7 +14,7 @@ consisting of two components:
 
 See the diagram below.
 
-![A simple topology for arithmetic computation](../../img/top.png)
+![A simple topology for arithmetic computation](img/top.png)
 
 ## What is covered
 This tutorial will cover the following concepts:
@@ -34,7 +34,7 @@ This tutorial assumes the following:
 
 2. Basic knowledge of C++.
 
-3. We advise new F' users to try the [HelloWorld Tutorial](hello-world.md)
+3. We advise new F' users to try the [HelloWorld Tutorial](tutorials-hello-world/docs/hello-world/)
 
 ## Table of Contents
 
@@ -62,7 +62,7 @@ This tutorial assumes the following:
 ### Bootstrapping F´
 
 !!! note
-    if you have followed the [HelloWorld tutorial](hello-world.md) previously, this should feel very familiar...
+    if you have followed the [HelloWorld tutorial](tutorials-hello-world/docs/hello-world/) previously, this should feel very familiar...
 
 An F´ project ties to a specific version of tools to work with F´. In order to create
 this project and install the correct version of tools, you should perform a bootstrap of F´.
