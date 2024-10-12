@@ -57,7 +57,7 @@ module MathModule {
 ```
 > Notice how we define ports in MathModule, which is where we defined MathOp as well. 
 
-Here, you have created two ports. The first port, called `OpRequest`, carries two 32-bit floats (`val1` and `val2`) and a math operations `op`. The second port only carries one 32-bit float (result). The first port is intended to send an operation and operands to the `MathReceiver`.
+Here, you have created two ports. The first port, called `OpRequest`, carries two 32-bit floats (`val1` and `val2`) and a math operation `op`. The second port only carries one 32-bit float (result). The first port is intended to send an operation and operands to the `MathReceiver`.
 The second port is designed to send the results of the operation back to `MathSender`. 
 
 For more information about port definitions, see [_The FPP User's Guide_](https://fprime-community.github.io/fpp/fpp-users-guide.html).
