@@ -96,7 +96,7 @@ Ports should build without any issues. Use the following to build:
 fprime-util build
 ```
 
-Check in `MathProject/build-fprime-automatic-native/MathPorts` for port definitions. The names of the auto-generated C++
+Check in `MathProject/build-fprime-automatic-native/Ports` for port definitions. The names of the auto-generated C++
 files end in `*PortAc.hpp` and `*PortAc.cpp`.
 Note however, the auto-generated C++ port files are used by the autocoded component implementations; you won't ever program directly against their interfaces.
 
