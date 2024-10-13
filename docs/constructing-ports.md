@@ -16,7 +16,7 @@ operation from `MathReceiver` to `MathSender`.
 
 ## In this section 
 
-In this section, you will create a `Ports` directory where you will create two ports in `MathPorts.fpp`. You will add the ports directory into the project build and built `Ports`. 
+In this section, you will create a `Ports` directory where you will create two ports in `MathPorts.fpp`. You will add the ports directory into the project build and build `Ports`. 
 
 ## Setup 
 
@@ -28,7 +28,7 @@ mkdir Ports
 cd Ports
 ```
 
-While in "Ports", create an empty fpp file called `MathPorts.fpp`, this is where the ports will be defined:
+While in "Ports", create an empty fpp file called `MathPorts.fpp`; this is where the ports will be defined:
 
 ```shell 
 # In: Ports

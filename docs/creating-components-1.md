@@ -179,7 +179,7 @@ Notice that these port specifiers use the ports that you defined.
 The input port is **asynchronous**. This means that invoking the port (i.e., sending data on the port) puts a message on a queue. The handler runs later, on the thread of this component.
 
 2. **Special ports:** These are ports that have a special meaning in F Prime.
-There are ports for registering commands with the dispatcher, receiving commands, sending command responses, emitting event reports, emitting telemetry, and getting the time.
+They are ports for registering commands with the dispatcher, receiving commands, sending command responses, emitting event reports, emitting telemetry, and getting the time.
 
 3. **Commands:** These are commands sent from the ground or from a sequencer and dispatched to this component.
 There is one command `DO_MATH` for doing a math operation.

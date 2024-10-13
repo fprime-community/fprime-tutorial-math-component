@@ -131,7 +131,7 @@ Add the connections between the mathSender and mathReceiver
 
 ```fpp 
 # In: Top/topology.fpp 
-# Under: connections MathDeplyoment 
+# Under: connections MathDeployment 
 mathSender.mathOpOut -> mathReceiver.mathOpIn
 mathReceiver.mathResultOut -> mathSender.mathResultIn
 ```

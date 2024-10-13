@@ -6,7 +6,7 @@ In this section you will begin creating `MathReceiver` following the same steps 
 
 ## Component Description
 
-The `MathReceiver` is a queued component which receives parameters, send parameters, logs events, and sends telemetry. With this is mind, use the following command to create the `MathReceiver` component. 
+The `MathReceiver` is a queued component which receives parameters, sends parameters, logs events, and sends telemetry. With this is mind, use the following command to create the `MathReceiver` component. 
 
 ## Creating the MathReceiver
 

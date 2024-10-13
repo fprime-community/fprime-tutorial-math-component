@@ -20,7 +20,7 @@ mkdir Types
 cd Types
 ``` 
 
-The user defines types in an fpp (F prime prime) file. Use the the command below to create an empty fpp file to define the `MathOp` type:
+The user defines types in an fpp (F prime prime) file. Use the command below to create an empty fpp file to define the `MathOp` type:
 
 ```shell 
 # In: Types
