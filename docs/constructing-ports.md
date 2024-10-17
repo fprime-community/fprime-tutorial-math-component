@@ -16,7 +16,7 @@ operation from `MathReceiver` to `MathSender`.
 
 ## In this section 
 
-In this section, you will create a `Ports` directory where you will create two ports in `MathPorts.fpp`. You will add the ports directory into the project build and built `Ports`. 
+In this section, you will create a `Ports` directory where you will create two ports in `MathPorts.fpp`. You will add the ports directory into the project build and build `Ports`. 
 
 ## Setup 
 
@@ -28,7 +28,7 @@ mkdir Ports
 cd Ports
 ```
 
-While in "Ports", create an empty fpp file called `MathPorts.fpp`, this is where the ports will be defined:
+While in "Ports", create an empty fpp file called `MathPorts.fpp`; this is where the ports will be defined:
 
 ```shell 
 # In: Ports
@@ -57,7 +57,7 @@ module MathModule {
 ```
 > Notice how we define ports in MathModule, which is where we defined MathOp as well. 
 
-Here, you have created two ports. The first port, called `OpRequest`, carries two 32-bit floats (`val1` and `val2`) and a math operations `op`. The second port only carries one 32-bit float (result). The first port is intended to send an operation and operands to the `MathReceiver`.
+Here, you have created two ports. The first port, called `OpRequest`, carries two 32-bit floats (`val1` and `val2`) and a math operation `op`. The second port only carries one 32-bit float (result). The first port is intended to send an operation and operands to the `MathReceiver`.
 The second port is designed to send the results of the operation back to `MathSender`. 
 
 For more information about port definitions, see [_The FPP User's Guide_](https://fprime-community.github.io/fpp/fpp-users-guide.html).
@@ -96,7 +96,7 @@ Ports should build without any issues. Use the following to build:
 fprime-util build
 ```
 
-Check in `MathProject/build-fprime-automatic-native/MathPorts` for port definitions. The names of the auto-generated C++
+Check in `MathProject/build-fprime-automatic-native/Ports` for port definitions. The names of the auto-generated C++
 files end in `*PortAc.hpp` and `*PortAc.cpp`.
 Note however, the auto-generated C++ port files are used by the autocoded component implementations; you won't ever program directly against their interfaces.
 
