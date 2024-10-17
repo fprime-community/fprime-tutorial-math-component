@@ -9,7 +9,6 @@
 
 // Necessary project-specified types
 #include <Fw/Types/MallocAllocator.hpp>
-#include <Os/Log.hpp>
 #include <Svc/FramingProtocol/FprimeProtocol.hpp>
 
 // Used for 1Hz synthetic cycling
@@ -17,9 +16,6 @@
 
 // Allows easy reference to objects in FPP/autocoder required namespaces
 using namespace MathDeployment;
-
-// Instantiate a system logger that will handle Fw::Logger::logMsg calls
-Os::Log logger;
 
 // The reference topology uses a malloc-based allocator for components that need to allocate memory during the
 // initialization phase.
@@ -62,18 +58,18 @@ enum TopologyConstants {
 
 // Ping entries are autocoded, however; this code is not properly exported. Thus, it is copied here.
 Svc::Health::PingEntry pingEntries[] = {
-    {PingEntries::blockDrv::WARN, PingEntries::blockDrv::FATAL, "blockDrv"},
-    {PingEntries::tlmSend::WARN, PingEntries::tlmSend::FATAL, "chanTlm"},
-    {PingEntries::cmdDisp::WARN, PingEntries::cmdDisp::FATAL, "cmdDisp"},
-    {PingEntries::cmdSeq::WARN, PingEntries::cmdSeq::FATAL, "cmdSeq"},
-    {PingEntries::eventLogger::WARN, PingEntries::eventLogger::FATAL, "eventLogger"},
-    {PingEntries::fileDownlink::WARN, PingEntries::fileDownlink::FATAL, "fileDownlink"},
-    {PingEntries::fileManager::WARN, PingEntries::fileManager::FATAL, "fileManager"},
-    {PingEntries::fileUplink::WARN, PingEntries::fileUplink::FATAL, "fileUplink"},
-    {PingEntries::prmDb::WARN, PingEntries::prmDb::FATAL, "prmDb"},
-    {PingEntries::rateGroup1::WARN, PingEntries::rateGroup1::FATAL, "rateGroup1"},
-    {PingEntries::rateGroup2::WARN, PingEntries::rateGroup2::FATAL, "rateGroup2"},
-    {PingEntries::rateGroup3::WARN, PingEntries::rateGroup3::FATAL, "rateGroup3"},
+    {PingEntries::MathDeployment_blockDrv::WARN, PingEntries::MathDeployment_blockDrv::FATAL, "blockDrv"},
+    {PingEntries::MathDeployment_tlmSend::WARN, PingEntries::MathDeployment_tlmSend::FATAL, "chanTlm"},
+    {PingEntries::MathDeployment_cmdDisp::WARN, PingEntries::MathDeployment_cmdDisp::FATAL, "cmdDisp"},
+    {PingEntries::MathDeployment_cmdSeq::WARN, PingEntries::MathDeployment_cmdSeq::FATAL, "cmdSeq"},
+    {PingEntries::MathDeployment_eventLogger::WARN, PingEntries::MathDeployment_eventLogger::FATAL, "eventLogger"},
+    {PingEntries::MathDeployment_fileDownlink::WARN, PingEntries::MathDeployment_fileDownlink::FATAL, "fileDownlink"},
+    {PingEntries::MathDeployment_fileManager::WARN, PingEntries::MathDeployment_fileManager::FATAL, "fileManager"},
+    {PingEntries::MathDeployment_fileUplink::WARN, PingEntries::MathDeployment_fileUplink::FATAL, "fileUplink"},
+    {PingEntries::MathDeployment_prmDb::WARN, PingEntries::MathDeployment_prmDb::FATAL, "prmDb"},
+    {PingEntries::MathDeployment_rateGroup1::WARN, PingEntries::MathDeployment_rateGroup1::FATAL, "rateGroup1"},
+    {PingEntries::MathDeployment_rateGroup2::WARN, PingEntries::MathDeployment_rateGroup2::FATAL, "rateGroup2"},
+    {PingEntries::MathDeployment_rateGroup3::WARN, PingEntries::MathDeployment_rateGroup3::FATAL, "rateGroup3"},
 };
 
 /**
@@ -156,7 +152,7 @@ void setupTopology(const TopologyState& state) {
         Os::TaskString name("ReceiveTask");
         // Uplink is configured for receive so a socket task is started
         comDriver.configure(state.hostname, state.port);
-        comDriver.startSocketTask(name, true, COMM_PRIORITY, Default::STACK_SIZE);
+        comDriver.start(name, true, COMM_PRIORITY, Default::STACK_SIZE);
     }
 }
 
@@ -172,7 +168,7 @@ void startSimulatedCycle(U32 milliseconds) {
     // Main loop
     while (cycling) {
         MathDeployment::blockDrv.callIsr();
-        Os::Task::delay(milliseconds);
+        Os::Task::delay(Fw::TimeInterval(milliseconds/1000, milliseconds % 1000));
 
         cycleLock.lock();
         cycling = cycleFlag;
@@ -192,8 +188,8 @@ void teardownTopology(const TopologyState& state) {
     freeThreads(state);
 
     // Other task clean-up.
-    comDriver.stopSocketTask();
-    (void)comDriver.joinSocketTask(nullptr);
+    comDriver.stop();
+    (void)comDriver.join();
 
     // Resource deallocation
     cmdSeq.deallocateBuffer(mallocator);

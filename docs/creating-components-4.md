@@ -85,7 +85,7 @@ void MathReceiver ::
       NATIVE_UINT_TYPE context
   )
 {
-    U32 numMsgs = this->m_queue.getNumMsgs();
+    U32 numMsgs = this->m_queue.getMessagesAvailable();
     for (U32 i = 0; i < numMsgs; ++i) {
         (void) this->doDispatch();
     }
