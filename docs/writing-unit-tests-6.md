@@ -5,7 +5,7 @@ In this section of the tutorial, you will write helper functions to tests variou
 
 ## Add a ThrottleState enum class
 Add the following code to the beginning of the
-`MathReceiverTester` class in MathReceiverTester.hpp`:
+`MathReceiverTester` class in `MathReceiverTester.hpp`:
 
 ```c++
 // In: MathReceiverTester.hpp
