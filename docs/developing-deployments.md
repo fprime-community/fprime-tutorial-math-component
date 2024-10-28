@@ -140,15 +140,6 @@ mathReceiver.mathResultOut -> mathSender.mathResultIn
 
 **Re-run the check for unconnected ports**: Notice that no mathSender or mathReceiver ports are unconnected. 
 
-Go into MathDeploymentTopology.cpp and uncomment `loadParameters();`. This function is commented by default because it does not exist when the model has no parameters. Since we defined a parameter in `MathReceiver`, we shall call the function.
-
-```cpp
-// In: MathDeploymentTopology.cpp
-// Under: namespace MathDeployment{
-loadParameters();
-```
-
-
 Now it is time to build the entire project and run it! Navigate back to `MathDeployment` and build:
 
 ```shell 
