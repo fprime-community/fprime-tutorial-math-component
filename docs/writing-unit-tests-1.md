@@ -45,22 +45,23 @@ This stub contains all the boilerplate necessary to write and run unit tests aga
 fprime-util impl --ut
 ```
 
-You have just generate three new files ```MathSenderTester.cpp MathSenderTester.hpp MathSenderTestMain.cpp```. Move these files to the `test/ut` in MathSender using:
+You have just generate four new files ```MathSenderTester.cpp MathSenderTester.hpp MathSenderTesterHelpers.cpp MathSenderTestMain.cpp```. Move these files to the `test/ut` in MathSender using:
 
 ```shell 
 # In: MathSender
-mv MathSenderTester.* MathSenderTestMain.cpp test/ut
+mv MathSenderTester.* MathSenderTesterHelpers.cpp MathSenderTestMain.cpp test/ut
 ```
 
 ## Add the Tests to the Build
 
-Add `MathSenderTester.cpp` and `MathSenderTestMain.cpp` to the build. Do so by editing the CMakeLists.txt to add the 2 new source files. The UT section should now look like the following:
+Add `MathSenderTester.cpp`, `MathSenderTesterHelpers.cpp`, and `MathSenderTestMain.cpp` to the build. Do so by editing the CMakeLists.txt to add the 3 new source files. The UT section should now look like the following:
 
 ```cmake
 # In: MathSender/CMakeLists.txt 
 set(UT_SOURCE_FILES
   "${CMAKE_CURRENT_LIST_DIR}/MathSender.fpp"
   "${CMAKE_CURRENT_LIST_DIR}/test/ut/MathSenderTester.cpp"
+  "${CMAKE_CURRENT_LIST_DIR}/test/ut/MathSenderTesterHelpers.cpp"
   "${CMAKE_CURRENT_LIST_DIR}/test/ut/MathSenderTestMain.cpp"
 )
 set(UT_AUTO_HELPERS ON)
