@@ -33,7 +33,7 @@ Add a `pickF32Value` function.
 
 ```c++
 // In: MathReceiverTester.cpp
-F32MathReceiverTester ::
+F32 MathReceiverTester ::
   pickF32Value()
 {
   const F32 m = 10e6;
