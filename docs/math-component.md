@@ -75,7 +75,7 @@ within this new project's folder. Change into the project directory and load the
 
 ```bash
 cd MathProject
-. venv/bin/activate
+. fprime-venv/bin/activate
 ```
 
 ---
@@ -102,7 +102,7 @@ mkdir Types
 cd Types
 ``` 
 
-The user defines types in an fpp (F prime prime) file. Use the the command below to create an empty fpp file to define the `MathOp` type:
+The user defines types in an fpp (F prime prime) file. Use the command below to create an empty fpp file to define the `MathOp` type:
 
 ```shell 
 # In: Types
@@ -181,7 +181,7 @@ fprime-util build
 The output should indicate that the model built without any errors. If not, try to identify and correct what is wrong, either by deciphering the error output, or by going over the steps again. If you get stuck, you can look at the [reference implementation](https://github.com/fprime-community/fprime-tutorial-math-component).
 
 > [!NOTE]
-> Advanced users may want to go inspect the generated code. Go to the directory `MathProject/build-fprime-automatic-native/MathTypes`. The directory `build-fprime-automatic-native` is where all the generated code lives for the "automatic native" build of the project. Within that directory is a directory tree that mirrors the project structure. In particular, `build-fprime-automatic-native/MathTypes` contains the generated code for `MathTypes`.
+> Advanced users may want to go inspect the generated code. Go to the directory `MathProject/build-fprime-automatic-native/Types`. The directory `build-fprime-automatic-native` is where all the generated code lives for the "automatic native" build of the project. Within that directory is a directory tree that mirrors the project structure. In particular, `build-fprime-automatic-native/Types` contains the generated code for `Types`.
 
 > [!NOTE]
 > The files MathOpEnumAc.hpp and MathOpEnumAc.cpp are the auto-generated C++ files corresponding to the MathOp enum. You may wish to study the file MathOpEnumAc.hpp. This file gives the interface to the C++ class MathModule::MathOp. All enum types have a similar auto-generated class interface.
@@ -211,7 +211,7 @@ operation from `MathReceiver` to `MathSender`.
 
 ### In this section 
 
-In this section, you will create a `Ports` directory where you will create two ports in `MathPorts.fpp`. You will add the ports directory into the project build and built `Ports`. 
+In this section, you will create a `Ports` directory where you will create two ports in `MathPorts.fpp`.
 
 ### Setup 
 
@@ -292,7 +292,7 @@ Ports should build without any issues. Use the following to build:
 fprime-util build
 ```
 
-Check in `MathProject/build-fprime-automatic-native/MathPorts` for port definitions. The names of the auto-generated C++
+Check in `MathProject/build-fprime-automatic-native/Ports` for port definitions. The names of the auto-generated C++
 files end in `*PortAc.hpp` and `*PortAc.cpp`.
 Note however, the auto-generated C++ port files are used by the autocoded component implementations; you won't ever program directly against their interfaces.
 
@@ -483,7 +483,7 @@ Notice that these port specifiers use the ports that you defined.
 The input port is **asynchronous**. This means that invoking the port (i.e., sending data on the port) puts a message on a queue. The handler runs later, on the thread of this component.
 
 2. **Special ports:** These are ports that have a special meaning in F Prime.
-There are ports for registering commands with the dispatcher, receiving commands, sending command responses, emitting event reports, emitting telemetry, and getting the time.
+The special ports are ports for registering commands with the dispatcher, receiving commands, sending command responses, emitting event reports, emitting telemetry, and getting the time.
 
 3. **Commands:** These are commands sent from the ground or from a sequencer and dispatched to this component.
 There is one command `DO_MATH` for doing a math operation.
@@ -508,13 +508,13 @@ Now you have written the FPP code for the component, but the cpp and hpp files d
 fprime-util impl 
 ```
 
-Now, In `MathSender`, you will see two new files, `MathSender.cpp-template` and `MathSender.hpp-template`. The template files are the files you just generated using the FPP model. Whenever F' generates code, it creates new file with the `-template` so as to not burn down any old code. In this case, you did not write anything in the original `MathSender.cpp` or `MathSender.hpp`, so you can use a move command to replace the old code with the new code:
+Now, In `MathSender`, you will see two new files, `MathSender.template.cpp` and `MathSender.template.hpp`. The template files are the files you just generated using the FPP model. Whenever F' generates code, it creates new file with the `.template.` so as to not burn down any old code. In this case, you did not write anything in the original `MathSender.cpp` or `MathSender.hpp`, so you can use a move command to replace the old code with the new code:
 
 
 ```shell 
 # In: MathSender
-mv MathSender.cpp-template MathSender.cpp
-mv MathSender.hpp-template MathSender.hpp
+mv MathSender.template.cpp MathSender.cpp
+mv MathSender.template.hpp MathSender.hpp
 ```
 
 Build MathSender to make sure everything worked as expected.
@@ -1067,14 +1067,13 @@ Use the following command to create the deployment:
 fprime-util new --deployment
 ```
 
-When creating the deployment you will be asked two questions, answer them as follows: 
+This command will ask for some input. Respond with the following:
 
 ```
-[INFO] Cookiecutter: using builtin template for new deployment
-Deployment [MyDeployment]: MathDeployment
-[INFO] Found CMake file at 'fprime-tutorial-math-component/project.cmake'
-Add component Deployment to fprime-tutorial-math-component/project.cmake at end of file (yes/no)? yes
+  Deployment name (MyDeployment): MathDeployment
 ```
+
+> For any other questions, select the default response.
 
 Test the build to make sure everything is okay:
 
@@ -1185,7 +1184,7 @@ Add the connections between the mathSender and mathReceiver
 
 ```fpp 
 # In: Top/topology.fpp 
-# Under: connections MathDeplyoment 
+# Under: connections MathDeployment 
 mathSender.mathOpOut -> mathReceiver.mathOpIn
 mathReceiver.mathResultOut -> mathSender.mathResultIn
 ```
@@ -1193,15 +1192,6 @@ mathReceiver.mathResultOut -> mathSender.mathResultIn
 ### Test and Run
 
 **Re-run the check for unconnected ports**: Notice that no mathSender or mathReceiver ports are unconnected. 
-
-Go into MathDeploymentTopology.cpp and uncomment `loadParameters();`. This function is commented by default because it does not exist when the model has no parameters. Since we defined a parameter in `MathReceiver`, we shall call the function.
-
-```cpp
-// In: MathDeploymentTopology.cpp
-// Under: namespace MathDeployment{
-loadParameters();
-```
-
 
 Now it is time to build the entire project and run it! Navigate back to `MathDeployment` and build:
 
@@ -1282,7 +1272,7 @@ This stub contains all the boilerplate necessary to write and run unit tests aga
 fprime-util impl --ut
 ```
 
-You have just generate three new files ```MathSenderTester.cpp MathSenderTester.hpp MathSenderTestMain.cpp```. Move these files to the `test/ut` in MathSender using:
+You have just generate three new files `MathSenderTester.cpp`, `MathSenderTester.hpp` and `MathSenderTestMain.cpp`. Move these files to the `test/ut` in MathSender using:
 
 ```shell 
 # In: MathSender
@@ -1739,7 +1729,7 @@ In this section of the tutorial, you will write helper functions to tests variou
 
 ### Add a ThrottleState enum class
 Add the following code to the beginning of the
-`MathReceiverTester` class in MathReceiverTester.hpp`:
+`MathReceiverTester` class in `MathReceiverTester.hpp`:
 
 ```c++
 // In: MathReceiverTester.hpp
@@ -1767,7 +1757,7 @@ Add a `pickF32Value` function.
 
 ```c++
 // In: MathReceiverTester.cpp
-F32MathReceiverTester ::
+F32 MathReceiverTester ::
   pickF32Value()
 {
   const F32 m = 10e6;
