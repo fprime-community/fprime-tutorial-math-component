@@ -37,15 +37,13 @@ This tutorial will cover the following concepts:
 ### Bootstrapping F´
 
 > [!NOTE]
-> If you have followed the [HelloWorld tutorial](https://fprime.jpl.nasa.gov/latest/tutorials-hello-world/docs/hello-world/) previously, this should feel very familiar...
+> If you have followed the [HelloWorld tutorial](https://fprime-community.github.io/fprime-tutorial-hello-world/) previously, this should feel very familiar...
 
 An F´ project ties to a specific version of tools to work with F´. In order to create
-this project and install the correct version of tools, you should perform a bootstrap of F´.
+this project and install the correct version of tools, you should perform a bootstrap of F´:
 
-To do this you should follow the following steps from the [F´ installation guide](https://fprime.jpl.nasa.gov/latest/getting-started/installing-fprime):
-
-1. Ensure you meet the [F´ System Requirements](https://fprime.jpl.nasa.gov/latest/getting-started/installing-fprime#system-requirements)
-2. [Bootstrap your F´ project](https://fprime.jpl.nasa.gov/latest/getting-started/installing-fprime#creating-a-new-f-project) with the name `MathProject`
+1. Ensure you meet the [F´ System Requirements](https://github.com/nasa/fprime?tab=readme-ov-file#system-requirements)
+2. [Bootstrap your F´ project](https://nasa.github.io/fprime/INSTALL.html#creating-a-new-f-project) with the name `MathProject`
 
 Bootstrapping your F´ project created a folder called `MathProject` (or any name you chose) containing the standard F´ project structure as well as the virtual environment up containing the tools to work with F´.
 
