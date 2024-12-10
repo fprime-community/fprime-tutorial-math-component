@@ -1926,7 +1926,7 @@ void MathReceiverTester ::
     // verify telemetry
 
     // check that one channel was written
-    ASSERT_TLM_SIZE(2);
+    ASSERT_TLM_SIZE(1);
     // check that it was the op channel
     ASSERT_TLM_OPERATION_SIZE(1);
     // check for the correct value of the channel
