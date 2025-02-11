@@ -1241,28 +1241,8 @@ First, let's create our Unit Test build cache:
 fprime-util generate --ut 
 ```
 
-Add the unit test to the build by uncommenting the next lines at the very end of the `CMakeLists.txt` file in your `MathProject/Components/MathSender` directory:
-
-```cmake 
-# In: MathSender/CMakeLists.txt
-# Below: register_fprime_module()
-
-### Unit Tests ###
-set(UT_SOURCE_FILES
-  "${CMAKE_CURRENT_LIST_DIR}/MathSender.fpp"
-)
-set(UT_MOD_DEPS
-  STest
-)
-set(UT_AUTO_HELPERS ON)
-register_fprime_ut()
-```
-> [!NOTE]  
-> Keep the next lines commented:  
-> ```#   "${CMAKE_CURRENT_LIST_DIR}/test/ut/MathSenderTestMain.cpp"```  
-> ```#   "${CMAKE_CURRENT_LIST_DIR}/test/ut/MathSenderTester.cpp"```
-
 ### Generate the Unit Test Stub 
+
 Generate a stub implementation of the unit tests.
 This stub contains all the boilerplate necessary to write and run unit tests against the `MathSender` component:
 
@@ -1272,7 +1252,7 @@ fprime-util impl --ut
 ```
 
 You have just created `MathSender/test/ut` folder with three new files `MathSenderTester.template.cpp`, `MathSenderTester.template.hpp` and `MathSenderTestMain.template.cpp`.  
-Since this is the start of the test's implementation, we use the generated template files for our initial test implementation. Inside your `MathSender/test/ut` directory, rename the files removing the `.template` suffix:
+Since this is the start of the test implementation, we use the generated template files for our initial test implementation. Inside your `MathSender/test/ut` directory, rename the files removing the `.template` suffix:
 
 ```bash
 # In MathSender/test/ut
@@ -1283,7 +1263,7 @@ mv MathSenderTestMain.template.cpp MathSenderTestMain.cpp
 
 ### Add the Tests to the Build
 
-Add `MathSenderTester.cpp` and `MathSenderTestMain.cpp` to the build. Do so by uncommenting the appropriate lines in the CMakeLists.txt. The UT section should now look like the following:
+Add the unit test sources to the build by uncommenting the following lines at the very end of the `CMakeLists.txt` file in your `MathProject/Components/MathSender` directory:
 
 ```cmake
 # In: MathSender/CMakeLists.txt 
@@ -1627,26 +1607,6 @@ In this section you incorporated random testing into your existing tests.
 
 In this section of the tutorial, you will be repeating the steps you used to create an implementation stub for `MathSender`. 
 
-### Generate the unit test stub
-Uncomment the "Unit Tests" section in the `Components/MathReceiver/CMakeLists.txt` to add unit test to the build. Make sure that lines for `MathReceiverTestMain.cpp` and `MathReceiverTester.cpp` are still commented in the CMakeLists.txt:
-
-```cmake 
-# In: MathReceiver/CMakeLists.txt
-# Below: register_fprime_module()
-
-### Unit Tests ###
-set(UT_SOURCE_FILES
-  "${CMAKE_CURRENT_LIST_DIR}/MathReceiver.fpp"
-#   "${CMAKE_CURRENT_LIST_DIR}/test/ut/MathReceiverTestMain.cpp"
-#   "${CMAKE_CURRENT_LIST_DIR}/test/ut/MathReceiverTester.cpp"
-)
-set(UT_MOD_DEPS
-  STest
-)
-set(UT_AUTO_HELPERS ON)
-register_fprime_ut()
-```
-
 Generate a stub implementation of the unit tests.
 
 ```shell 
@@ -1665,7 +1625,7 @@ mv MathReceiverTester.template.cpp MathReceiverTester.cpp
 mv MathReceiverTestMain.template.cpp MathReceiverTestMain.cpp
 ```
 
-Add `MathReceiverTester.cpp` and `MathReceiverTestMain.cpp` to the build. Do so by uncommenting the appropriate lines in the CMakeLists.txt. The UT section should now look like the following:
+Add the unit test to the build. Do so by uncommenting the appropriate lines in the CMakeLists.txt. The UT section should now look like the following:
 
 ```cmake
 # In: MathReceiver/CMakeLists.txt 
