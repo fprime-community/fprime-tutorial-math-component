@@ -61,7 +61,7 @@ namespace MathModule {
       //! Handler for from_mathOpOut
       //!
       void from_mathOpOut_handler(
-          const NATIVE_INT_TYPE portNum, /*!< The port number*/
+          const FwIndexType portNum, /*!< The port number*/
           F32 val1, /*!< 
       The first operand
       */

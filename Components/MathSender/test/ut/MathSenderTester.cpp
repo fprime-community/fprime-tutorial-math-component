@@ -120,7 +120,7 @@ namespace MathModule {
 
   void MathSenderTester ::
     from_mathOpOut_handler(
-        const NATIVE_INT_TYPE portNum,
+        const FwIndexType portNum,
         F32 val1,
         const MathModule::MathOp &op,
         F32 val2

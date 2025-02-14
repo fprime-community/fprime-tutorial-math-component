@@ -35,7 +35,7 @@ namespace MathModule {
 
   void MathReceiver ::
     mathOpIn_handler(
-        const NATIVE_INT_TYPE portNum,
+        const FwIndexType portNum,
         F32 val1,
         const MathModule::MathOp &op,
         F32 val2
@@ -91,7 +91,7 @@ namespace MathModule {
 
   void MathReceiver ::
     schedIn_handler(
-        const NATIVE_INT_TYPE portNum,
+        const FwIndexType portNum,
         NATIVE_UINT_TYPE context
     )
   {

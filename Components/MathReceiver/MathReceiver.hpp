@@ -40,7 +40,7 @@ namespace MathModule {
       //! Handler implementation for mathOpIn
       //!
       void mathOpIn_handler(
-          const NATIVE_INT_TYPE portNum, /*!< The port number*/
+          const FwIndexType portNum, /*!< The port number*/
           F32 val1, /*!< 
       The first operand
       */
@@ -55,7 +55,7 @@ namespace MathModule {
       //! Handler implementation for schedIn
       //!
       void schedIn_handler(
-          const NATIVE_INT_TYPE portNum, /*!< The port number*/
+          const FwIndexType portNum, /*!< The port number*/
           NATIVE_UINT_TYPE context /*!< 
       The call order
       */
