@@ -10,6 +10,7 @@
 // Necessary project-specified types
 #include <Fw/Types/MallocAllocator.hpp>
 #include <Svc/FramingProtocol/FprimeProtocol.hpp>
+#include <Svc/FrameAccumulator/FrameDetector/FprimeFrameDetector.hpp>
 
 // Used for 1Hz synthetic cycling
 #include <Os/Mutex.hpp>
@@ -24,7 +25,7 @@ Fw::MallocAllocator mallocator;
 // The reference topology uses the F´ packet protocol when communicating with the ground and therefore uses the F´
 // framing and deframing implementations.
 Svc::FprimeFraming framing;
-Svc::FprimeDeframing deframing;
+Svc::FrameDetectors::FprimeFrameDetector frameDetector;
 
 Svc::ComQueue::QueueConfigurationTable configurationTable;
 
@@ -115,7 +116,7 @@ void configureTopology() {
 
     // Framer and Deframer components need to be passed a protocol handler
     framer.setup(framing);
-    deframer.setup(deframing);
+    frameAccumulator.configure(frameDetector, 1, mallocator, 2048);
 
     // Note: Uncomment when using Svc:TlmPacketizer
     //tlmSend.setPacketList(MathDeploymentPacketsPkts, MathDeploymentPacketsIgnore, 1);
