@@ -1373,7 +1373,7 @@ void MathSenderTester ::
     // verify the correct event arguments were sent
     ASSERT_EVENTS_COMMAND_RECV(0, val1, op, val2);
   }
-  ```
+```
 
 ### Explanation
 This function is parameterized over different operations.
@@ -1420,6 +1420,7 @@ TEST(Nominal, AddCommand) {
     tester.testAddCommand();
 }
 ```
+
 ### Explanation 
 The `TEST` macro is an instruction to Google Test to run a test. Without this step, your tests will never run. `Nominal` is the name of a test suite. We put this test in the `Nominal` suite because it addresses nominal (expected) behavior. `AddCommand` is the name of the test. 
 Inside the body of the macro, the first line declares a new object `tester` of type `MathSenderTester`. We typically declare a new object for each unit test, so that each test starts in a fresh state. The second line invokes the function `testAddCommand` that we wrote in the previous section.
