@@ -56,7 +56,7 @@ namespace MathModule {
       //!
       void schedIn_handler(
           const FwIndexType portNum, /*!< The port number*/
-          NATIVE_UINT_TYPE context /*!< 
+          U32 context /*!<
       The call order
       */
       );

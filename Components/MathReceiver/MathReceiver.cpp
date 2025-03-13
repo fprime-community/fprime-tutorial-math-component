@@ -92,7 +92,7 @@ namespace MathModule {
   void MathReceiver ::
     schedIn_handler(
         const FwIndexType portNum,
-        NATIVE_UINT_TYPE context
+        U32 context
     )
   {
    U32 numMsgs = this->m_queue.getMessagesAvailable();

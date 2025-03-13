@@ -599,7 +599,7 @@ The handler `mathResultIn_handler` is called when the `MathReceiver` component c
 // In: MathSender.cpp
 void MathSender ::
   mathResultIn_handler(
-      const NATIVE_INT_TYPE portNum,
+      const FwIndexType portNum,
       F32 result
   )
 {
@@ -890,7 +890,7 @@ Fill in the mathOpIn handler: In MathReceiver.cpp, complete the implementation o
 // In: MathReceiver.cpp
 void MathReceiver ::
   mathOpIn_handler(
-      const NATIVE_INT_TYPE portNum,
+      const FwIndexType portNum,
       F32 val1,
       const MathOp& op,
       F32 val2
@@ -960,12 +960,12 @@ Fill in the schedIn handler in `MathReceiver.cpp`, complete the implementation o
 // In: MathReceiver.cpp
 void MathReceiver ::
   schedIn_handler(
-      const NATIVE_INT_TYPE portNum,
-      NATIVE_UINT_TYPE context
+      const FwIndexType portNum,
+      U32 context
   )
 {
-    U32 numMsgs = this->m_queue.getMessagesAvailable();
-    for (U32 i = 0; i < numMsgs; ++i) {
+    FwSizeType numMsgs = this->m_queue.getMessagesAvailable();
+    for (FwSizeType i = 0; i < numMsgs; ++i) {
         (void) this->doDispatch();
     }
 }
