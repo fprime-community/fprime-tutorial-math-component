@@ -1442,6 +1442,16 @@ For example, try adding one to a telemetry value before emitting it.
 2. Rerun the test and observe what happens.
 
 
+### Check Your Test Coverage
+Check the coverage that your test covers. The following should also be executed in ```MathSender```.
+
+```shell
+# In: MathSender
+fprime-util check --coverage
+```
+
+In addition to printing out your test coverage overview in the console, the `--coverage` flag will generate a coverage/ directory that has HTML files showing additional code coverage info.
+
 
 ### Add more command tests 
 Try to follow the pattern given in the previous section to add three more tests, one each for operations `SUB`, `MUL`, and `DIV`. Most of the work should be done in the helper that we already wrote. Each new test requires just a short test function and a short test macro.
