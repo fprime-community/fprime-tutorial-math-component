@@ -1212,6 +1212,13 @@ Under _Commanding_ there is a drop-down menu called "mnemonic". Click Mnemonic a
 
 For a more detailed guide to the F´ GDS, see [GDS Introduction](https://fprime.jpl.nasa.gov/latest/documentation/user-manual/overview/gds-introduction/).
 
+### The Visualize Command
+Now that you have your project setup and working you can run the `visualize` command to open an interactive web application that visualizes how the components within your specific deployment are connected together. This is a great tool that you can use on any fprime deployment to help gather further insights into how things are connected. Make sure you are in the Top/ directory of your deployment before you run the command.
+
+```shell
+# In: MathProject/MathDeployment/Top
+fprime-util visualize
+```
 
 ### Summary
 
@@ -1441,6 +1448,16 @@ For example, try adding one to a telemetry value before emitting it.
 
 2. Rerun the test and observe what happens.
 
+
+### Check Your Test Coverage
+Check the coverage that your test covers. The following should also be executed in ```MathSender```.
+
+```shell
+# In: MathSender
+fprime-util check --coverage
+```
+
+In addition to printing out your test coverage overview in the console, the `--coverage` flag will generate a coverage/ directory that has HTML files showing additional code coverage info.
 
 
 ### Add more command tests 
