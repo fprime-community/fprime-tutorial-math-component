@@ -1121,28 +1121,6 @@ instance mathReceiver
 
 These lines add the mathSender and mathReceiver instances to the topology.
 
-### Add Packets 
-
-Add packets for MathSender and MathReceiver in MathDeploymentPackets.xml
-
-```xml 
-<!-- In: Top/MathDeploymentPackets.xml -->
-<!-- Above: Ignored packets -->
-<packet name="MathSender" id="21" level="3">
-    <channel name = "mathSender.VAL1"/>
-    <channel name = "mathSender.OP"/>
-    <channel name = "mathSender.VAL2"/>
-    <channel name = "mathSender.RESULT"/>
-</packet>
-<packet name="MathReceiver" id="22" level="3">
-    <channel name = "mathReceiver.OPERATION"/>
-    <channel name = "mathReceiver.FACTOR"/>
-</packet>
-```
-
-### Explanation 
-These lines describe the packet definitions for the `mathSender` and `mathReceiver` telemetry channels.
-
 ### Check the Build
 Just to be safe, check the build after this step.
 
@@ -1212,13 +1190,16 @@ Under _Commanding_ there is a drop-down menu called "mnemonic". Click Mnemonic a
 
 For a more detailed guide to the F´ GDS, see [GDS Introduction](https://fprime.jpl.nasa.gov/latest/documentation/user-manual/overview/gds-introduction/).
 
-### The Visualize Command
-Now that you have your project setup and working you can run the `visualize` command to open an interactive web application that visualizes how the components within your specific deployment are connected together. This is a great tool that you can use on any fprime deployment to help gather further insights into how things are connected. Make sure you are in the Top/ directory of your deployment before you run the command.
+### Optional: Visualizing the topology
+
+The F Prime tool suite provides a visualizer webapp to look at topology connections in a graphical way. This is a great tool that you can use on any F Prime deployment to help gather further insights into how things are connected, and can help for development, review, and documentation purposes. Make sure you are in the `Top/` directory of your deployment before you run the command.
 
 ```shell
-# In: MathProject/MathDeployment/Top
+cd MathDeployment/Top
 fprime-util visualize
 ```
+
+Each `connections {}` block in the FPP definition is represented in a different graph. Open the `RateGroups` or `MathDeployment` diagram using the dropdown menu and confirm that you can see the connections you just created in the sections above.
 
 ### Summary
 
@@ -1450,14 +1431,15 @@ For example, try adding one to a telemetry value before emitting it.
 
 
 ### Check Your Test Coverage
-Check the coverage that your test covers. The following should also be executed in ```MathSender```.
+
+You can also check the coverage that your test covers. The following should also be executed in ```MathSender```.
 
 ```shell
 # In: MathSender
 fprime-util check --coverage
 ```
 
-In addition to printing out your test coverage overview in the console, the `--coverage` flag will generate a coverage/ directory that has HTML files showing additional code coverage info.
+In addition to printing out your test coverage overview in the console, the `--coverage` flag will generate a `coverage/` directory that has HTML files showing additional code coverage info. This all uses Gcov under the hood.
 
 
 ### Add more command tests 
