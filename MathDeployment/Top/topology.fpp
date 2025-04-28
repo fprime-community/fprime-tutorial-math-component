@@ -71,23 +71,25 @@ module MathDeployment {
 
     connections Downlink {
 
-      eventLogger.PktSend -> comQueue.comPktQueueIn[0]
-      tlmSend.PktSend -> comQueue.comPktQueueIn[1]
-      fileDownlink.bufferSendOut -> comQueue.buffQueueIn[0]
-
-      comQueue.queueSend -> framer.dataIn
-      framer.dataReturn -> comQueue.bufferReturnIn
+      eventLogger.PktSend         -> comQueue.comPacketQueueIn[0]
+      tlmSend.PktSend             -> comQueue.comPacketQueueIn[1]
+      fileDownlink.bufferSendOut  -> comQueue.bufferQueueIn[0]
       comQueue.bufferReturnOut[0] -> fileDownlink.bufferReturn
 
-      framer.bufferAllocate -> bufferManager.bufferGetCallee
-      framer.framedDataOut -> comStub.comDataIn
+      comQueue.queueSend   -> framer.dataIn
+      framer.dataReturnOut -> comQueue.bufferReturnIn
+      framer.comStatusOut  -> comQueue.comStatusIn
 
-      comDriver.deallocate -> bufferManager.bufferSendIn
-      comDriver.ready -> comStub.drvConnected
+      framer.bufferAllocate   -> bufferManager.bufferGetCallee
+      framer.bufferDeallocate -> bufferManager.bufferSendIn
 
-      comStub.comStatus -> framer.comStatusIn
-      framer.comStatusOut -> comQueue.comStatusIn
-      comStub.drvDataOut -> comDriver.$send
+      framer.dataOut        -> comStub.comDataIn
+      comStub.dataReturnOut -> framer.dataReturnIn
+      comStub.comStatusOut  -> framer.comStatusIn
+
+      comStub.drvDataOut      -> comDriver.$send
+      comDriver.dataReturnOut -> comStub.dataReturnIn
+      comDriver.ready         -> comStub.drvConnected
 
     }
 
