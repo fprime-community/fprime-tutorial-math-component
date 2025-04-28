@@ -76,6 +76,8 @@ module MathDeployment {
       fileDownlink.bufferSendOut  -> comQueue.bufferQueueIn[0]
       comQueue.bufferReturnOut[0] -> fileDownlink.bufferReturn
 
+
+
       comQueue.queueSend   -> framer.dataIn
       framer.dataReturnOut -> comQueue.bufferReturnIn
       framer.comStatusOut  -> comQueue.comStatusIn
