@@ -5,7 +5,6 @@
 // ======================================================================
 // Provides access to autocoded functions
 #include <MathDeployment/Top/MathDeploymentTopologyAc.hpp>
-#include <MathDeployment/Top/MathDeploymentPacketsAc.hpp>
 
 // Necessary project-specified types
 #include <Fw/Types/MallocAllocator.hpp>
