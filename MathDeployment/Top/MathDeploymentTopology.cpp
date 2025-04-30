@@ -5,11 +5,9 @@
 // ======================================================================
 // Provides access to autocoded functions
 #include <MathDeployment/Top/MathDeploymentTopologyAc.hpp>
-#include <MathDeployment/Top/MathDeploymentPacketsAc.hpp>
 
 // Necessary project-specified types
 #include <Fw/Types/MallocAllocator.hpp>
-#include <Svc/FramingProtocol/FprimeProtocol.hpp>
 #include <Svc/FrameAccumulator/FrameDetector/FprimeFrameDetector.hpp>
 
 // Used for 1Hz synthetic cycling
@@ -22,9 +20,7 @@ using namespace MathDeployment;
 // initialization phase.
 Fw::MallocAllocator mallocator;
 
-// The reference topology uses the F´ packet protocol when communicating with the ground and therefore uses the F´
-// framing and deframing implementations.
-Svc::FprimeFraming framing;
+// FprimeFrameDetector is used to configure the FrameAccumulator to detect F Prime frames
 Svc::FrameDetectors::FprimeFrameDetector frameDetector;
 
 Svc::ComQueue::QueueConfigurationTable configurationTable;
@@ -114,8 +110,7 @@ void configureTopology() {
     upBuffMgrBins.bins[2].numBuffers = COM_DRIVER_BUFFER_COUNT;
     bufferManager.setup(BUFFER_MANAGER_ID, 0, mallocator, upBuffMgrBins);
 
-    // Framer and Deframer components need to be passed a protocol handler
-    framer.setup(framing);
+    // FprimeFrameDetector is used to configure the FrameAccumulator to detect F Prime frames
     frameAccumulator.configure(frameDetector, 1, mallocator, 2048);
 
     // Note: Uncomment when using Svc:TlmPacketizer
