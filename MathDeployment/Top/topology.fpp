@@ -90,7 +90,6 @@ module MathDeployment {
       comStub.drvSendOut      -> comDriver.$send
       comDriver.sendReturnOut -> comStub.drvSendReturnIn
       comDriver.ready         -> comStub.drvConnected
-
     }
 
     connections FaultProtection {
