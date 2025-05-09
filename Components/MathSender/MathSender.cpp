@@ -6,7 +6,7 @@
 
 
 #include <Components/MathSender/MathSender.hpp>
-#include <FpConfig.hpp>
+#include <config/FpConfig.hpp>
 
 namespace MathModule {
 
