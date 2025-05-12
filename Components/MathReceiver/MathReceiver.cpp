@@ -6,7 +6,7 @@
 
 
 #include <Components/MathReceiver/MathReceiver.hpp>
-#include <FpConfig.hpp>
+#include <config/FpConfig.hpp>
 
 namespace MathModule {
 
