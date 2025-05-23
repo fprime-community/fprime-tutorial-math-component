@@ -13,11 +13,6 @@ module MathDeployment {
   # Active component instances
   # ----------------------------------------------------------------------
 
-  instance blockDrv: Ref.BlockDriver base id 0x0100 \
-    queue size Default.QUEUE_SIZE \
-    stack size Default.STACK_SIZE \
-    priority 140
-
   instance rateGroup1: Svc.ActiveRateGroup base id 0x0200 \
     queue size Default.QUEUE_SIZE \
     stack size Default.STACK_SIZE \

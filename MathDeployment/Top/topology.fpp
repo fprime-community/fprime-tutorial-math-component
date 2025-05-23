@@ -17,7 +17,6 @@ module MathDeployment {
     # ----------------------------------------------------------------------
 
     instance $health
-    instance blockDrv
     instance tlmSend
     instance cmdDisp
     instance cmdSeq
@@ -114,8 +113,7 @@ module MathDeployment {
       # Rate group 3
       rateGroupDriver.CycleOut[Ports_RateGroups.rateGroup3] -> rateGroup3.CycleIn
       rateGroup3.RateGroupMemberOut[0] -> $health.Run
-      rateGroup3.RateGroupMemberOut[1] -> blockDrv.Sched
-      rateGroup3.RateGroupMemberOut[2] -> bufferManager.schedIn
+      rateGroup3.RateGroupMemberOut[1] -> bufferManager.schedIn
     }
 
     connections Sequencer {
