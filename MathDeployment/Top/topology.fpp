@@ -45,7 +45,8 @@ module MathDeployment {
     instance systemResources
 
     instance mathSender
-    instance mathReceiver 
+    instance mathReceiver
+    instance linuxTimer
 
     # ----------------------------------------------------------------------
     # Pattern graph specifiers
@@ -97,8 +98,8 @@ module MathDeployment {
     }
 
     connections RateGroups {
-      # Block driver
-      blockDrv.CycleOut -> rateGroupDriver.CycleIn
+      # Linux timer to drive rate groups
+      linux.CycleOut -> rateGroupDriver.CycleIn
 
       # Rate group 1
       rateGroupDriver.CycleOut[Ports_RateGroups.rateGroup1] -> rateGroup1.CycleIn

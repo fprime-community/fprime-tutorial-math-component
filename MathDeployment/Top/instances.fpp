@@ -13,7 +13,7 @@ module MathDeployment {
   # Active component instances
   # ----------------------------------------------------------------------
 
-  instance blockDrv: Drv.BlockDriver base id 0x0100 \
+  instance blockDrv: Ref.BlockDriver base id 0x0100 \
     queue size Default.QUEUE_SIZE \
     stack size Default.STACK_SIZE \
     priority 140
@@ -136,4 +136,6 @@ module MathDeployment {
   instance frameAccumulator: Svc.FrameAccumulator base id 0x4C00
 
   instance fprimeRouter: Svc.FprimeRouter base id 0x4D00
+
+  instance linuxTimer: Svc.LinuxTimer base id 0x4E00
 }
