@@ -85,7 +85,7 @@ int main(int argc, char* argv[]) {
 
     // Setup, cycle, and teardown topology
     MathDeployment::setupTopology(inputs);
-    MathDeployment::startSimulatedCycle(1000);  // Program loop cycling rate groups at 1Hz
+    MathDeployment::startSimulatedCycle(Fw::TimeInterval(1, 0));  // Program loop cycling rate groups at 1Hz
     MathDeployment::teardownTopology(inputs);
     (void)printf("Exiting...\n");
     return 0;

@@ -97,8 +97,8 @@ module MathDeployment {
     }
 
     connections RateGroups {
-      # Linux timer to drive rate groups
-      linux.CycleOut -> rateGroupDriver.CycleIn
+      # Block driver
+      linuxTimer.CycleOut -> rateGroupDriver.CycleIn
 
       # Rate group 1
       rateGroupDriver.CycleOut[Ports_RateGroups.rateGroup1] -> rateGroup1.CycleIn
