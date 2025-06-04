@@ -6,7 +6,6 @@
 #ifndef MATHDEPLOYMENT_MATHDEPLOYMENTTOPOLOGYDEFS_HPP
 #define MATHDEPLOYMENT_MATHDEPLOYMENTTOPOLOGYDEFS_HPP
 
-#include "Drv/BlockDriver/BlockDriver.hpp"
 #include "Fw/Types/MallocAllocator.hpp"
 #include "MathDeployment/Top/FppConstantsAc.hpp"
 #include "Svc/FramingProtocol/FprimeProtocol.hpp"
