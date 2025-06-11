@@ -2108,18 +2108,6 @@ this->tlmWrite_NUMBER_OF_OPS(numMathOps);
 > [!NOTE]
 > This function will get autocoded by FPP since we defined the telemetry channel.
 
-6. Add the channel to the pre-existing MathReceiver packet in `MathDeploymentPackets.xml`:
-
-```xml
-    <!-- In: MathDeploymentPackets.xml -->
-    <packet name="MathReceiver" id="22" level="3">
-        <channel name = "mathReceiver.OPERATION"/>
-        <channel name = "mathReceiver.FACTOR"/>
-        <channel name = "mathReceiver.NUMBER_OF_OPS"/>  <!-- Add this line -->
-    </packet>
-```
-
-
 7. Build and test:
 
 ```shell 
