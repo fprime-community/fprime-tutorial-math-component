@@ -2,7 +2,7 @@
 permalink: /
 ---
 
-# MathComponent Tutorial 
+# MathComponent Tutorial
 
 Welcome to the MathComponent tutorial! This tutorial shows how to develop, test, and deploy a simple topology
 consisting of two components:
@@ -20,13 +20,13 @@ See the diagram below.
 ## What is covered
 This tutorial will cover the following concepts:
 
-1. Defining types, ports, and components in F'. 
+1. Defining types, ports, and components in F'.
 
-2. Creating a deployment and running the F' GDS (Ground Data System). 
+2. Creating a deployment and running the F' GDS (Ground Data System).
 
 3. Writing unit tests.
 
-4. Handling errors, creating events, and adding telemetry channels. 
+4. Handling errors, creating events, and adding telemetry channels.
 
 > [!TIP]
 > The source for this tutorial is located here: [https://github.com/fprime-community/fprime-tutorial-math-component](https://github.com/fprime-community/fprime-tutorial-math-component). If you are stuck at some point during the tutorial, you may refer to that reference as the "solution".
@@ -78,43 +78,43 @@ cd MathProject
 
 ---
 
-## Defining Types 
+## Defining Types
 
-### Background 
+### Background
 
 In F Prime, a **type definition** defines a kind of data that you can pass between components or use in commands and telemetry.
 
 For this tutorial, you need one type definition. The type will define an enumeration called `MathOp`, which represents a mathematical operation.
 
-### In this section 
+### In this section
 
 In this section, you will create a `Types` directory and add it to the project build. You will create an enumeration to represent several mathematical operations.
 
-### Setup 
+### Setup
 
 To start, create a directory where your type(s) will live:
 
 ```shell
-# In: MathProject 
-mkdir Types 
+# In: MathProject
+mkdir Types
 cd Types
-``` 
+```
 
 The user defines types in an fpp (F prime prime) file. Use the command below to create an empty fpp file to define the `MathOp` type:
 
-```shell 
+```shell
 # In: Types
 touch MathTypes.fpp
 ```
 Here you have created an empty fpp file named MathTypes in the Types directory.
 
-### Implementing the Types 
+### Implementing the Types
 
 Use your favorite text editor, visual studios, nano, vim, etc..., and add the following to `MathTypes.fpp`.
 
 ```
 # In: MathTypes.fpp
-module MathModule { 
+module MathModule {
 
     @ Math operations
     enum MathOp {
@@ -126,12 +126,12 @@ module MathModule {
 }
 ```
 > [!IMPORTANT]
-> Think of modules similar to a cpp namespace. Whenever you want to make use of the enumeration, `MathOp`, you will need to use the MathModule module. 
+> Think of modules similar to a cpp namespace. Whenever you want to make use of the enumeration, `MathOp`, you will need to use the MathModule module.
 
 Above you have created an enumeration of the four math types that are used in this tutorial.
 
- 
-### Adding to the Build 
+
+### Adding to the Build
 
 To specify how `MathTypes.fpp` should build with the project, you need to make two modifications to the MathProject:
 
@@ -139,9 +139,9 @@ To specify how `MathTypes.fpp` should build with the project, you need to make t
 
 To create CMakeLists.txt use:
 
-```shell 
+```shell
 # In: Types
-touch CMakeLists.txt 
+touch CMakeLists.txt
 ```
 
 > [!IMPORTANT]
@@ -149,7 +149,7 @@ touch CMakeLists.txt
 
 Use a text editor to replace whatever is in CMakeLists.txt, most likely nothing, with the following.
 
-```cmake 
+```cmake
 set(SOURCE_FILES
   "${CMAKE_CURRENT_LIST_DIR}/MathTypes.fpp"
 )
@@ -157,20 +157,20 @@ set(SOURCE_FILES
 register_fprime_module()
 ```
 
-2. Add the `Types` directory to the overall project build by adding to `project.cmake`.  
+2. Add the `Types` directory to the overall project build by adding to `project.cmake`.
 
 Edit `project.cmake`, located in the `MathProject` directory, and  **add** the following line at the end of the file:
 
-```cmake 
+```cmake
 # In: MathProject/project.cmake
 add_fprime_subdirectory("${CMAKE_CURRENT_LIST_DIR}/Types/")
 ```
 
 The `Types` directory should now build without any issues. Test the build with the following command before moving forward.
 
-```shell 
-# In: Types 
-fprime-util build 
+```shell
+# In: Types
+fprime-util build
 ```
 
 > [!NOTE]
@@ -184,16 +184,16 @@ The output should indicate that the model built without any errors. If not, try 
 > [!NOTE]
 > The files MathOpEnumAc.hpp and MathOpEnumAc.cpp are the auto-generated C++ files corresponding to the MathOp enum. You may wish to study the file MathOpEnumAc.hpp. This file gives the interface to the C++ class MathModule::MathOp. All enum types have a similar auto-generated class interface.
 
-### Summary  
-At this point you have successfully created the `MathOp` type 
-and added it to the project build. You can add more types here 
-later if you feel so inclined. 
+### Summary
+At this point you have successfully created the `MathOp` type
+and added it to the project build. You can add more types here
+later if you feel so inclined.
 
 ---
 
-## Constructing Ports 
+## Constructing Ports
 
-### Background 
+### Background
 
 A **port** is the endpoint of a connection between two components.
 A **port definition** is like a function signature; it defines the type of the data carried on a port.
@@ -207,34 +207,34 @@ For this tutorial, you will need two port definitions:
 * `MathResult` for sending the result of an arithmetic
 operation from `MathReceiver` to `MathSender`.
 
-### In this section 
+### In this section
 
 In this section, you will create a `Ports` directory where you will create two ports in `MathPorts.fpp`.
 
-### Setup 
+### Setup
 
 Start by making a directory where the ports will be defined. Create a directory called `Ports` in the `MathProject` directory:
 
-```shell 
+```shell
 # In: MathProject
-mkdir Ports 
+mkdir Ports
 cd Ports
 ```
 
 While in "Ports", create an empty fpp file called `MathPorts.fpp`, this is where the ports will be defined:
 
-```shell 
+```shell
 # In: Ports
 touch MathPorts.fpp
 ```
 
 ### Implementing the Ports
 
-Use your favorite text editor to add the following to `MathPorts.fpp`: 
+Use your favorite text editor to add the following to `MathPorts.fpp`:
 
 ```fpp
 # In: MathPorts.fpp
-module MathModule { 
+module MathModule {
   @ Port for requesting an operation on two numbers
   port OpRequest(
     val1: F32 @< The first operand
@@ -249,23 +249,23 @@ module MathModule {
 }
 ```
 > [!NOTE]
-> Notice how we define ports in MathModule, which is where we defined MathOp as well. 
+> Notice how we define ports in MathModule, which is where we defined MathOp as well.
 
 Here, you have created two ports. The first port, called `OpRequest`, carries two 32-bit floats (`val1` and `val2`) and a math operations `op`. The second port only carries one 32-bit float (result). The first port is intended to send an operation and operands to the `MathReceiver`.
-The second port is designed to send the results of the operation back to `MathSender`. 
+The second port is designed to send the results of the operation back to `MathSender`.
 
 For more information about port definitions, see [_The FPP User's Guide_](https://nasa.github.io/fpp/fpp-users-guide.html).
 
-### Adding to the Build 
+### Adding to the Build
 
-Create a `CMakeLists.txt` file in `Ports`. 
+Create a `CMakeLists.txt` file in `Ports`.
 
-```shell 
+```shell
 # In: Ports
 touch CMakeLists.txt
 ```
 
-Add the following to the `CMakeLists.txt`. 
+Add the following to the `CMakeLists.txt`.
 
 ```cmake
 # In: Ports/CMakeLists.txt
@@ -276,9 +276,9 @@ set(SOURCE_FILES
 register_fprime_module()
 ```
 
-Add the following to `project.cmake`. Remember that `project.cmake` is in MathProject, not Ports. 
+Add the following to `project.cmake`. Remember that `project.cmake` is in MathProject, not Ports.
 
-```cmake 
+```cmake
 # In: MathProject/project.cmake
 add_fprime_subdirectory("${CMAKE_CURRENT_LIST_DIR}/Ports/")
 ```
@@ -294,18 +294,18 @@ Check in `MathProject/build-fprime-automatic-native/Ports` for port definitions.
 files end in `*PortAc.hpp` and `*PortAc.cpp`.
 Note however, the auto-generated C++ port files are used by the autocoded component implementations; you won't ever program directly against their interfaces.
 
-At this point, you have successfully implemented all the ports used for this tutorial and added them to the build. 
+At this point, you have successfully implemented all the ports used for this tutorial and added them to the build.
 
 
 ---
 
 ## Creating Components Part 1: Creating the MathSender
 
-### Background 
+### Background
 
-Components are the lifeblood of an F' deployment. In this tutorial the components are strictly virtual, however in many deployments components will represent unique pieces of hardware, such as sensors and microcontrollers! 
+Components are the lifeblood of an F' deployment. In this tutorial the components are strictly virtual, however in many deployments components will represent unique pieces of hardware, such as sensors and microcontrollers!
 
-### In this section 
+### In this section
 
 In this section, you will begin creating an active component and write its F Prime Prime (fpp) implementation. You will generate cpp and hpp files using the fpp. Note, that you will implement component behavior in `MathSender.cpp` in the next section. Most commonly, the steps to create a new component are the following:
 
@@ -316,8 +316,8 @@ In this section, you will begin creating an active component and write its F Pri
 5. Write and run unit tests.
 
 
-### Component Description 
-The `MathSender` is an active component which receives parameters, sends parameters, logs events, and sends telemetry. 
+### Component Description
+The `MathSender` is an active component which receives parameters, sends parameters, logs events, and sends telemetry.
 
 With the component description in mind, use the following command to create the `MathSender` component:
 
@@ -326,13 +326,13 @@ F´ projects conveniently come with a `Components/` folder to create components 
 
 ```shell
 # In: MathProject/Components/
-fprime-util new --component 
+fprime-util new --component
 ```
-This command will prompt you for some inputs. Answer the prompts as shown below: 
+This command will prompt you for some inputs. Answer the prompts as shown below:
 
 ```
 [INFO] Cookiecutter source: using builtin
-Component name [MyComponent]: MathSender 
+Component name [MyComponent]: MathSender
 Component short description [Example Component for F Prime FSW framework.]: Active component used for sending operations and operands to the MathReceiver.
 Component namespace [Component]: MathModule
 Select component kind:
@@ -364,15 +364,15 @@ Generate implementation files (yes/no)? yes
 
 Before doing anything to the files you have just generated, try building:
 
-```shell 
+```shell
 cd MathSender
 fprime-util build
 ```
 
-### Editing the FPP Model 
-Now that you have created the component, you can start working on implementing the component behavior. The first part of implementing component behavior is editing the fpp file. The fpp file will specify what goes into the auto-generated cpp and hpp files. Writing the fpp file will not implement component behavior on its own, but it will generate templates for most of what you will write in cpp and hpp files. 
+### Editing the FPP Model
+Now that you have created the component, you can start working on implementing the component behavior. The first part of implementing component behavior is editing the fpp file. The fpp file will specify what goes into the auto-generated cpp and hpp files. Writing the fpp file will not implement component behavior on its own, but it will generate templates for most of what you will write in cpp and hpp files.
 
-In `Components/MathSender`, open `MathSender.fpp` and **entirely replace its contents with the following**: 
+In `Components/MathSender`, open `MathSender.fpp` and **entirely replace its contents with the following**:
 
 
 ```fpp
@@ -469,8 +469,8 @@ module MathModule {
 }
 ```
 
-### About this Component 
- 
+### About this Component
+
 The above code defines `MathSender` component. The component is **active**, which means it has its own thread.
 
 Inside the definition of the `MathSender` component are several specifiers. We have divided the specifiers into five groups.
@@ -485,7 +485,7 @@ The special ports are ports for registering commands with the dispatcher, receiv
 
 3. **Commands:** These are commands sent from the ground or from a sequencer and dispatched to this component.
 There is one command `DO_MATH` for doing a math operation.
-The command is asynchronous. This means that when the command arrives, it goes on a queue and its handler is later run on the thread of this component 
+The command is asynchronous. This means that when the command arrives, it goes on a queue and its handler is later run on the thread of this component
 
 4. **Events:** These are event reports that this component can emit.
 There are two event reports, one for receiving a command and one for receiving a result.
@@ -503,13 +503,13 @@ Now you have written the FPP code for the component, but the cpp and hpp files d
 
 ```shell
 # In: MathSender
-fprime-util impl 
+fprime-util impl
 ```
 
 Now, In `MathSender`, you will see two new files, `MathSender.template.cpp` and `MathSender.template.hpp`. The template files are the files you just generated using the FPP model. Whenever F' generates code, it creates new file with the `.template.` so as to not burn down any old code. In this case, you did not write anything in the original `MathSender.cpp` or `MathSender.hpp`, so you can use a move command to replace the old code with the new code:
 
 
-```shell 
+```shell
 # In: MathSender
 mv MathSender.template.cpp MathSender.cpp
 mv MathSender.template.hpp MathSender.hpp
@@ -517,16 +517,16 @@ mv MathSender.template.hpp MathSender.hpp
 
 Build MathSender to make sure everything worked as expected.
 
-```shell 
-# In: MathSender 
-fprime-util build 
+```shell
+# In: MathSender
+fprime-util build
 ```
 
-### Wait... Shouldn't You Add this to the Build? 
+### Wait... Shouldn't You Add this to the Build?
 
-If you've been paying attention to the tutorial thus far, you might be getting some warning bells that you have not added your new component to the build. Fear not, when using `fprime-util new --component` all of the `CMakeLists.txt` and `project.cmake` work was done for you! Take a look at both files to verify for yourself. 
+If you've been paying attention to the tutorial thus far, you might be getting some warning bells that you have not added your new component to the build. Fear not, when using `fprime-util new --component` all of the `CMakeLists.txt` and `project.cmake` work was done for you! Take a look at both files to verify for yourself.
 
-### Summary 
+### Summary
 
 You are about two thirds of the way through finishing `MathSender`. In the next section you will implement `MathSender`'s component  behavior.
 
@@ -536,14 +536,14 @@ You are about two thirds of the way through finishing `MathSender`. In the next 
 
 ## Creating Components Part 2: Implementing MathSender Behavior
 
-### In this section 
+### In this section
 
-In this section you will edit `MathSender.cpp` to implement the desired component behavior. 
+In this section you will edit `MathSender.cpp` to implement the desired component behavior.
 
-As a reminder, below is the component behavior you are trying to implement in this section of the tutorial. 
+As a reminder, below is the component behavior you are trying to implement in this section of the tutorial.
 
-### Component Description 
-The `MathSender` is going to be an active component which will receive parameters, send parameters, log events, and send telemetry. 
+### Component Description
+The `MathSender` is going to be an active component which will receive parameters, send parameters, log events, and send telemetry.
 
 ### Editing the Do Math Command Handler
 
@@ -581,7 +581,7 @@ The command response goes out on the special port
 `cmdResponseOut`.
 
 In F Prime, every execution of a command handler must end by sending a command response.
-The proper behavior of other framework components (e.g., command dispatcher, command sequencer) depends upon adherence to this rule. 
+The proper behavior of other framework components (e.g., command dispatcher, command sequencer) depends upon adherence to this rule.
 
 
 Check the build using:
@@ -592,7 +592,7 @@ Check the build using:
 fprime-util build
 ```
 
-### Editing the Result Handler 
+### Editing the Result Handler
 The handler `mathResultIn_handler` is called when the `MathReceiver` component code returns a result by invoking the `mathResultIn` port. Again the handler overrides the corresponding pure virtual function in the auto-generated base class. Fill in the handler so that it looks like this:
 
 ```cpp
@@ -608,7 +608,7 @@ void MathSender ::
 }
 ```
 
-### Explanation 
+### Explanation
 
 The implementation code emits the result on the `RESULT` telemetry channel and as a `RESULT` event report.
 
@@ -623,39 +623,39 @@ fprime-util build
 ### Summary
 Congratulations, you have completed `MathSender`! Well... there's always more to be done, such as error handling, adding more telemetry,
 creating more events, and generally messing around with what `MathSender` can do. But for the purposes of getting a deployment
-working, this component is done! 
+working, this component is done!
 
 ---
 
 
 ## Creating Components Part 3: Starting the MathReceiver
 
-### In this Section 
+### In this Section
 
 In this section you will begin creating `MathReceiver` following the same steps as the last section. Note, that the `MathReceiver` is a little different than the `MathSender`.
 
 ### Component Description
 
-The `MathReceiver` is a queued component which receives parameters, send parameters, logs events, and sends telemetry. With this is mind, use the following command to create the `MathReceiver` component. 
+The `MathReceiver` is a queued component which receives parameters, send parameters, logs events, and sends telemetry. With this is mind, use the following command to create the `MathReceiver` component.
 
 ### Creating the MathReceiver
 
 ```shell
 # In: Components
-fprime-util new --component 
+fprime-util new --component
 ```
 This command will prompt you for some inputs. You should specify the follow so that the components matches the short description above. Don't forget that this is a QUEUED component:
 
 ```
 [INFO] Cookiecutter source: using builtin
-Component name [MyComponent]: MathReceiver 
+Component name [MyComponent]: MathReceiver
 Component short description [Example Component for F Prime FSW framework.]: Your description
 Component namespace [Component]: MathModule
 Select component kind:
 1 - active
 2 - passive
 3 - queued
-Choose from 1, 2, 3 [1]: 3 
+Choose from 1, 2, 3 [1]: 3
 Enable Commands?:
 1 - yes
 2 - no
@@ -679,13 +679,13 @@ Generate implementation files (yes/no)? yes
 
 Before doing anything to the files you have just generated, try building:
 
-```shell 
+```shell
 # In: MathReceiver
 fprime-util build
 ```
 
-### Editing the F Prime Prime Model 
-Now that you have created the component, you can implement the component behavior in the fpp model. Use a text editor to entirely replace the existing `MathReceiver.fpp` with the following: 
+### Editing the F Prime Prime Model
+Now that you have created the component, you can implement the component behavior in the fpp model. Use a text editor to entirely replace the existing `MathReceiver.fpp` with the following:
 
 ```fpp
 # In: MathReceiver.fpp
@@ -797,7 +797,7 @@ module MathModule {
 }
 ```
 
-### Explanation 
+### Explanation
 This code defines a component `MathReceiver`.
 The component is **queued**, which means it has a queue but no thread.
 Work occurs when the thread of another component invokes the `schedIn` port of this component.
@@ -847,16 +847,16 @@ For more information, see the [_FPP User's Guide_](https://nasa.github.io/fpp/fp
 ### Generate the Implementation Files
 
 
-Generate cpp and hpp files based off your `MathReceiver` by using: 
+Generate cpp and hpp files based off your `MathReceiver` by using:
 
 ```shell
-# In: MathReceiver 
+# In: MathReceiver
 fprime-util impl
 ```
 
 Replace the original cpp and hpp files with the ones you just created:
 
-```shell 
+```shell
 # In: MathReceiver
 mv MathReceiver.template.cpp MathReceiver.cpp
 mv MathReceiver.template.hpp MathReceiver.hpp
@@ -864,14 +864,14 @@ mv MathReceiver.template.hpp MathReceiver.hpp
 
 Test the build:
 
-```shell 
+```shell
 # In: MathReceiver
-fprime-util build 
+fprime-util build
 ```
 
 ### Summary
 You are two thirds of the way through finishing `MathReceiver`.
-So far, you have created a queued component stub, filled in the fpp 
+So far, you have created a queued component stub, filled in the fpp
 file, and wrote component characteristics in `MathReceiver.fpp`. Next,
 you will write the behavior for `MathReceiver`.
 
@@ -881,7 +881,7 @@ you will write the behavior for `MathReceiver`.
 
 ### In this Section
 
-In this section you will complete the implementation of the `MathReciever` by filling in `MathReceiver.cpp` and `MathReceiver.hpp`. 
+In this section you will complete the implementation of the `MathReciever` by filling in `MathReceiver.cpp` and `MathReceiver.hpp`.
 
 ### Editing the Math Op In Handler
 Fill in the mathOpIn handler: In MathReceiver.cpp, complete the implementation of `MathReceiver::mathOpIn_handler()` so that it looks like this:
@@ -914,7 +914,7 @@ void MathReceiver ::
         default:
             FW_ASSERT(0, op.e);
             break;
-    }//end switch 
+    }//end switch
 
     // Get the factor value
     Fw::ParamValid valid;
@@ -934,7 +934,7 @@ void MathReceiver ::
     // Emit result
     this->mathResultOut_out(0, res);
 
-}//end mathOpIn_handler 
+}//end mathOpIn_handler
 ```
 
 ### Explanation
@@ -970,7 +970,7 @@ void MathReceiver ::
     }
 }
 ```
-### Explanation 
+### Explanation
 This code dispatches all the messages on the queue. Note that for a queued component, we have to do this dispatch explicitly in the schedIn handler. For an active component, the framework auto-generates the dispatch code.
 
 ### Editing the Throttle Command Handler
@@ -1036,9 +1036,9 @@ This code implements an optional function that, if present, is called when a par
 
 ### Test the build
 
-```shell 
+```shell
 # In: MathReceiver
-fprime-util build 
+fprime-util build
 ```
 
 ### Summary
@@ -1049,19 +1049,19 @@ Congratulations, you have finished `MathReceiver`!
 
 ## Developing Deployments
 
-### Background 
-The deployment is the portion of F' that will actually run on the spacecraft. Think of the deployment like an executable. 
+### Background
+The deployment is the portion of F' that will actually run on the spacecraft. Think of the deployment like an executable.
 
 ### In this Section
 
-In this section, you will create a deployment and integrate the deployment with the other work you have completed. At the end of this section, you will run the F' ground data system and test your components by actually running them! 
+In this section, you will create a deployment and integrate the deployment with the other work you have completed. At the end of this section, you will run the F' ground data system and test your components by actually running them!
 
 
 ### Create a Deployment
-Use the following command to create the deployment: 
+Use the following command to create the deployment:
 
-```shell 
-# In: MathProject 
+```shell
+# In: MathProject
 fprime-util new --deployment
 ```
 
@@ -1082,17 +1082,17 @@ fprime-util build
 
 
 ### Add Component Instances to the Deployment
-Create an instance for `MathSender` in `instances.fpp`. 
+Create an instance for `MathSender` in `instances.fpp`.
 
-```fpp 
-# In: MathDeployment/Top/instances.fpp 
-# Under: Active component instances 
+```fpp
+# In: MathDeployment/Top/instances.fpp
+# Under: Active component instances
 instance mathSender: MathModule.MathSender base id 0xE00 \
   queue size Default.QUEUE_SIZE \
   stack size Default.STACK_SIZE \
   priority 100
 
-# Under: Queued component instances 
+# Under: Queued component instances
 instance mathReceiver: MathModule.MathReceiver base id 0x2700 \
   queue size Default.QUEUE_SIZE
 ```
@@ -1103,21 +1103,21 @@ This code defines an instance `mathSender` of component `MathSender`. It has bas
 
 The `mathReceiver` was defined with base identifier 0x2700 and the default queue size.
 
-### Update the Topology 
+### Update the Topology
 
-Add the instances you created to `topology.fpp`. 
+Add the instances you created to `topology.fpp`.
 
-```fpp 
-# In: MathDeployment/Top/topology.fpp 
+```fpp
+# In: MathDeployment/Top/topology.fpp
 # Under: Instances used in the topology
 instance mathSender
-instance mathReceiver 
+instance mathReceiver
 ```
 
 > [!NOTE]
 > This step highlights the importance of capitalization. The easiest way to differentiate between the component definition and instance is the capitalization.
 
-### Explanation 
+### Explanation
 
 These lines add the mathSender and mathReceiver instances to the topology.
 
@@ -1130,20 +1130,20 @@ fprime-util build
 ```
 
 ### Check for Unconnected Ports
-Check to make sure all of the ports have been connected: 
+Check to make sure all of the ports have been connected:
 
-```shell 
+```shell
 # In: MathDeployment/Top
 fprime-util fpp-check -u unconnected.txt
-cat unconnected.txt 
+cat unconnected.txt
 ```
 
-At this point in time, several `mathSender` and `mathReceiver` ports (such as `mathOpIn` or `schedIn`) are still unconnected. Hence, they should appear on this list. 
+At this point in time, several `mathSender` and `mathReceiver` ports (such as `mathOpIn` or `schedIn`) are still unconnected. Hence, they should appear on this list.
 
-Go into `topology.fpp`, connect `mathReceiver.schedIn` to rate group one using the code below:  
+Go into `topology.fpp`, connect `mathReceiver.schedIn` to rate group one using the code below:
 
-```fpp 
-# In: Top/topology.fpp 
+```fpp
+# In: Top/topology.fpp
 # Under: connections RateGroups for rateGroup1
 rateGroup1.RateGroupMemberOut[3] -> mathReceiver.schedIn
 ```
@@ -1154,33 +1154,33 @@ rateGroup1.RateGroupMemberOut[3] -> mathReceiver.schedIn
 ### Explanation
 This line adds the connection that drives the `schedIn` port of the `mathReceiver` component instance.
 
-Verify that you successfully took a port off the list of unconnected ports. 
+Verify that you successfully took a port off the list of unconnected ports.
 
 Add the connections between the mathSender and mathReceiver
 
-```fpp 
-# In: Top/topology.fpp 
-# Under: connections MathDeployment 
+```fpp
+# In: Top/topology.fpp
+# Under: connections MathDeployment
 mathSender.mathOpOut -> mathReceiver.mathOpIn
 mathReceiver.mathResultOut -> mathSender.mathResultIn
 ```
 
 ### Test and Run
 
-**Re-run the check for unconnected ports**: Notice that no mathSender or mathReceiver ports are unconnected. 
+**Re-run the check for unconnected ports**: Notice that no mathSender or mathReceiver ports are unconnected.
 
 Now it is time to build the entire project and run it! Navigate back to `MathDeployment` and build:
 
-```shell 
+```shell
 # In: MathProject/MathDeployment
-fprime-util build 
+fprime-util build
 ```
 
 Run the MathComponent deployment through the GDS:
 
-```shell 
+```shell
 # In: MathProject/MathDeployment
-fprime-gds 
+fprime-gds
 ```
 > [!TIP]
 > If you encounter an error on this step, make sure you are running in the MathDeployment directory.
@@ -1203,9 +1203,9 @@ Each `connections {}` block in the FPP definition is represented in a different 
 
 ### Summary
 
-In this section of the tutorial, you created a deployment. While at it, you filled out the projects instance and topology. These steps are what turn a bunch hard worked code into flight-software. Further more, you ran the software! 
+In this section of the tutorial, you created a deployment. While at it, you filled out the projects instance and topology. These steps are what turn a bunch hard worked code into flight-software. Further more, you ran the software!
 
-### Congratulations 
+### Congratulations
 
 You have completed your F' deployment! If you wish to stop here, you may. You can also rest assured knowing that the work you have done is reusable. In other words, you've written code in the same way that you will write code for actual spacecrafts. Except... actual spacecrafts will make extensive use of unit tests and error handling. Keep going in this tutorial to learn more about unit testing, error handling, and just to practice using F'.
 
@@ -1213,33 +1213,33 @@ You have completed your F' deployment! If you wish to stop here, you may. You ca
 
 ## Writing Unit Tests Part 1: Creating the Implementation Stub
 
-### Background 
+### Background
 
 **Unit tests** are an important part of FSW development. At the component level, unit tests typically invoke input ports, send commands, and check for expected values on output ports (including telemetry and event ports).
 
 
-### In this Section 
+### In this Section
 
-In this section of the tutorial, you will create a stub implementation of a unit test that will test `MathSender`. 
+In this section of the tutorial, you will create a stub implementation of a unit test that will test `MathSender`.
 
 First, let's create our Unit Test build cache:
 
 ```shell
 # In MathProject
-fprime-util generate --ut 
+fprime-util generate --ut
 ```
 
-### Generate the Unit Test Stub 
+### Generate the Unit Test Stub
 
 Generate a stub implementation of the unit tests.
 This stub contains all the boilerplate necessary to write and run unit tests against the `MathSender` component:
 
-```shell 
+```shell
 # In: MathSender
 fprime-util impl --ut
 ```
 
-You have just created `MathSender/test/ut` folder with three new files `MathSenderTester.template.cpp`, `MathSenderTester.template.hpp` and `MathSenderTestMain.template.cpp`.  
+You have just created `MathSender/test/ut` folder with three new files `MathSenderTester.template.cpp`, `MathSenderTester.template.hpp` and `MathSenderTestMain.template.cpp`.
 Since this is the start of the test implementation, we use the generated template files for our initial test implementation. Inside your `MathSender/test/ut` directory, rename the files removing the `.template` suffix:
 
 ```bash
@@ -1254,7 +1254,7 @@ mv MathSenderTestMain.template.cpp MathSenderTestMain.cpp
 Add the unit test sources to the build by uncommenting the following lines at the very end of the `CMakeLists.txt` file in your `MathProject/Components/MathSender` directory:
 
 ```cmake
-# In: MathSender/CMakeLists.txt 
+# In: MathSender/CMakeLists.txt
 
 ### Unit Tests ###
 set(UT_SOURCE_FILES
@@ -1271,12 +1271,12 @@ register_fprime_ut()
 
 Build the unit test in MathSender:
 
-```shell 
+```shell
 # In: MathSender
-fprime-util build --ut 
+fprime-util build --ut
 ```
 > [!WARNING]
-> Don't forget to add ```--ut``` or else you are just going to build the component again. 
+> Don't forget to add ```--ut``` or else you are just going to build the component again.
 
 ### (Optional) Inspect the generated code
 The unit test build generates some code to support unit testing. The code is located at `MathSender/build-fprime-automatic-native-ut/Components/MathSender`.
@@ -1293,23 +1293,23 @@ In the next sections we will provide some example uses of these operations.
 
 ### Summary
 
-In this section you created the stub implementation of a unit test. In the next section you will finish the unit test and run it. 
+In this section you created the stub implementation of a unit test. In the next section you will finish the unit test and run it.
 
 ---
 
 ## Writing Unit Tests Part 2: Completing the Stub & Running the Test
 
-### In this Section 
+### In this Section
 
-In this section of the tutorial, you will fill in the stub implementation you created in the last section and run the unit test. 
+In this section of the tutorial, you will fill in the stub implementation you created in the last section and run the unit test.
 
 ### Create a Helper Function
 Write a generic helper function so you can reuse code while writing unit tests.
 Start by writing a function signature in `MathSenderTester.hpp` in `MathSender/test/ut`:
 
-```cpp 
+```cpp
 // In: MathSenderTester.hpp
-void testDoMath(MathOp op); 
+void testDoMath(MathOp op);
 ```
 
 Fill out the corresponding function body in `MathSenderTester.cpp`:
@@ -1385,13 +1385,13 @@ You will now create a function to test the `ADD` command. Add a function signatu
 
 ```cpp
 // In: MathSenderTester.hpp
-void testAddCommand(); 
-``` 
+void testAddCommand();
+```
 
 Write the corresponding tester function using the helper function you just wrote:
 
-```cpp 
-// In: MathSenderTester.cpp 
+```cpp
+// In: MathSenderTester.cpp
 void MathSenderTester ::
     testAddCommand()
   {
@@ -1401,7 +1401,7 @@ void MathSenderTester ::
 
 Write a Google test macro in MathSenderTestMain.cpp and make sure the test macro goes before main:
 
-```cpp 
+```cpp
 // In: MathSenderTestMain.cpp
 TEST(Nominal, AddCommand) {
     MathModule::MathSenderTester tester;
@@ -1409,18 +1409,18 @@ TEST(Nominal, AddCommand) {
 }
 ```
 
-### Explanation 
-The `TEST` macro is an instruction to Google Test to run a test. Without this step, your tests will never run. `Nominal` is the name of a test suite. We put this test in the `Nominal` suite because it addresses nominal (expected) behavior. `AddCommand` is the name of the test. 
+### Explanation
+The `TEST` macro is an instruction to Google Test to run a test. Without this step, your tests will never run. `Nominal` is the name of a test suite. We put this test in the `Nominal` suite because it addresses nominal (expected) behavior. `AddCommand` is the name of the test.
 Inside the body of the macro, the first line declares a new object `tester` of type `MathSenderTester`. We typically declare a new object for each unit test, so that each test starts in a fresh state. The second line invokes the function `testAddCommand` that we wrote in the previous section.
 
 
 ### Run Your Tests
-Run the test you have written. Make sure to execute the following in ```MathSender```. 
+Run the test you have written. Make sure to execute the following in ```MathSender```.
 
-```shell 
+```shell
 # In: MathSender
-fprime-util check 
-``` 
+fprime-util check
+```
 
 As an exercise, try the following:
 
@@ -1442,20 +1442,20 @@ fprime-util check --coverage
 In addition to printing out your test coverage overview in the console, the `--coverage` flag will generate a `coverage/` directory that has HTML files showing additional code coverage info. This all uses Gcov under the hood.
 
 
-### Add more command tests 
+### Add more command tests
 Try to follow the pattern given in the previous section to add three more tests, one each for operations `SUB`, `MUL`, and `DIV`. Most of the work should be done in the helper that we already wrote. Each new test requires just a short test function and a short test macro.
 
 Run the tests to make sure everything compiles and the tests pass.
 
-### Summary 
+### Summary
 
-In this section you filled out your unit test implementation stub and ran your unit test. 
+In this section you filled out your unit test implementation stub and ran your unit test.
 
 ---
 
 ## Writing Unit Tests Part 3: Testing the Results
 
-### In this Section 
+### In this Section
 In this section of the tutorial, you will add another test into `MathSender/test/ut` and run the new test.
 
 **Add a result test:**
@@ -1508,29 +1508,29 @@ Add the following test macro to `MathSenderTestMain.cpp`:
 ```c++
 // In: MathSenderTestMain.cpp
 TEST(Nominal, Result) {
-    MathModule::MathSenderTester tester; 
+    MathModule::MathSenderTester tester;
     tester.testResult();
 }
 ```
 
 Run the tests:
 
-```shell 
+```shell
 # In: MathSender
-fprime-util check 
-``` 
+fprime-util check
+```
 
 Again you can try altering something in the component code to see what effect it has on the test output.
 
-### Summary 
+### Summary
 
-In this section, you created another helper function used to look test the received results as seen by the `MathSender`. You ran the test that you should wrote to ensure that it worked. 
+In this section, you created another helper function used to look test the received results as seen by the `MathSender`. You ran the test that you should wrote to ensure that it worked.
 
 ---
 
 ## Writing Unit Tests Part 4: Random testing
 
-### Background 
+### Background
 
 Testing using only numbers that you hard code into your tests can easily leave edge cases untouched can allow you, the programmer, to miss bugs.
 
@@ -1538,11 +1538,11 @@ F' provides a module called STest that provides helper classes and functions for
 
 ### In this Section
 
-In this section of the tutorial, you will create test that uses random numbers instead of hard coded numbers. 
+In this section of the tutorial, you will create test that uses random numbers instead of hard coded numbers.
 
-To incorporate random numbers into the existing tests you have written for `MathSender`, you only need to make a couple small modifications. 
+To incorporate random numbers into the existing tests you have written for `MathSender`, you only need to make a couple small modifications.
 
-**First,** edit `MathSender/test/ut/MathSenderTester.cpp` by adding a `Pick.hpp` to the includes: 
+**First,** edit `MathSender/test/ut/MathSenderTester.cpp` by adding a `Pick.hpp` to the includes:
 
 ```cpp
 // In: MathSenderTester.cpp
@@ -1581,7 +1581,7 @@ STest::Random::seed();
 
 **Fifth,** modify `MathSender/CMakeLists.txt` to include STest as a build dependency:
 
-```cmake 
+```cmake
 # In: /MathSender/CMakeLists.txt
 # Above: register_fprime_ut()
 set(UT_MOD_DEPS STest)
@@ -1589,8 +1589,8 @@ set(UT_MOD_DEPS STest)
 **Sixth,** recompile and rerun the tests.
 
 ```shell
-# In: MathSender  
-fprime-util check 
+# In: MathSender
+fprime-util check
 ```
 
 Go to MathProject/build-fprime-automatic-native-ut/Components/MathSender and inspect the file `seed-history`. This file is a log of random seed values. Each line represents the seed used in the corresponding run.
@@ -1606,7 +1606,7 @@ Try the following:
 
    3. Inspect ```MathProject/build-fprime-automatic-native-ut/Components/MathSender/seed-history```. You should see that the value S was used in the runs you just did (corresponding to the last few entries in seed-history).
 
-### Summary 
+### Summary
 
 In this section you incorporated random testing into your existing tests.
 
@@ -1614,13 +1614,13 @@ In this section you incorporated random testing into your existing tests.
 
 ## Writing Unit Tests Part 5: Creating the Implementation Stub
 
-### In this Section 
+### In this Section
 
-In this section of the tutorial, you will be repeating the steps you used to create an implementation stub for `MathSender`. 
+In this section of the tutorial, you will be repeating the steps you used to create an implementation stub for `MathSender`.
 
 Generate a stub implementation of the unit tests.
 
-```shell 
+```shell
 # In: MathReceiver
 fprime-util impl --ut
 ```
@@ -1639,7 +1639,7 @@ mv MathReceiverTestMain.template.cpp MathReceiverTestMain.cpp
 Add the unit test to the build. Do so by uncommenting the appropriate lines in the CMakeLists.txt. The UT section should now look like the following:
 
 ```cmake
-# In: MathReceiver/CMakeLists.txt 
+# In: MathReceiver/CMakeLists.txt
 ### Unit Tests ###
 set(UT_SOURCE_FILES
   "${CMAKE_CURRENT_LIST_DIR}/MathReceiver.fpp"
@@ -1655,17 +1655,17 @@ register_fprime_ut()
 
 Build the unit test in MathReceiver:
 
-```shell 
+```shell
 # In: MathReceiver
-fprime-util build --ut 
+fprime-util build --ut
 ```
 > [!WARNING]
-> Don't forget to add ```--ut``` or else you are just going to build the component again. 
+> Don't forget to add ```--ut``` or else you are just going to build the component again.
 
 
 ### Preparing for Random Testing
 
-Complete the following steps to prepare for random testing. 
+Complete the following steps to prepare for random testing.
 
 
 ```cpp
@@ -1686,21 +1686,21 @@ Complete the following steps to prepare for random testing.
 STest::Random::seed();
 ```
 
-```cmake 
+```cmake
 # In: /MathReceiver/CMakeLists.txt
 # Above: register_fprime_ut()
 set(UT_MOD_DEPS STest)
 ```
 
-### Summary 
+### Summary
 
-In this section you have setup implementation stubs to begin writing unit tests for `MathReceiver`. 
+In this section you have setup implementation stubs to begin writing unit tests for `MathReceiver`.
 
 ---
 
 ## Writing Unit Tests Part 6: Writing Helper Functions
 
-### In this Section 
+### In this Section
 In this section of the tutorial, you will write helper functions to tests various function of `MathReceiver`.
 
 ### Add a ThrottleState enum class
@@ -1724,7 +1724,7 @@ private:
 This code defines a C++ enum class for recording whether an
 event is throttled.
 
-### Add helper functions 
+### Add helper functions
 Add each of the functions described below to the "Helper methods" section of `MathReceiverTester.cpp`.
 For each function, you must add the corresponding function prototype to `MathReceiverTester.hpp`.
 After adding each function, compile the unit tests to make sure that everything still compiles. Fix any errors that occur.
@@ -1741,7 +1741,7 @@ F32 MathReceiverTester ::
 }
 ```
 > [!WARNING]
-> Remember to add a function signature in `MathReceiverTester.hpp`. 
+> Remember to add a function signature in `MathReceiverTester.hpp`.
 
 This function picks a random `F32` value in the range
 _[ -10^6, 10^6 ]_.
@@ -1759,7 +1759,7 @@ fprime-util build --ut -j4
 Copy and paste in the code below to create the `setFactor` function
 
 ```c++
-// In MathReceiverTester.cpp  
+// In MathReceiverTester.cpp
 void MathReceiverTester ::
   setFactor(
       F32 factor,
@@ -1798,7 +1798,7 @@ This function does the following:
 3. If `throttleState` is `NOT_THROTTLED`, then check that the event was emitted.
 Otherwise check that the event was throttled (not emitted).
 
-**Build** to make sure everything is working. 
+**Build** to make sure everything is working.
 
 ### Create a Compute Result Function
 
@@ -1842,7 +1842,7 @@ F32 MathReceiverTester ::
 This function carries out the math computation of the math component.
 By running this function and comparing, we can check the output of the component.
 
-Build to make sure everything is working. 
+Build to make sure everything is working.
 
 ### Create a Do Math Op Functions
 
@@ -1883,7 +1883,7 @@ void MathReceiverTester ::
     // verify events
 
     // check that there was one event
-    // if you're dviding by zero, there may be two events ;) 
+    // if you're dviding by zero, there may be two events ;)
     ASSERT_EVENTS_SIZE(1);
     // check that it was the op event
     ASSERT_EVENTS_OPERATION_PERFORMED_SIZE(1);
@@ -1942,7 +1942,7 @@ void MathReceiverTester ::
 
 `testAdd()` calls the `setFactor` helper function to set the factor parameter. Then it calls the `doMathOp` function to do a math operation.
 
-### Write a SUB test 
+### Write a SUB test
 Add the following function to the `Tests` section of `MathReceiverTester.cpp`:
 
 ```c++
@@ -2022,16 +2022,16 @@ void MathReceiverTester ::
 }
 ```
 
-### Explanation 
+### Explanation
 This test first loops over the throttle count, which is stored for us in the constant `EVENTID_FACTOR_UPDATED_THROTTLE` of the `MathReceiver` component base class. On each iteration, it calls `setFactor`. At the end of this loop, the `FACTOR_UPDATED` event should be throttled.
 
 Next the test calls `setFactor` with a second argument of `ThrottleState::THROTTLED`. This code checks that the event is throttled.
 
 Next the test sends the command `CLEAR_EVENT_THROTTLE`, checks for the corresponding notification event, and checks that the throttling is cleared.
 
-Add your tests to `MathReceiverTestMain.cpp` so that the tests run when `fprime-util check' is called. 
+Add your tests to `MathReceiverTestMain.cpp` so that the tests run when `fprime-util check' is called.
 
-Here is how to include `testAdd` to `MathReceiverTestMain.cpp`. Follow this pattern to include any other unit tests you wrote: 
+Here is how to include `testAdd` to `MathReceiverTestMain.cpp`. Follow this pattern to include any other unit tests you wrote:
 
 ```cpp
 // In: MathReceiverTestMain.cpp
@@ -2041,11 +2041,11 @@ TEST(Nominal, AddCommand) {
 }
 ```
 
-See if your tests are working and trouble shoot any errors: 
+See if your tests are working and trouble shoot any errors:
 
 ```shell
 # In: MathReceiver
-fprime-util check 
+fprime-util check
 ```
 
 ---
@@ -2054,82 +2054,82 @@ fprime-util check
 
 ### In this Section
 
-In this section of the tutorial, you will add a telemetry channel to report the number of math operations the `MathReceiver` has performed. 
+In this section of the tutorial, you will add a telemetry channel to report the number of math operations the `MathReceiver` has performed.
 
-Before reading these steps, do your best to look at the existing files in this tutorial and implement a telemetry channel on your own. 
+Before reading these steps, do your best to look at the existing files in this tutorial and implement a telemetry channel on your own.
 
-1. Add a telemetry channel to `MathReceiver.fpp`: 
+1. Add a telemetry channel to `MathReceiver.fpp`:
 
 ```fpp
 # In: MathReceiver.fpp, under the Telemetry section
-@ Number of math operations 
-    telemetry NUMBER_OF_OPS: U32 
+@ Number of math operations
+    telemetry NUMBER_OF_OPS: U32
 ```
-**Explanation:** Here you defined a telemetry channel  which you arbitrarily named `NUMBER_OF_OPS` which  carries a 32 bit unsigned integer. 
+**Explanation:** Here you defined a telemetry channel  which you arbitrarily named `NUMBER_OF_OPS` which  carries a 32 bit unsigned integer.
 
 2. Add a member variable to `MathReceiver.hpp`:
 
 ```cpp
 // In: MathReceiver.hpp
-// Under: PRIVATE
-U32 numMathOps; 
+// Under: private
+U32 numMathOps;
 ```
 
 3. Update the constructor so that it initializes `numMathOps` to zero:
 
 ```cpp
-// In: MathReceiver.cpp 
-// Under: Construction, Initialization, and Destruction 
+// In: MathReceiver.cpp
+// Under: Construction, Initialization, and Destruction
 MathReceiver ::
     MathReceiver(
         const char *const compName
     ) : MathReceiverComponentBase(compName),
-        numMathOps(0) 
+        numMathOps(0)
   {
 
   }
 ```
 
-4. Increment numMathOps: 
+4. Increment numMathOps:
 
 ```cpp
-// In: MathReceiver.cpp 
+// In: MathReceiver.cpp
 // Within mathOpIn_handler
-numMathOps++;  
+numMathOps++;
 ```
 
-5. Emit telemetry: 
+5. Emit telemetry:
 ```cpp
-// In: MathReceiver.cpp 
+// In: MathReceiver.cpp
 // Within: mathOpIn_handler
 // After: numMathOps++
-this->tlmWrite_NUMBER_OF_OPS(numMathOps); 
+this->tlmWrite_NUMBER_OF_OPS(numMathOps);
 ```
 > [!NOTE]
 > This function will get autocoded by FPP since we defined the telemetry channel.
 
 7. Build and test:
 
-```shell 
+```shell
 # In: MathProject
-fprime-util build -j4 
-fprime-gds 
+fprime-util build -j4
+fprime-gds
 ```
 
 Send a command and verify that the channel gets value 1.
 
-Write some unit tests to prove that this channel is working. 
+Write some unit tests to prove that this channel is working.
 
-### Summary 
+### Summary
 
 In this section you defined a telemetry channel and implemented a new variable, that will be sent through the channel.
 
 ---
 
-## Error Handling 1: Critical Thinking 
+## Error Handling 1: Critical Thinking
 
-### Background 
-On a flight mission, even a short timeout, let alone a system crash, can be mission critical. It is imperative that programmer account for as many possible error or faults as possible so avoidable errors are prevented. 
+### Background
+On a flight mission, even a short timeout, let alone a system crash, can be mission critical. It is imperative that programmer account for as many possible error or faults as possible so avoidable errors are prevented.
 
 
 Think about what will happen if the floating-point math operation performed by `MathReceiver` causes an error.
@@ -2164,21 +2164,21 @@ What should `MathSender` do if `MathReceiver` reports an error instead of a vali
 Try to revise the MathSender and MathReceiver components to implement your ideas.
 Challenge yourself to add unit tests covering the new behavior.
 
-The next section gives one idea of how to do some error handling for the divide by zero case. Before looking at it, try to solve the problem on your own and compare against the method shown in this tutorial. 
+The next section gives one idea of how to do some error handling for the divide by zero case. Before looking at it, try to solve the problem on your own and compare against the method shown in this tutorial.
 
 
 ---
 
 ## Error Handling 2: One Solution
 
-### Example Solution 
+### Example Solution
 
 Below is a basic and incomplete solution to the divide by zero problem presented in the previous section.
 
-The solution works as follows: Use an if statement to catch the case that `val2` (the denominator) is zero. 
-In the case that `val2` is zero, do nothing with the operands and report the error through an event. 
+The solution works as follows: Use an if statement to catch the case that `val2` (the denominator) is zero.
+In the case that `val2` is zero, do nothing with the operands and report the error through an event.
 
-Use an if statement in `MathReceiver.cpp` to catch when the denominator is zero: 
+Use an if statement in `MathReceiver.cpp` to catch when the denominator is zero:
 
 ```cpp
 // In: MathReceiver.cpp
@@ -2196,7 +2196,7 @@ switch (op.e) {
         case MathOp::DIV:
             if ( val2 == 0 ){
 
-              break; 
+              break;
             }
             res = val1 / val2;
             break;
@@ -2212,27 +2212,27 @@ Create an event to notify that a divide by zero command  was received by the `Ma
 
 ```fpp
 # In: MathRecevier.fpp
-@ Commanded to divide by zero 
+@ Commanded to divide by zero
 event DIVIDE_BY_ZERO   \
     severity activity high \
     id 3 \
     format "ERROR: Received zero as denominator. Opperands dropped."
 ```
 > [!NOTE]
-> Write your own error message between the quotes after `format`! 
+> Write your own error message between the quotes after `format`!
 
 Add your even into the case where `MathOp::DIV` and `val2` is 0:
 
 ```cpp
 case MathOp::DIV:
-    //step 2 
+    //step 2
     if ( val2 == 0 ){
-        this->log_ACTIVITY_HI_DIVIDE_BY_ZERO(); 
-        break; 
+        this->log_ACTIVITY_HI_DIVIDE_BY_ZERO();
+        break;
     }
 ```
 
-### Summary 
+### Summary
 You just created a way to not only handle the case where  `MathReceiver` is asked to divide by 0, you also created  an event to report that an error has occurred. As a challenge,  try to handle more of the cases and problems discussed in [Error handling 1](#error-handling-1-critical-thinking).
 
 ### Congratulations!!!

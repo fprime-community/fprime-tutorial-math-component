@@ -31,7 +31,7 @@ namespace MathModule {
       //!
       ~MathReceiver();
 
-    PRIVATE:
+    private:
 
       // ----------------------------------------------------------------------
       // Handler implementations for user-defined typed input ports
@@ -41,13 +41,13 @@ namespace MathModule {
       //!
       void mathOpIn_handler(
           const FwIndexType portNum, /*!< The port number*/
-          F32 val1, /*!< 
+          F32 val1, /*!<
       The first operand
       */
-          const MathModule::MathOp &op, /*!< 
+          const MathModule::MathOp &op, /*!<
       The operation
       */
-          F32 val2 /*!< 
+          F32 val2 /*!<
       The second operand
       */
       );
@@ -61,7 +61,7 @@ namespace MathModule {
       */
       );
 
-    PRIVATE:
+    private:
 
       // ----------------------------------------------------------------------
       // Command handler implementations
@@ -75,11 +75,11 @@ namespace MathModule {
       );
 
 
-    PRIVATE:
+    private:
       // ----------------------------------------------------------------------
-      // Member variables 
-      // ---------------------------------------------------------------------- 
-    U32 numMathOps; 
+      // Member variables
+      // ----------------------------------------------------------------------
+    U32 numMathOps;
 
     };
 
