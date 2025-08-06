@@ -88,7 +88,6 @@ module MathDeployment {
       comStub.comStatusOut  -> framer.comStatusIn
       # ComStub <-> ComDriver
       comStub.drvSendOut      -> comDriver.$send
-      comDriver.sendReturnOut -> comStub.drvSendReturnIn
       comDriver.ready         -> comStub.drvConnected
     }
 
