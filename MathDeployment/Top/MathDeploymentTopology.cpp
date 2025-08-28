@@ -157,8 +157,8 @@ void setupTopology(const TopologyState& state) {
 Os::Mutex cycleLock;
 volatile bool cycleFlag = true;
 
-void startSimulatedCycle(Fw::TimeInterval interval) {
-    linuxTimer.startTimer(interval.getSeconds()*1000+interval.getUSeconds()/1000);
+void startSimulatedCycle(const Fw::TimeInterval& interval) {
+    linuxTimer.startTimer(interval);
 }
 
 void stopSimulatedCycle() {
