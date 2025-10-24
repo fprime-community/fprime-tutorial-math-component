@@ -43,9 +43,9 @@ An F´ project ties to a specific version of tools to work with F´. In order to
 this project and install the correct version of tools, you should perform a bootstrap of F´:
 
 1. Ensure you meet the [F´ System Requirements](https://github.com/nasa/fprime?tab=readme-ov-file#system-requirements)
-2. [Bootstrap your F´ project](https://nasa.github.io/fprime/INSTALL.html#creating-a-new-f-project) with the name `MathProject`
+2. [Bootstrap your F´ project](https://nasa.github.io/fprime/INSTALL.html#creating-a-new-f-project) using repository name `math-project` and the top-level namespace `MathProject`
 
-Bootstrapping your F´ project created a folder called `MathProject` (or any name you chose) containing the standard F´ project structure as well as the virtual environment up containing the tools to work with F´.
+Bootstrapping your F´ project created a repository containing the standard F´ project structure as well as the virtual environment up containing the tools to work with F´. The top-level namespace folder is `MathProject`.
 
 
 ### Building the New F´ Project
@@ -54,7 +54,7 @@ The next step is to set up and build the newly created project. This will serve 
 created components, and will build the F´ framework supplied components.
 
 ```bash
-cd MathProject
+cd math-project/MathProject
 fprime-util generate
 fprime-util build -j4
 ```
@@ -64,15 +64,13 @@ fprime-util build -j4
 
 ### Summary
 
-A new project has been created with the name `MathProject` and has been placed in a new folder called in `MathProject` in
-the current directory. It includes the initial build system setup, and F´ version. It is still empty in that the user
-will still need to create components and deployments.
+A new project has been created, and a new folder called in `MathProject` is in the project directory. The project directory includes the initial build system setup, and F´ version. It is still empty in that the user will still need to create components and deployments.
 
 For the remainder of this Getting Started tutorial we should use the tools installed for our project and issue commands
 within this new project's folder. Change into the project directory and load the newly install tools with:
 
 ```bash
-cd MathProject
+cd math-project
 . fprime-venv/bin/activate
 ```
 
@@ -95,7 +93,8 @@ In this section, you will create a `Types` directory and add it to the project b
 To start, create a directory where your type(s) will live:
 
 ```shell
-# In: MathProject
+# In: math-project
+cd MathProject
 mkdir Types
 cd Types
 ```
@@ -114,7 +113,7 @@ Use your favorite text editor, visual studios, nano, vim, etc..., and add the fo
 
 ```
 # In: MathTypes.fpp
-module MathModule {
+module MathProject {
 
     @ Math operations
     enum MathOp {
@@ -126,7 +125,7 @@ module MathModule {
 }
 ```
 > [!IMPORTANT]
-> Think of modules similar to a cpp namespace. Whenever you want to make use of the enumeration, `MathOp`, you will need to use the MathModule module.
+> Think of modules similar to a cpp namespace. Whenever you want to make use of the enumeration, `MathOp`, you will need to use the MathProject module.
 
 Above you have created an enumeration of the four math types that are used in this tutorial.
 
@@ -157,12 +156,12 @@ set(SOURCE_FILES
 register_fprime_module()
 ```
 
-2. Add the `Types` directory to the overall project build by adding to `project.cmake`.
+2. Add the `Types` directory to the overall project build by adding to `CMakeLists.txt`.
 
-Edit `project.cmake`, located in the `MathProject` directory, and  **add** the following line at the end of the file:
+Edit `CMakeLists.txt`, located in the `MathProject` directory, and  **add** the following line at the end of the file:
 
 ```cmake
-# In: MathProject/project.cmake
+# In: MathProject/CMakeLists.txt
 add_fprime_subdirectory("${CMAKE_CURRENT_LIST_DIR}/Types/")
 ```
 
@@ -182,7 +181,7 @@ The output should indicate that the model built without any errors. If not, try 
 > Advanced users may want to go inspect the generated code. Go to the directory `MathProject/build-fprime-automatic-native/Types`. The directory `build-fprime-automatic-native` is where all the generated code lives for the "automatic native" build of the project. Within that directory is a directory tree that mirrors the project structure. In particular, `build-fprime-automatic-native/Types` contains the generated code for `Types`.
 
 > [!NOTE]
-> The files MathOpEnumAc.hpp and MathOpEnumAc.cpp are the auto-generated C++ files corresponding to the MathOp enum. You may wish to study the file MathOpEnumAc.hpp. This file gives the interface to the C++ class MathModule::MathOp. All enum types have a similar auto-generated class interface.
+> The files MathOpEnumAc.hpp and MathOpEnumAc.cpp are the auto-generated C++ files corresponding to the MathOp enum. You may wish to study the file MathOpEnumAc.hpp. This file gives the interface to the C++ class MathProject::MathOp. All enum types have a similar auto-generated class interface.
 
 ### Summary
 At this point you have successfully created the `MathOp` type
@@ -234,7 +233,7 @@ Use your favorite text editor to add the following to `MathPorts.fpp`:
 
 ```fpp
 # In: MathPorts.fpp
-module MathModule {
+module MathProject {
   @ Port for requesting an operation on two numbers
   port OpRequest(
     val1: F32 @< The first operand
@@ -249,7 +248,7 @@ module MathModule {
 }
 ```
 > [!NOTE]
-> Notice how we define ports in MathModule, which is where we defined MathOp as well.
+> Notice how we define ports in MathProject, which is where we defined MathOp as well.
 
 Here, you have created two ports. The first port, called `OpRequest`, carries two 32-bit floats (`val1` and `val2`) and a math operations `op`. The second port only carries one 32-bit float (result). The first port is intended to send an operation and operands to the `MathReceiver`.
 The second port is designed to send the results of the operation back to `MathSender`.
@@ -276,10 +275,10 @@ set(SOURCE_FILES
 register_fprime_module()
 ```
 
-Add the following to `project.cmake`. Remember that `project.cmake` is in MathProject, not Ports.
+Add the following to `CMakeLists.txt`. Remember that `CMakeLists.txt` is in MathProject, not Ports.
 
 ```cmake
-# In: MathProject/project.cmake
+# In: MathProject/CMakeLists.txt
 add_fprime_subdirectory("${CMAKE_CURRENT_LIST_DIR}/Ports/")
 ```
 
@@ -334,7 +333,7 @@ This command will prompt you for some inputs. Answer the prompts as shown below:
 [INFO] Cookiecutter source: using builtin
 Component name [MyComponent]: MathSender
 Component short description [Example Component for F Prime FSW framework.]: Active component used for sending operations and operands to the MathReceiver.
-Component namespace [Component]: MathModule
+Component namespace [Component]: MathProject
 Select component kind:
 1 - active
 2 - passive
@@ -356,8 +355,8 @@ Enable Parameters?:
 1 - yes
 2 - no
 Choose from 1, 2 [1]: 1
-[INFO] Found CMake file at 'MathProject/project.cmake'
-Add component Components/MathSender to MathProject/project.cmake at end of file (yes/no)? yes
+[INFO] Found CMake file at 'MathProject/CMakeLists.txt'
+Add component Components/MathSender to MathProject/CMakeLists.txt at end of file (yes/no)? yes
 Generate implementation files (yes/no)? yes
 ```
 
@@ -377,7 +376,7 @@ In `Components/MathSender`, open `MathSender.fpp` and **entirely replace its con
 
 ```fpp
 # In: MathSender.fpp
-module MathModule {
+module MathProject {
 
   @ Component for sending a math operation
   active component MathSender {
@@ -524,7 +523,7 @@ fprime-util build
 
 ### Wait... Shouldn't You Add this to the Build?
 
-If you've been paying attention to the tutorial thus far, you might be getting some warning bells that you have not added your new component to the build. Fear not, when using `fprime-util new --component` all of the `CMakeLists.txt` and `project.cmake` work was done for you! Take a look at both files to verify for yourself.
+If you've been paying attention to the tutorial thus far, you might be getting some warning bells that you have not added your new component to the build. Fear not, when using `fprime-util new --component` all of the `CMakeLists.txt` work was done for you! Take a look at both files to verify for yourself.
 
 ### Summary
 
@@ -650,7 +649,7 @@ This command will prompt you for some inputs. You should specify the follow so t
 [INFO] Cookiecutter source: using builtin
 Component name [MyComponent]: MathReceiver
 Component short description [Example Component for F Prime FSW framework.]: Your description
-Component namespace [Component]: MathModule
+Component namespace [Component]: MathProject
 Select component kind:
 1 - active
 2 - passive
@@ -672,8 +671,8 @@ Enable Parameters?:
 1 - yes
 2 - no
 Choose from 1, 2 [1]: 1
-[INFO] Found CMake file at 'MathProject/project.cmake'
-Add component Components/MathSender to MathProject/project.cmake at end of file (yes/no)? yes
+[INFO] Found CMake file at 'MathProject/CMakeLists.txt'
+Add component Components/MathSender to MathProject/CMakeLists.txt at end of file (yes/no)? yes
 Generate implementation files (yes/no)? yes
 ```
 
@@ -689,7 +688,7 @@ Now that you have created the component, you can implement the component behavio
 
 ```fpp
 # In: MathReceiver.fpp
-module MathModule {
+module MathProject {
 
   @ Component for receiving and performing a math operation
   queued component MathReceiver {
@@ -1087,13 +1086,13 @@ Create an instance for `MathSender` in `instances.fpp`.
 ```fpp
 # In: MathDeployment/Top/instances.fpp
 # Under: Active component instances
-instance mathSender: MathModule.MathSender base id 0xE00 \
+instance mathSender: MathProject.MathSender base id 0xE00 \
   queue size Default.QUEUE_SIZE \
   stack size Default.STACK_SIZE \
   priority 100
 
 # Under: Queued component instances
-instance mathReceiver: MathModule.MathReceiver base id 0x2700 \
+instance mathReceiver: MathProject.MathReceiver base id 0x2700 \
   queue size Default.QUEUE_SIZE
 ```
 
@@ -1404,7 +1403,7 @@ Write a Google test macro in MathSenderTestMain.cpp and make sure the test macro
 ```cpp
 // In: MathSenderTestMain.cpp
 TEST(Nominal, AddCommand) {
-    MathModule::MathSenderTester tester;
+    MathProject::MathSenderTester tester;
     tester.testAddCommand();
 }
 ```
@@ -1508,7 +1507,7 @@ Add the following test macro to `MathSenderTestMain.cpp`:
 ```c++
 // In: MathSenderTestMain.cpp
 TEST(Nominal, Result) {
-    MathModule::MathSenderTester tester;
+    MathProject::MathSenderTester tester;
     tester.testResult();
 }
 ```
@@ -2036,7 +2035,7 @@ Here is how to include `testAdd` to `MathReceiverTestMain.cpp`. Follow this patt
 ```cpp
 // In: MathReceiverTestMain.cpp
 TEST(Nominal, AddCommand) {
-    MathModule::MathReceiverTester tester;
+    MathProject::MathReceiverTester tester;
     tester.testAdd();
 }
 ```
