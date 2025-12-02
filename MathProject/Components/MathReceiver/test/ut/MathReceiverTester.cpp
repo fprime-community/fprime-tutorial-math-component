@@ -25,6 +25,7 @@ namespace MathProject
   MathReceiverTester ::
       ~MathReceiverTester()
   {
+      this->component.deinit();
   }
 
   // ----------------------------------------------------------------------

@@ -25,6 +25,7 @@ namespace MathProject
   MathSenderTester ::
       ~MathSenderTester()
   {
+      this->component.deinit();
   }
 
   // ----------------------------------------------------------------------
