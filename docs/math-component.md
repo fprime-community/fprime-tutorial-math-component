@@ -1023,7 +1023,7 @@ void MathReceiver ::
 ```cpp
 // In: MathReceiver.hpp
 // As a Private under: Handler implementations for user-defined typed input ports
-void parameterUpdated(FwPrmIdType id);
+void parameterUpdated(FwPrmIdType id) override;
 ```
 
 ### Explanation
