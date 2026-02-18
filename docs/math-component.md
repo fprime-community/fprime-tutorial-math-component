@@ -1144,11 +1144,11 @@ Go into `topology.fpp`, connect `mathReceiver.schedIn` to rate group one using t
 ```fpp
 # In: Top/topology.fpp
 # Under: connections RateGroups for rateGroup1
-rateGroup1.RateGroupMemberOut[3] -> mathReceiver.schedIn
+rateGroup1.RateGroupMemberOut[5] -> mathReceiver.schedIn
 ```
 
 > [!NOTE]
-> `[3]` is the next available index in rate group one.
+> `[5]` is the next available index in rateGroup1.RateGroupMemberOut, as shown in the `topology.fpp`.
 
 ### Explanation
 This line adds the connection that drives the `schedIn` port of the `mathReceiver` component instance.
