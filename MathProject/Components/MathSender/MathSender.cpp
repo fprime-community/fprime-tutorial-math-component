@@ -47,7 +47,7 @@ namespace MathProject
           const FwOpcodeType opCode,
           const U32 cmdSeq,
           F32 val1,
-          MathProject::MathOp op,
+          const MathProject::MathOp& op,
           F32 val2)
   {
     this->tlmWrite_VAL1(val1);
