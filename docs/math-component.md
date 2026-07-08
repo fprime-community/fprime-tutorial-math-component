@@ -555,7 +555,7 @@ void MathSender ::
       const FwOpcodeType opCode,
       const U32 cmdSeq,
       F32 val1,
-      MathOp op,
+      const MathOp& op,
       F32 val2
   )
 {
