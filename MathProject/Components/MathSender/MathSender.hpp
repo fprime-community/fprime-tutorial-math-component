@@ -57,7 +57,7 @@ namespace MathProject
         F32 val1,                  /*!<
                          The first operand
                          */
-        MathProject::MathOp op,    /*!<
+        const MathProject::MathOp& op, /*!<
            The operation
            */
         F32 val2                   /*!<
