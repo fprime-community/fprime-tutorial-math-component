@@ -10,7 +10,7 @@ module MathProject {
     rateGroup3
   }
 
-  topology MathDeployment {
+  deployment topology MathDeployment {
 
   # ----------------------------------------------------------------------
   # Subtopology imports
